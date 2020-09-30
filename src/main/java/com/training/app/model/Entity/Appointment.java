@@ -1,4 +1,4 @@
-package com.training.app.model.entity;
+package com.training.app.model.Entity;
 
 import java.time.LocalDateTime;
 
