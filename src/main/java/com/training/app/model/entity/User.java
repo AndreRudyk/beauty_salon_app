@@ -1,6 +1,8 @@
 package com.training.app.model.entity;
 
 /**
+ * The type User.
+ *
  * @author besko
  */
 public class User extends Entity {
@@ -32,6 +34,8 @@ public class User extends Entity {
         }
 
         /**
+         * Gets role name.
+         *
          * @return {@link User.Role} roleName field
          */
         public String getRoleName() {
@@ -49,38 +53,83 @@ public class User extends Entity {
     private int rating;
     private String cardNumber;
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Gets login.
+     *
+     * @return the login
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     * Gets password.
+     *
+     * @return the password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Gets first name.
+     *
+     * @return the first name
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * Gets last name.
+     *
+     * @return the last name
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * Gets phone number.
+     *
+     * @return the phone number
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * Gets user role.
+     *
+     * @return the user role
+     */
     public Role getUserRole() {
         return userRole;
     }
 
+    /**
+     * Gets rating.
+     *
+     * @return the rating
+     */
     public int getRating() {
         return rating;
     }
 
+    /**
+     * Gets card number.
+     *
+     * @return the card number
+     */
     public String getCardNumber() {
         return cardNumber;
     }
@@ -137,10 +186,18 @@ public class User extends Entity {
         return result;
     }
 
+    /**
+     * New user builder user builder.
+     *
+     * @return the user builder
+     */
     public static UserBuilder newUserBuilder() {
         return new User().new UserBuilder();
     }
 
+    /**
+     * The type User builder.
+     */
     public class UserBuilder {
         /**
          *
@@ -158,51 +215,110 @@ public class User extends Entity {
         private int rating;
         private String cardNumber;
 
+        /**
+         * Sets id.
+         *
+         * @param id the id
+         * @return the id
+         */
         public UserBuilder setId(int id) {
             this.id = id;
             return this;
         }
 
+        /**
+         * Sets login.
+         *
+         * @param login the login
+         * @return the login
+         */
         public UserBuilder setLogin(String login) {
             this.login = login;
             return this;
         }
 
+        /**
+         * Sets password.
+         *
+         * @param password the password
+         * @return the password
+         */
         public UserBuilder setPassword(String password) {
             this.password = password;
             return this;
         }
 
+        /**
+         * Sets first name.
+         *
+         * @param firstName the first name
+         * @return the first name
+         */
         public UserBuilder setFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
+        /**
+         * Sets last name.
+         *
+         * @param lastName the last name
+         * @return the last name
+         */
         public UserBuilder setLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
+        /**
+         * Sets phone number.
+         *
+         * @param phoneNumber the phone number
+         * @return the phone number
+         */
         public UserBuilder setPhoneNumber(String phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
         }
 
+        /**
+         * Sets user role.
+         *
+         * @param userRole the user role
+         * @return the user role
+         */
         public UserBuilder setUserRole(User.Role userRole) {
             this.userRole = userRole;
             return this;
         }
 
+        /**
+         * Sets rating.
+         *
+         * @param rating the rating
+         * @return the rating
+         */
         public UserBuilder setRating(int rating) {
             this.rating = rating;
             return this;
         }
 
+        /**
+         * Sets card number.
+         *
+         * @param cardNumber the card number
+         * @return the card number
+         */
         public UserBuilder setCardNumber(String cardNumber) {
             this.cardNumber = cardNumber;
             return this;
         }
 
+        /**
+         * Build user.
+         *
+         * @return the user
+         */
         public User build() {
             return User.this;
         }
