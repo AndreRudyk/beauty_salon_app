@@ -48,25 +48,25 @@ public class User implements Entity {
      */
     public enum Rating {
         /**
-         * The  1 star.
+         * The  1 stars.
          */
-        S1("1 stars"),
+        S1("1"),
         /**
-         * The 2 star.
+         * The 2 stars.
          */
-        S2("2 stars"),
+        S2("2"),
         /**
-         * The 3 star.
+         * The 3 stars.
          */
-        S3("3 stars"),
+        S3("3"),
         /**
-         * The 4 star.
+         * The 4 stars.
          */
-        S4("4 starts"),
+        S4("4"),
         /**
-         * The 5 star.
+         * The 5 stars.
          */
-        S5("5 starts");
+        S5("5");
 
         private final String rate;
 
