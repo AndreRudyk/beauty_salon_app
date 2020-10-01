@@ -3,19 +3,19 @@ package com.training.app.dao;
 /**
  * The type Exception dao.
  */
-public class ExceptionDAO extends Exception{
+public class DaoException extends Exception{
 
     /**
      * Instantiates a new Exception dao.
      */
-    public ExceptionDAO() {}
+    public DaoException() {}
 
     /**
      * Instantiates a new Exception dao.
      *
      * @param message the message
      */
-    public ExceptionDAO(String message) {
+    public DaoException(String message) {
         super(message);
     }
 
@@ -24,7 +24,7 @@ public class ExceptionDAO extends Exception{
      *
      * @param cause the cause
      */
-    public ExceptionDAO(Throwable cause) {
+    public DaoException(Throwable cause) {
         super(cause);
     }
 
@@ -34,7 +34,7 @@ public class ExceptionDAO extends Exception{
      * @param message the message
      * @param cause   the cause
      */
-    public ExceptionDAO(String message, Throwable cause) {
+    public DaoException(String message, Throwable cause) {
         super(message, cause);
     }
 

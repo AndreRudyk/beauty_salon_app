@@ -1,15 +1,15 @@
-package com.training.app.model.Entity;
+package com.training.app.model.entity;
 
 /**
  * The type Service.
  *
  * @author besko
  */
-public class Service extends Entity {
+public class Service implements Entity {
     private int id;
     private String serviceName;
     private String description;
-    private Double price;
+    private double price;
     private int durationMinutes;
 
     /**
@@ -44,7 +44,7 @@ public class Service extends Entity {
      *
      * @return the price
      */
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -71,24 +71,28 @@ public class Service extends Entity {
         if (getId() != service.getId()) {
             return false;
         }
+        if (Double.compare(service.getPrice(), getPrice()) != 0) {
+            return false;
+        }
         if (getDurationMinutes() != service.getDurationMinutes()) {
             return false;
         }
         if (!getServiceName().equals(service.getServiceName())) {
             return false;
         }
-        if (!getDescription().equals(service.getDescription())) {
-            return false;
-        }
-        return getPrice().equals(service.getPrice());
+        return getDescription().equals(service.getDescription());
     }
 
     @Override
     public int hashCode() {
-        int result = getId();
+        int result;
+        long temp;
+        result = getId();
         result = 31 * result + getServiceName().hashCode();
         result = 31 * result + getDescription().hashCode();
-        result = 31 * result + getPrice().hashCode();
+        temp = Double.doubleToLongBits(getPrice());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + getDurationMinutes();
         return result;
     }
 
@@ -105,11 +109,6 @@ public class Service extends Entity {
      * The type Service builder.
      */
     public class ServiceBuilder {
-        private int id;
-        private String serviceName;
-        private String description;
-        private Double price;
-        private int durationMinutes;
 
         private ServiceBuilder() {}
 
@@ -120,7 +119,7 @@ public class Service extends Entity {
          * @return the id
          */
         public ServiceBuilder setId(int id) {
-            this.id = id;
+            Service.this.id = id;
             return this;
         }
 
@@ -131,7 +130,7 @@ public class Service extends Entity {
          * @return the service name
          */
         public ServiceBuilder setServiceName(String serviceName) {
-            this.serviceName = serviceName;
+            Service.this.serviceName = serviceName;
             return this;
         }
 
@@ -142,7 +141,7 @@ public class Service extends Entity {
          * @return the description
          */
         public ServiceBuilder setDescription(String description) {
-            this.description = description;
+            Service.this.description = description;
             return this;
         }
 
@@ -152,8 +151,8 @@ public class Service extends Entity {
          * @param price the price
          * @return the price
          */
-        public ServiceBuilder setPrice(Double price) {
-            this.price = price;
+        public ServiceBuilder setPrice(double price) {
+            Service.this.price = price;
             return this;
         }
 
@@ -164,7 +163,7 @@ public class Service extends Entity {
          * @return the duration minutes
          */
         public ServiceBuilder setDurationMinutes(int durationMinutes) {
-            this.durationMinutes = durationMinutes;
+            Service.this.durationMinutes = durationMinutes;
             return this;
         }
 

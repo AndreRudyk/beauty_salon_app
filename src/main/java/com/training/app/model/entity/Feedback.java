@@ -1,4 +1,4 @@
-package com.training.app.model.Entity;
+package com.training.app.model.entity;
 
 import java.time.LocalDateTime;
 
@@ -7,10 +7,10 @@ import java.time.LocalDateTime;
  *
  * @author besko
  */
-public class Feedback extends Entity {
+public class Feedback implements Entity {
     private int id;
-    private int userId;
-    private int serviceId;
+    private User user;
+    private Service service;
     private LocalDateTime commentDate;
     private String comment;
 
@@ -29,8 +29,8 @@ public class Feedback extends Entity {
      *
      * @return the user id
      */
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     /**
@@ -38,8 +38,8 @@ public class Feedback extends Entity {
      *
      * @return the service id
      */
-    public int getServiceId() {
-        return serviceId;
+    public Service getService() {
+        return service;
     }
 
     /**
@@ -74,10 +74,10 @@ public class Feedback extends Entity {
         if (getId() != feedback.getId()) {
             return false;
         }
-        if (getUserId() != feedback.getUserId()) {
+        if (getUser() != feedback.getUser()) {
             return false;
         }
-        if (getServiceId() != feedback.getServiceId()) {
+        if (getService() != feedback.getService()) {
             return false;
         }
         if (!getCommentDate().equals(feedback.getCommentDate())) {
@@ -89,8 +89,8 @@ public class Feedback extends Entity {
     @Override
     public int hashCode() {
         int result = getId();
-        result = 31 * result + getUserId();
-        result = 31 * result + getServiceId();
+        result = 31 * result + getUser().hashCode();
+        result = 31 * result + getService().hashCode();
         result = 31 * result + getComment().hashCode();
         return result;
     }
@@ -108,11 +108,6 @@ public class Feedback extends Entity {
      * The type Feedback builder.
      */
     public class FeedbackBuilder {
-        private int id;
-        private int userId;
-        private int serviceId;
-        private LocalDateTime commentDate;
-        private String comment;
 
         private FeedbackBuilder() {}
 
@@ -123,29 +118,29 @@ public class Feedback extends Entity {
          * @return the id
          */
         public FeedbackBuilder setId(int id) {
-            this.id = id;
+            Feedback.this.id = id;
             return this;
         }
 
         /**
          * Sets user id.
          *
-         * @param userId the user id
+         * @param user the user id
          * @return the user id
          */
-        public FeedbackBuilder setUserId(int userId) {
-            this.userId = userId;
+        public FeedbackBuilder setUserId(User user) {
+            Feedback.this.user = user;
             return this;
         }
 
         /**
          * Sets service id.
          *
-         * @param serviceId the service id
+         * @param service the service id
          * @return the service id
          */
-        public FeedbackBuilder setServiceId(int serviceId) {
-            this.serviceId = serviceId;
+        public FeedbackBuilder setService(Service service) {
+            Feedback.this.service = service;
             return this;
         }
 
@@ -156,7 +151,7 @@ public class Feedback extends Entity {
          * @return the comment date
          */
         public FeedbackBuilder setCommentDate(LocalDateTime commentDate) {
-            this.commentDate = commentDate;
+            Feedback.this.commentDate = commentDate;
             return this;
         }
 
@@ -167,7 +162,7 @@ public class Feedback extends Entity {
          * @return the comment
          */
         public FeedbackBuilder setComment(String comment) {
-            this.comment = comment;
+            Feedback.this.comment = comment;
             return this;
         }
 

@@ -1,11 +1,11 @@
-package com.training.app.model.Entity;
+package com.training.app.model.entity;
 
 /**
  * The type User.
  *
  * @author besko
  */
-public class User extends Entity {
+public class User implements Entity {
     /**
      * Values for user role
      */
@@ -43,6 +43,47 @@ public class User extends Entity {
         }
     }
 
+    /**
+     * The enum Rating.
+     */
+    public enum Rating {
+        /**
+         * The  1 star.
+         */
+        S1("1 stars"),
+        /**
+         * The 2 star.
+         */
+        S2("2 stars"),
+        /**
+         * The 3 star.
+         */
+        S3("3 stars"),
+        /**
+         * The 4 star.
+         */
+        S4("4 starts"),
+        /**
+         * The 5 star.
+         */
+        S5("5 starts");
+
+        private final String rate;
+
+        Rating(String rate) {
+            this.rate = rate;
+        }
+
+        /**
+         * Gets rating.
+         *
+         * @return the rating
+         */
+        public String getRate() {
+            return rate;
+        }
+    }
+
     private int id;
     private String login;
     private String password;
@@ -50,7 +91,7 @@ public class User extends Entity {
     private String lastName;
     private String phoneNumber;
     private Role userRole;
-    private int rating;
+    private Rating rating;
     private String cardNumber;
 
     /**
@@ -121,7 +162,7 @@ public class User extends Entity {
      *
      * @return the rating
      */
-    public int getRating() {
+    public Rating getRating() {
         return rating;
     }
 
@@ -148,25 +189,25 @@ public class User extends Entity {
         if (getId() != user.getId()) {
             return false;
         }
-        if (getRating() != user.getRating()) {
+        if (getLogin() != null ? !getLogin().equals(user.getLogin()) : user.getLogin() != null) {
             return false;
         }
-        if (!getLogin().equals(user.getLogin())) {
+        if (getPassword() != null ? !getPassword().equals(user.getPassword()) : user.getPassword() != null) {
             return false;
         }
-        if (!getPassword().equals(user.getPassword())) {
+        if (getFirstName() != null ? !getFirstName().equals(user.getFirstName()) : user.getFirstName() != null) {
             return false;
         }
-        if (!getFirstName().equals(user.getFirstName())) {
+        if (getLastName() != null ? !getLastName().equals(user.getLastName()) : user.getLastName() != null) {
             return false;
         }
-        if (!getLastName().equals(user.getLastName())) {
-            return false;
-        }
-        if (!getPhoneNumber().equals(user.getPhoneNumber())) {
+        if (getPhoneNumber() != null ? !getPhoneNumber().equals(user.getPhoneNumber()) : user.getPhoneNumber() != null) {
             return false;
         }
         if (getUserRole() != user.getUserRole()) {
+            return false;
+        }
+        if (getRating() != user.getRating()) {
             return false;
         }
         return getCardNumber() != null ? getCardNumber().equals(user.getCardNumber()) : user.getCardNumber() == null;
@@ -175,15 +216,30 @@ public class User extends Entity {
     @Override
     public int hashCode() {
         int result = getId();
-        result = 31 * result + getLogin().hashCode();
-        result = 31 * result + getPassword().hashCode();
-        result = 31 * result + getFirstName().hashCode();
-        result = 31 * result + getLastName().hashCode();
-        result = 31 * result + getPhoneNumber().hashCode();
-        result = 31 * result + getUserRole().hashCode();
-        result = 31 * result + getRating();
+        result = 31 * result + (getLogin() != null ? getLogin().hashCode() : 0);
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
+        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
+        result = 31 * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
+        result = 31 * result + (getUserRole() != null ? getUserRole().hashCode() : 0);
+        result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
         result = 31 * result + (getCardNumber() != null ? getCardNumber().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", userRole=" + userRole +
+                ", rating=" + rating +
+                ", cardNumber='" + cardNumber + '\'' +
+                '}';
     }
 
     /**
@@ -205,16 +261,6 @@ public class User extends Entity {
         private UserBuilder() {
         }
 
-        private int id;
-        private String login;
-        private String password;
-        private String firstName;
-        private String lastName;
-        private String phoneNumber;
-        private User.Role userRole;
-        private int rating;
-        private String cardNumber;
-
         /**
          * Sets id.
          *
@@ -222,7 +268,7 @@ public class User extends Entity {
          * @return the id
          */
         public UserBuilder setId(int id) {
-            this.id = id;
+            User.this.id = id;
             return this;
         }
 
@@ -233,7 +279,7 @@ public class User extends Entity {
          * @return the login
          */
         public UserBuilder setLogin(String login) {
-            this.login = login;
+            User.this.login = login;
             return this;
         }
 
@@ -244,7 +290,7 @@ public class User extends Entity {
          * @return the password
          */
         public UserBuilder setPassword(String password) {
-            this.password = password;
+            User.this.password = password;
             return this;
         }
 
@@ -255,7 +301,7 @@ public class User extends Entity {
          * @return the first name
          */
         public UserBuilder setFirstName(String firstName) {
-            this.firstName = firstName;
+            User.this.firstName = firstName;
             return this;
         }
 
@@ -266,7 +312,7 @@ public class User extends Entity {
          * @return the last name
          */
         public UserBuilder setLastName(String lastName) {
-            this.lastName = lastName;
+            User.this.lastName = lastName;
             return this;
         }
 
@@ -277,7 +323,7 @@ public class User extends Entity {
          * @return the phone number
          */
         public UserBuilder setPhoneNumber(String phoneNumber) {
-            this.phoneNumber = phoneNumber;
+            User.this.phoneNumber = phoneNumber;
             return this;
         }
 
@@ -288,7 +334,7 @@ public class User extends Entity {
          * @return the user role
          */
         public UserBuilder setUserRole(User.Role userRole) {
-            this.userRole = userRole;
+            User.this.userRole = userRole;
             return this;
         }
 
@@ -298,8 +344,8 @@ public class User extends Entity {
          * @param rating the rating
          * @return the rating
          */
-        public UserBuilder setRating(int rating) {
-            this.rating = rating;
+        public UserBuilder setRating(Rating rating) {
+            User.this.rating = rating;
             return this;
         }
 
@@ -310,7 +356,7 @@ public class User extends Entity {
          * @return the card number
          */
         public UserBuilder setCardNumber(String cardNumber) {
-            this.cardNumber = cardNumber;
+            User.this.cardNumber = cardNumber;
             return this;
         }
 

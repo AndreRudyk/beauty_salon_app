@@ -1,6 +1,6 @@
 package com.training.app.dao;
 
-import com.training.app.model.Entity.Entity;
+import com.training.app.model.entity.Entity;
 
 /**
  * @author besko

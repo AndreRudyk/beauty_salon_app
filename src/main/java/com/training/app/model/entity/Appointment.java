@@ -1,11 +1,12 @@
-package com.training.app.model.Entity;
+package com.training.app.model.entity;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * The type Appointment.
  */
-public class Appointment extends Entity {
+public class Appointment implements Entity {
 
     /**
      * The enum Status.
@@ -24,9 +25,10 @@ public class Appointment extends Entity {
          */
         DONE("done");
 
-        private String statusName;
+        private final String statusName;
 
         Status(String statusName) {
+            this.statusName = statusName;
         }
 
         /**
@@ -41,10 +43,10 @@ public class Appointment extends Entity {
 
 
     private int id;
-    private int userId;
+    private User user;
     private LocalDateTime actionDateTime;
-    private Double price;
-    private Double paid;
+    private double price;
+    private double paid;
     private Status status;
 
 
@@ -62,8 +64,8 @@ public class Appointment extends Entity {
      *
      * @return the user id
      */
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     /**
@@ -80,7 +82,7 @@ public class Appointment extends Entity {
      *
      * @return the price
      */
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -89,7 +91,7 @@ public class Appointment extends Entity {
      *
      * @return the paid
      */
-    public Double getPaid() {
+    public double getPaid() {
         return paid;
     }
 
@@ -116,16 +118,16 @@ public class Appointment extends Entity {
         if (getId() != that.getId()) {
             return false;
         }
-        if (getUserId() != that.getUserId()) {
+        if (Double.compare(that.getPrice(), getPrice()) != 0) {
             return false;
         }
-        if (!getActionDateTime().equals(that.getActionDateTime())) {
+        if (Double.compare(that.getPaid(), getPaid()) != 0) {
             return false;
         }
-        if (!getPrice().equals(that.getPrice())) {
+        if (!Objects.equals(user, that.user)) {
             return false;
         }
-        if (getPaid() != null ? !getPaid().equals(that.getPaid()) : that.getPaid() != null) {
+        if (getActionDateTime() != null ? !getActionDateTime().equals(that.getActionDateTime()) : that.getActionDateTime() != null) {
             return false;
         }
         return getStatus() == that.getStatus();
@@ -133,13 +135,27 @@ public class Appointment extends Entity {
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + getUserId();
-        result = 31 * result + getActionDateTime().hashCode();
-        result = 31 * result + getPrice().hashCode();
-        result = 31 * result + (getPaid() != null ? getPaid().hashCode() : 0);
-        result = 31 * result + getStatus().hashCode();
+        int result;
+        long temp;
+        result = getId();
+        result = 31 * result + (getActionDateTime() != null ? getActionDateTime().hashCode() : 0);
+        temp = Double.doubleToLongBits(getPrice());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getPaid());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id=" + id +
+                ", user=" + user +
+                ", actionDateTime=" + actionDateTime +
+                ", price=" + price +
+                ", paid=" + paid +
+                ", status=" + status +
+                '}';
     }
 
     /**
@@ -155,12 +171,6 @@ public class Appointment extends Entity {
      * The type Appointment builder.
      */
     public class AppointmentBuilder {
-        private int id;
-        private int userId;
-        private LocalDateTime actionDateTime;
-        private Double price;
-        private Double paid;
-        private Appointment.Status status;
 
         private AppointmentBuilder() {
         }
@@ -172,18 +182,18 @@ public class Appointment extends Entity {
          * @return the id
          */
         public AppointmentBuilder setId(int id) {
-            this.id = id;
+            Appointment.this.id = id;
             return this;
         }
 
         /**
          * Sets user id.
          *
-         * @param userId the user id
+         * @param user the user
          * @return the user id
          */
-        public AppointmentBuilder setUserId(int userId) {
-            this.userId = userId;
+        public AppointmentBuilder setUser(User user) {
+            Appointment.this.user = user;
             return this;
         }
 
@@ -194,7 +204,7 @@ public class Appointment extends Entity {
          * @return the action date time
          */
         public AppointmentBuilder setActionDateTime(LocalDateTime actionDateTime) {
-            this.actionDateTime = actionDateTime;
+            Appointment.this.actionDateTime = actionDateTime;
             return this;
         }
 
@@ -204,8 +214,8 @@ public class Appointment extends Entity {
          * @param price the price
          * @return the price
          */
-        public AppointmentBuilder setPrice(Double price) {
-            this.price = price;
+        public AppointmentBuilder setPrice(double price) {
+            Appointment.this.price = price;
             return this;
         }
 
@@ -215,8 +225,8 @@ public class Appointment extends Entity {
          * @param paid the paid
          * @return the paid
          */
-        public AppointmentBuilder setPaid(Double paid) {
-            this.paid = paid;
+        public AppointmentBuilder setPaid(double paid) {
+            Appointment.this.paid = paid;
             return this;
         }
 
@@ -227,7 +237,7 @@ public class Appointment extends Entity {
          * @return the status
          */
         public AppointmentBuilder setStatus(Appointment.Status status) {
-            this.status = status;
+            Appointment.this.status = status;
             return this;
         }
 
