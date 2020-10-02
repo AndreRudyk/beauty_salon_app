@@ -1,5 +1,6 @@
 package com.training.app.model.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +51,8 @@ public class Appointment {
 
     private int id;
     private LocalDateTime actionDateTime;
-    private double price;
-    private double paid;
+    private BigDecimal price;
+    private BigDecimal paid;
     private Status status;
     private List<User> users = new ArrayList<>();
     private List<Service> serviceSet = new ArrayList<>();
@@ -65,11 +66,11 @@ public class Appointment {
         return actionDateTime;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public double getPaid() {
+    public BigDecimal getPaid() {
         return paid;
     }
 
@@ -81,7 +82,7 @@ public class Appointment {
         return users;
     }
 
-    public List<Service> getServiceSet() {
+    public List<Service> getServices() {
         return serviceSet;
     }
 
@@ -99,13 +100,13 @@ public class Appointment {
         if (getId() != that.getId()) {
             return false;
         }
-        if (Double.compare(that.getPrice(), getPrice()) != 0) {
-            return false;
-        }
-        if (Double.compare(that.getPaid(), getPaid()) != 0) {
-            return false;
-        }
         if (getActionDateTime() != null ? !getActionDateTime().equals(that.getActionDateTime()) : that.getActionDateTime() != null) {
+            return false;
+        }
+        if (getPrice() != null ? !getPrice().equals(that.getPrice()) : that.getPrice() != null) {
+            return false;
+        }
+        if (getPaid() != null ? !getPaid().equals(that.getPaid()) : that.getPaid() != null) {
             return false;
         }
         if (getStatus() != that.getStatus()) {
@@ -114,22 +115,18 @@ public class Appointment {
         if (getUsers() != null ? !getUsers().equals(that.getUsers()) : that.getUsers() != null) {
             return false;
         }
-        return getServiceSet() != null ? getServiceSet().equals(that.getServiceSet()) : that.getServiceSet() == null;
+        return getServices() != null ? getServices().equals(that.getServices()) : that.getServices() == null;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = getId();
+        int result = getId();
         result = 31 * result + (getActionDateTime() != null ? getActionDateTime().hashCode() : 0);
-        temp = Double.doubleToLongBits(getPrice());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(getPaid());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
+        result = 31 * result + (getPaid() != null ? getPaid().hashCode() : 0);
         result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
         result = 31 * result + (getUsers() != null ? getUsers().hashCode() : 0);
-        result = 31 * result + (getServiceSet() != null ? getServiceSet().hashCode() : 0);
+        result = 31 * result + (getServices() != null ? getServices().hashCode() : 0);
         return result;
     }
 
@@ -202,7 +199,7 @@ public class Appointment {
          * @param price the price
          * @return the price
          */
-        public AppointmentBuilder setPrice(double price) {
+        public AppointmentBuilder setPrice(BigDecimal price) {
             Appointment.this.price = price;
             return this;
         }
@@ -213,7 +210,7 @@ public class Appointment {
          * @param paid the paid
          * @return the paid
          */
-        public AppointmentBuilder setPaid(double paid) {
+        public AppointmentBuilder setPaid(BigDecimal paid) {
             Appointment.this.paid = paid;
             return this;
         }
@@ -228,14 +225,13 @@ public class Appointment {
             Appointment.this.status = status;
             return this;
         }
-
         /**
          * Sets service.
          *
          * @param serviceSet the service set
          * @return the service
          */
-        public AppointmentBuilder setService(List<Service> serviceSet) {
+        public AppointmentBuilder setServices(List<Service> serviceSet) {
             Appointment.this.serviceSet = serviceSet;
             return this;
         }

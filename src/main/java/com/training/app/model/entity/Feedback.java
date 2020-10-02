@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  */
 public class Feedback {
     private int id;
-    private Service service;
+    private int serviceId;
     private LocalDateTime commentDate;
     private String comment;
 
@@ -28,8 +28,8 @@ public class Feedback {
      *
      * @return the service
      */
-    public Service getService() {
-        return service;
+    public int getService() {
+        return serviceId;
     }
 
     /**
@@ -64,7 +64,7 @@ public class Feedback {
         if (getId() != feedback.getId()) {
             return false;
         }
-        if (getService() != null ? !getService().equals(feedback.getService()) : feedback.getService() != null) {
+        if (serviceId != feedback.serviceId) {
             return false;
         }
         if (getCommentDate() != null ? !getCommentDate().equals(feedback.getCommentDate()) : feedback.getCommentDate() != null) {
@@ -76,7 +76,7 @@ public class Feedback {
     @Override
     public int hashCode() {
         int result = getId();
-        result = 31 * result + (getService() != null ? getService().hashCode() : 0);
+        result = 31 * result + serviceId;
         result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
         result = 31 * result + (getComment() != null ? getComment().hashCode() : 0);
         return result;
@@ -86,7 +86,7 @@ public class Feedback {
     public String toString() {
         return "Feedback{" +
                 "id=" + id +
-                ", service=" + service +
+                ", serviceId=" + serviceId +
                 ", commentDate=" + commentDate +
                 ", comment='" + comment + '\'' +
                 '}';
@@ -123,11 +123,11 @@ public class Feedback {
         /**
          * Sets service id.
          *
-         * @param service the service id
+         * @param serviceId the service id
          * @return the service id
          */
-        public FeedbackBuilder setService(Service service) {
-            Feedback.this.service = service;
+        public FeedbackBuilder setService(int serviceId) {
+            Feedback.this.serviceId = serviceId;
             return this;
         }
 

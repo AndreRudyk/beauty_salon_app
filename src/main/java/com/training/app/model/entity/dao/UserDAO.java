@@ -45,11 +45,20 @@ public interface UserDAO extends GenericDAO<User> {
     /**
      * Find by last name optional.
      *
-     * @param lastName the last name
+     * @param name the name
      * @return the optional
      * @throws DaoException the dao exception
      */
-    Optional<User> findByLastName(String lastName) throws DaoException;
+    Optional<User> findByName(String name) throws DaoException;
+
+    /**
+     * Find all users list.
+     *
+     * @param rating the rating
+     * @return the list
+     * @throws DaoException the dao exception
+     */
+    List<User> findByRating(User.Rating rating) throws DaoException;
 
     /**
      * Find all users list.
@@ -81,5 +90,47 @@ public interface UserDAO extends GenericDAO<User> {
      * @param role the role
      */
     void changeRole(int id, User.Role role);
+
+    /**
+     * Update user.
+     *
+     * @param id           the id
+     * @param login        the login
+     * @param password     the password
+     * @param fName        the f name
+     * @param lName        the l name
+     * @param phone        the phone
+     * @param role         the role
+     * @param rating       the rating
+     * @param cards        the cards
+     * @param appointments the appointments
+     * @throws DaoException the dao exception
+     */
+    void updateUser(int id,
+                    String login,
+                    String password,
+                    String fName,
+                    String lName,
+                    String phone,
+                    User.Role role,
+                    User.Rating rating,
+                    Set<String> cards,
+                    List<Appointment> appointments) throws DaoException;
+
+    /**
+     * Update rating.
+     *
+     * @param rating the rating
+     * @throws DaoException the dao exception
+     */
+    void updateRating(User.Rating rating) throws DaoException;
+
+    /**
+     * Remove user.
+     *
+     * @param userId the user id
+     * @throws DaoException the dao exception
+     */
+    void removeUser(int userId) throws DaoException;
 
 }

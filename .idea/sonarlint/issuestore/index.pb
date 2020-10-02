@@ -31,8 +31,6 @@ e
 5src/main/java/com/training/app/model/entity/User.java,a\9\a9018c279bd03fcb89353c71a9f4bc24db89b927
 l
 <src/main/java/com/training/app/model/entity/Appointment.java,3\1\31a7a377e49b955bdd899c9cc0850f2e0ffcf380
-e
-5src/main/java/com/training/app/model/entity/Card.java,8\7\87de10fd165a7107c156d06fe83ba8b744c3ec40
 i
 9src/main/java/com/training/app/model/entity/Feedback.java,6\5\658371f9aa2af164958a0be59ff099eb080d796a
 h
@@ -49,3 +47,15 @@ s
 Csrc/main/java/com/training/app/model/entity/dao/AppointmentDAO.java,5\9\590084198e1364afdc6e481e42b1c79ec4fd824a
 o
 ?src/main/java/com/training/app/model/entity/dao/GenericDAO.java,6\2\621791de25440e2ec530ae7515b3622c2a29993c
+a
+1.idea/libraries/commons_dbcp_commons_dbcp_1_4.xml,9\1\9165df65a204f712565ed83aff39c6b5d9e8710d
+~
+Nsrc/main/java/com/training/app/model/entity/dao/impl/ConnectionPoolHolder.java,b\1\b1a6fc2335171d5b4f3b5a0c64ed6e459ea56f88
+x
+Hsrc/main/java/com/training/app/model/entity/dao/impl/ServiceDaoImpl.java,7\6\76bd2eecafc1b77d0588dfb1e6a8369a17f07178
+y
+Isrc/main/java/com/training/app/model/entity/dao/impl/FeedbackDaoImpl.java,7\4\741d8116654dc3ff839886cbbb6d703c4ad32f1c
+u
+Esrc/main/java/com/training/app/model/entity/dao/impl/UserDaoImpl.java,8\0\8027f8ff210e0830bc136568203450936cca7ec3
+|
+Lsrc/main/java/com/training/app/model/entity/dao/impl/AppointmentDaoImpl.java,0\c\0cb5a2039315fa279c520f87dc5f797737472c65
