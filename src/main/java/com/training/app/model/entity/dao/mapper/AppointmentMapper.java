@@ -2,6 +2,7 @@ package com.training.app.model.entity.dao.mapper;
 
 import com.training.app.model.entity.Appointment;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -20,10 +21,9 @@ public class AppointmentMapper implements ObjectMapper<Appointment> {
         Timestamp timestamp = new Timestamp(date.getTime());
         Appointment appointment = Appointment.newBuilder().
                 setId(resultSet.getInt("id")).
-                setPaid(resultSet.getBigDecimal("price")).
-                setPrice(resultSet.getBigDecimal("rice")).
-                setActionDateTime(timestamp.toLocalDateTime()).
-                setStatus(Appointment.Status.valueOf(resultSet.getString("status"))).
+                setPaid(BigDecimal.valueOf(3.45)).
+                setPrice(BigDecimal.valueOf(3.40)).
+                setStatus(Appointment.Status.DONE).
                 build();
         return appointment;
     }

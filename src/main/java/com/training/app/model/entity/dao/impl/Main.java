@@ -13,5 +13,6 @@ public class Main {
         UserService userService = new UserService();
         List<User> users = userService.getAll();
         System.out.println(users);
+
     }
 }

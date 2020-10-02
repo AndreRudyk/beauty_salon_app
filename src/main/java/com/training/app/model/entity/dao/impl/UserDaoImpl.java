@@ -54,8 +54,10 @@ public class UserDaoImpl implements UserDAO {
         Map<Integer, Appointment> appointments = new HashMap<>();
         final String query = "" +
                 " select * from user" +
-                " left join appointment_has_user using (user_id)" +
-                "left join appointment using (appointment_id)";
+                " left join appointment_has_user on " +
+                " user.id = appointment_has_user.user_id "+
+                " left join appointment on appointment_has_user.appointment_id = " +
+                " appointment.id";
 
         try (Statement st = connection.createStatement()) {
             ResultSet resultSet = st.executeQuery(query);

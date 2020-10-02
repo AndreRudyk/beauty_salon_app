@@ -21,7 +21,7 @@ public class ConnectionPoolHolder {
             synchronized (ConnectionPoolHolder.class) {
                 if (dataSource == null) {
                     BasicDataSource basicDataSource = new BasicDataSource();
-                    basicDataSource.setUrl("jdbc:mysql://localhost:3306/bauty_salon_db");
+                    basicDataSource.setUrl("jdbc:mysql://localhost:3306/beauty_salon_db");
                     basicDataSource.setUsername("root");
                     basicDataSource.setPassword("root");
                     basicDataSource.setMinIdle(5);
