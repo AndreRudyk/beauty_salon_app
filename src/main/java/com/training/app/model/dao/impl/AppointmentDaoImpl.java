@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * @author besko
  */
-public class AppointmentDaoImpl implements AppointmentDAO {
+public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
     private Connection connection;
 
     public AppointmentDaoImpl(Connection connection) {
@@ -245,7 +245,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
     public void removeAppointmentById(int id) throws DaoException {
 
     }
-
+    @Override
     public void close() {
         try {
             connection.close();

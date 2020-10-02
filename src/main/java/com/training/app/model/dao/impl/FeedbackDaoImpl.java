@@ -11,7 +11,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class FeedbackDaoImpl implements FeedbackDAO {
+/**
+ * @author besko
+ */
+public class FeedbackDaoImpl implements FeedbackDAO, AutoCloseable {
     private Connection connection;
 
     public FeedbackDaoImpl(Connection connection) {
@@ -80,7 +83,7 @@ public class FeedbackDaoImpl implements FeedbackDAO {
     public void removeById(int id) throws DaoException {
 
     }
-
+    @Override
     public void close() {
         try {
             connection.close();

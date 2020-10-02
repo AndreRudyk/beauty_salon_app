@@ -16,8 +16,8 @@ import java.util.*;
 /**
  * @author besko
  */
-public class UserDaoImpl implements UserDAO {
-    private Connection connection;
+public class UserDaoImpl implements UserDAO, AutoCloseable {
+    private final Connection connection;
 
     public UserDaoImpl(Connection connection) {
         this.connection = connection;
@@ -117,7 +117,7 @@ public class UserDaoImpl implements UserDAO {
     public void removeUser(int userId) throws DaoException {
 
     }
-
+    @Override
     public void close() throws DaoException {
         try {
             connection.close();

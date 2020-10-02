@@ -11,7 +11,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class ServiceDaoImpl implements ServiceDAO {
+/**
+ * @author besko
+ */
+public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
     private Connection connection;
 
     public ServiceDaoImpl(Connection connection) {
@@ -47,7 +50,7 @@ public class ServiceDaoImpl implements ServiceDAO {
     public void removeServiceById(int serviceId) throws DaoException {
 
     }
-
+    @Override
     public void close() {
         try {
             connection.close();
