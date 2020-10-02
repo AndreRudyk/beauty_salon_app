@@ -2,8 +2,9 @@ package com.training.app.model.entity;
 
 /**
  * The type Card.
+ * @author besko
  */
-public class Card implements Entity {
+public class Card {
 
     private int cardNumber;
     private double balance;

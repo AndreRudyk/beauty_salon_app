@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
  *
  * @author besko
  */
-public class Feedback implements Entity {
+public class Feedback {
     private int id;
     private Service service;
     private LocalDateTime commentDate;

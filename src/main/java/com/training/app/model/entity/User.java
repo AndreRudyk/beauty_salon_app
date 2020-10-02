@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author besko
  */
-public class User implements Entity {
+public class User {
     /**
      * Values for user role
      */

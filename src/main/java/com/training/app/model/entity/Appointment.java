@@ -2,13 +2,13 @@ package com.training.app.model.entity;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /**
  * The type Appointment.
+ * @author besko
  */
-public class Appointment implements Entity {
+public class Appointment {
 
     /**
      * The enum Status.

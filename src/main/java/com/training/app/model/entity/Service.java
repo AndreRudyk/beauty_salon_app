@@ -9,7 +9,7 @@ import java.util.Set;
  *
  * @author besko
  */
-public class Service implements Entity {
+public class Service {
     private int id;
     private String serviceName;
     private String description;
