@@ -26,7 +26,7 @@ public class Feedback implements Entity {
     /**
      * Gets service id.
      *
-     * @return the service id
+     * @return the service
      */
     public Service getService() {
         return service;

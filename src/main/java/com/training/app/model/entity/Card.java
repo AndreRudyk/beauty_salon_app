@@ -1,36 +1,75 @@
 package com.training.app.model.entity;
 
+/**
+ * The type Card.
+ */
 public class Card implements Entity {
 
     private int cardNumber;
     private double balance;
     private User user;
 
+    /**
+     * Instantiates a new Card.
+     *
+     * @param cardNumber the card number
+     * @param balance    the balance
+     */
     public Card(int cardNumber, double balance) {
         this.cardNumber = cardNumber;
         this.balance = balance;
     }
 
+    /**
+     * Gets card number.
+     *
+     * @return the card number
+     */
     public int getCardNumber() {
         return cardNumber;
     }
 
+    /**
+     * Sets card number.
+     *
+     * @param cardNumber the card number
+     */
     public void setCardNumber(int cardNumber) {
         this.cardNumber = cardNumber;
     }
 
+    /**
+     * Gets balance.
+     *
+     * @return the balance
+     */
     public double getBalance() {
         return balance;
     }
 
+    /**
+     * Sets balance.
+     *
+     * @param balance the balance
+     */
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
     public void setUser(User user) {
         this.user = user;
     }

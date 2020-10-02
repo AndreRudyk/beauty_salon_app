@@ -1,5 +1,7 @@
 package com.training.app.model.entity;
 
+import java.util.List;
+
 /**
  * The type User.
  *
@@ -92,7 +94,7 @@ public class User implements Entity {
     private String phoneNumber;
     private Role userRole;
     private Rating rating;
-    private String cardNumber;
+    private List<Card> cards;
 
     /**
      * Gets id.
@@ -171,8 +173,8 @@ public class User implements Entity {
      *
      * @return the card number
      */
-    public String getCardNumber() {
-        return cardNumber;
+    public List<Card> getCards() {
+        return cards;
     }
 
     @Override
@@ -189,19 +191,19 @@ public class User implements Entity {
         if (getId() != user.getId()) {
             return false;
         }
-        if (getLogin() != null ? !getLogin().equals(user.getLogin()) : user.getLogin() != null) {
+        if (!getLogin().equals(user.getLogin())) {
             return false;
         }
-        if (getPassword() != null ? !getPassword().equals(user.getPassword()) : user.getPassword() != null) {
+        if (!getPassword().equals(user.getPassword())) {
             return false;
         }
-        if (getFirstName() != null ? !getFirstName().equals(user.getFirstName()) : user.getFirstName() != null) {
+        if (!getFirstName().equals(user.getFirstName())) {
             return false;
         }
-        if (getLastName() != null ? !getLastName().equals(user.getLastName()) : user.getLastName() != null) {
+        if (!getLastName().equals(user.getLastName())) {
             return false;
         }
-        if (getPhoneNumber() != null ? !getPhoneNumber().equals(user.getPhoneNumber()) : user.getPhoneNumber() != null) {
+        if (!getPhoneNumber().equals(user.getPhoneNumber())) {
             return false;
         }
         if (getUserRole() != user.getUserRole()) {
@@ -210,20 +212,20 @@ public class User implements Entity {
         if (getRating() != user.getRating()) {
             return false;
         }
-        return getCardNumber() != null ? getCardNumber().equals(user.getCardNumber()) : user.getCardNumber() == null;
+        return getCards() != null ? getCards().equals(user.getCards()) : user.getCards() == null;
     }
 
     @Override
     public int hashCode() {
         int result = getId();
-        result = 31 * result + (getLogin() != null ? getLogin().hashCode() : 0);
-        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
-        result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
-        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
-        result = 31 * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
+        result = 31 * result + getLogin().hashCode();
+        result = 31 * result + getPassword().hashCode();
+        result = 31 * result + getFirstName().hashCode();
+        result = 31 * result + getLastName().hashCode();
+        result = 31 * result + getPhoneNumber().hashCode();
         result = 31 * result + (getUserRole() != null ? getUserRole().hashCode() : 0);
         result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
-        result = 31 * result + (getCardNumber() != null ? getCardNumber().hashCode() : 0);
+        result = 31 * result + (getCards() != null ? getCards().hashCode() : 0);
         return result;
     }
 
@@ -238,7 +240,7 @@ public class User implements Entity {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", userRole=" + userRole +
                 ", rating=" + rating +
-                ", cardNumber='" + cardNumber + '\'' +
+                ", cards=" + cards +
                 '}';
     }
 
@@ -352,11 +354,11 @@ public class User implements Entity {
         /**
          * Sets card number.
          *
-         * @param cardNumber the card number
-         * @return the card number
+         * @param cards the card number
+         * @return the cards list
          */
-        public UserBuilder setCardNumber(String cardNumber) {
-            User.this.cardNumber = cardNumber;
+        public UserBuilder setCards(List<Card> cards) {
+            User.this.cards = cards;
             return this;
         }
 

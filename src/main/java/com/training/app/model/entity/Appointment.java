@@ -1,7 +1,9 @@
 package com.training.app.model.entity;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * The type Appointment.
@@ -48,6 +50,10 @@ public class Appointment implements Entity {
     private double price;
     private double paid;
     private Status status;
+    /**
+     * The Service set.
+     */
+    Set<Service> serviceSet = new HashSet<>();
 
 
     /**
@@ -60,9 +66,9 @@ public class Appointment implements Entity {
     }
 
     /**
-     * Gets user id.
+     * Gets user.
      *
-     * @return the user id
+     * @return the user
      */
     public User getUser() {
         return user;
@@ -104,6 +110,15 @@ public class Appointment implements Entity {
         return status;
     }
 
+    /**
+     * Gets service set.
+     *
+     * @return the service set
+     */
+    public Set<Service> getServiceSet() {
+        return serviceSet;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -124,13 +139,16 @@ public class Appointment implements Entity {
         if (Double.compare(that.getPaid(), getPaid()) != 0) {
             return false;
         }
-        if (!Objects.equals(user, that.user)) {
+        if (getUser() != null ? !getUser().equals(that.getUser()) : that.getUser() != null) {
             return false;
         }
         if (getActionDateTime() != null ? !getActionDateTime().equals(that.getActionDateTime()) : that.getActionDateTime() != null) {
             return false;
         }
-        return getStatus() == that.getStatus();
+        if (getStatus() != that.getStatus()) {
+            return false;
+        }
+        return getServiceSet() != null ? getServiceSet().equals(that.getServiceSet()) : that.getServiceSet() == null;
     }
 
     @Override
@@ -138,11 +156,14 @@ public class Appointment implements Entity {
         int result;
         long temp;
         result = getId();
+        result = 31 * result + (getUser() != null ? getUser().hashCode() : 0);
         result = 31 * result + (getActionDateTime() != null ? getActionDateTime().hashCode() : 0);
         temp = Double.doubleToLongBits(getPrice());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(getPaid());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
+        result = 31 * result + (getServiceSet() != null ? getServiceSet().hashCode() : 0);
         return result;
     }
 
@@ -155,6 +176,7 @@ public class Appointment implements Entity {
                 ", price=" + price +
                 ", paid=" + paid +
                 ", status=" + status +
+                ", serviceSet=" + serviceSet +
                 '}';
     }
 
@@ -238,6 +260,17 @@ public class Appointment implements Entity {
          */
         public AppointmentBuilder setStatus(Appointment.Status status) {
             Appointment.this.status = status;
+            return this;
+        }
+
+        /**
+         * Sets service.
+         *
+         * @param serviceSet the service set
+         * @return the service
+         */
+        public AppointmentBuilder setService(Set<Service> serviceSet) {
+            Appointment.this.serviceSet = serviceSet;
             return this;
         }
 

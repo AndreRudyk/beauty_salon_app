@@ -1,5 +1,9 @@
 package com.training.app.model.entity;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * The type Service.
  *
@@ -11,6 +15,11 @@ public class Service implements Entity {
     private String description;
     private double price;
     private int durationMinutes;
+    private List<Feedback> feedbackList;
+    /**
+     * The Appointment set.
+     */
+    Set<Appointment> appointmentSet = new HashSet<>();
 
     /**
      * Gets id.
@@ -57,6 +66,24 @@ public class Service implements Entity {
         return durationMinutes;
     }
 
+    /**
+     * Gets feedback list.
+     *
+     * @return the feedback list
+     */
+    public List<Feedback> getFeedbackList() {
+        return feedbackList;
+    }
+
+    /**
+     * Gets appointment set.
+     *
+     * @return the appointment set
+     */
+    public Set<Appointment> getAppointmentSet() {
+        return appointmentSet;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -77,10 +104,16 @@ public class Service implements Entity {
         if (getDurationMinutes() != service.getDurationMinutes()) {
             return false;
         }
-        if (!getServiceName().equals(service.getServiceName())) {
+        if (getServiceName() != null ? !getServiceName().equals(service.getServiceName()) : service.getServiceName() != null) {
             return false;
         }
-        return getDescription().equals(service.getDescription());
+        if (getDescription() != null ? !getDescription().equals(service.getDescription()) : service.getDescription() != null) {
+            return false;
+        }
+        if (getFeedbackList() != null ? !getFeedbackList().equals(service.getFeedbackList()) : service.getFeedbackList() != null) {
+            return false;
+        }
+        return getAppointmentSet() != null ? getAppointmentSet().equals(service.getAppointmentSet()) : service.getAppointmentSet() == null;
     }
 
     @Override
@@ -88,12 +121,27 @@ public class Service implements Entity {
         int result;
         long temp;
         result = getId();
-        result = 31 * result + getServiceName().hashCode();
-        result = 31 * result + getDescription().hashCode();
+        result = 31 * result + (getServiceName() != null ? getServiceName().hashCode() : 0);
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         temp = Double.doubleToLongBits(getPrice());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + getDurationMinutes();
+        result = 31 * result + (getFeedbackList() != null ? getFeedbackList().hashCode() : 0);
+        result = 31 * result + (getAppointmentSet() != null ? getAppointmentSet().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "id=" + id +
+                ", serviceName='" + serviceName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", durationMinutes=" + durationMinutes +
+                ", feedbackList=" + feedbackList +
+                ", appointmentSet=" + appointmentSet +
+                '}';
     }
 
     /**
@@ -164,6 +212,28 @@ public class Service implements Entity {
          */
         public ServiceBuilder setDurationMinutes(int durationMinutes) {
             Service.this.durationMinutes = durationMinutes;
+            return this;
+        }
+
+        /**
+         * Sets feedback list.
+         *
+         * @param feedbackList the feedback list
+         * @return the feedback list
+         */
+        public ServiceBuilder setFeedbackList(List<Feedback> feedbackList) {
+            Service.this.feedbackList = feedbackList;
+            return this;
+        }
+
+        /**
+         * Sets appointments.
+         *
+         * @param appointmentSet the appointment set
+         * @return the appointments
+         */
+        public ServiceBuilder setAppointments(Set<Appointment> appointmentSet) {
+            Service.this.appointmentSet = appointmentSet;
             return this;
         }
 

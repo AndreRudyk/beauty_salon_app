@@ -1,4 +1,4 @@
-package com.training.app.dao;
+package com.training.app.model.entity.dao;
 
 /**
  * The type Exception dao.
