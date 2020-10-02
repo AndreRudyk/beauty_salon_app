@@ -3,7 +3,6 @@ package com.training.app.model.entity.dao.impl;
 import org.apache.commons.dbcp.BasicDataSource;
 
 import javax.sql.DataSource;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -21,13 +20,10 @@ public class ConnectionPoolHolder {
         if (dataSource == null) {
             synchronized (ConnectionPoolHolder.class) {
                 if (dataSource == null) {
-                    FileReader reader = new FileReader("db.properties");
-                    Properties properties = new Properties();
-                    properties.load(reader);
                     BasicDataSource basicDataSource = new BasicDataSource();
-                    basicDataSource.setUrl(properties.getProperty("url"));
-                    basicDataSource.setUsername(properties.getProperty("username"));
-                    basicDataSource.setPassword(properties.getProperty("password"));
+                    basicDataSource.setUrl("jdbc:mysql://localhost:3306/bauty_salon_db");
+                    basicDataSource.setUsername("root");
+                    basicDataSource.setPassword("root");
                     basicDataSource.setMinIdle(5);
                     basicDataSource.setMaxIdle(10);
                     basicDataSource.setMaxOpenPreparedStatements(100);

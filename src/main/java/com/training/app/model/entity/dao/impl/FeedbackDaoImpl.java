@@ -5,11 +5,19 @@ import com.training.app.model.entity.Service;
 import com.training.app.model.entity.dao.DaoException;
 import com.training.app.model.entity.dao.FeedbackDAO;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 public class FeedbackDaoImpl implements FeedbackDAO {
+    private Connection connection;
+
+    public FeedbackDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
+
     /**
      * Add feedback.
      *
@@ -71,5 +79,13 @@ public class FeedbackDaoImpl implements FeedbackDAO {
     @Override
     public void removeById(int id) throws DaoException {
 
+    }
+
+    public void close() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

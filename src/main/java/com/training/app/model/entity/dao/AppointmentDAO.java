@@ -5,6 +5,7 @@ import com.training.app.model.entity.Service;
 import com.training.app.model.entity.User;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -60,7 +61,7 @@ public interface AppointmentDAO extends GenericDAO<Appointment> {
      * @return the optional
      * @throws DaoException the dao exception
      */
-    Optional<Appointment> findAppointmentByStatus(Appointment.Status status) throws DaoException;
+    Optional<Appointment> findAppointmentByStatus(Appointment.Status status) throws DaoException, SQLException;
 
     /**
      * Find all by status list.

@@ -6,10 +6,18 @@ import com.training.app.model.entity.dao.DaoException;
 import com.training.app.model.entity.dao.ServiceDAO;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 public class ServiceDaoImpl implements ServiceDAO {
+    private Connection connection;
+
+    public ServiceDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
+
     @Override
     public void createService(Service service) throws DaoException {
 
@@ -38,5 +46,13 @@ public class ServiceDaoImpl implements ServiceDAO {
     @Override
     public void removeServiceById(int serviceId) throws DaoException {
 
+    }
+
+    public void close() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

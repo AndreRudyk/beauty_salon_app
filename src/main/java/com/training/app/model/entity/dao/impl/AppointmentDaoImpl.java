@@ -5,13 +5,24 @@ import com.training.app.model.entity.Service;
 import com.training.app.model.entity.User;
 import com.training.app.model.entity.dao.AppointmentDAO;
 import com.training.app.model.entity.dao.DaoException;
+import com.training.app.model.entity.dao.DaoFctory;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author besko
+ */
 public class AppointmentDaoImpl implements AppointmentDAO {
+    private Connection connection;
+
+    public AppointmentDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
     /**
      * Add appointment.
      *
@@ -36,7 +47,13 @@ public class AppointmentDaoImpl implements AppointmentDAO {
      * @throws DaoException the dao exception
      */
     @Override
-    public void updateAppointment(int id, LocalDateTime dateTime, BigDecimal price, BigDecimal paid, Appointment.Status status, List<User> users, List<Service> services) throws DaoException {
+    public void updateAppointment(int id,
+                                  LocalDateTime dateTime,
+                                  BigDecimal price,
+                                  BigDecimal paid,
+                                  Appointment.Status status,
+                                  List<User> users,
+                                  List<Service> services) throws DaoException {
 
     }
 
@@ -60,8 +77,16 @@ public class AppointmentDaoImpl implements AppointmentDAO {
      * @throws DaoException the dao exception
      */
     @Override
-    public Optional<Appointment> findAppointmentByStatus(Appointment.Status status) throws DaoException {
-        return Optional.empty();
+    public Optional<Appointment> findAppointmentByStatus(Appointment.Status status) throws DaoException, SQLException {
+        DaoFctory daoFctory = DaoFctory.getInstance();
+        Optional<Appointment> result = Optional.empty();
+        try {
+            AppointmentDAO dao = daoFctory.createAppointmentDao();
+            result = dao.findAppointmentById(1);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  result;
     }
 
     /**
@@ -198,5 +223,13 @@ public class AppointmentDaoImpl implements AppointmentDAO {
     @Override
     public void removeAppointmentById(int id) throws DaoException {
 
+    }
+
+    public void close() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -4,16 +4,24 @@ import com.training.app.model.entity.Appointment;
 import com.training.app.model.entity.User;
 import com.training.app.model.entity.dao.DaoException;
 import com.training.app.model.entity.dao.UserDAO;
+import com.training.app.model.entity.dao.mapper.AppointmentMapper;
+import com.training.app.model.entity.dao.mapper.UserMapper;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.*;
 
 /**
  * @author besko
  */
 public class UserDaoImpl implements UserDAO {
+    private Connection connection;
 
+    public UserDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public User registerUser(User user) throws DaoException {
@@ -42,7 +50,31 @@ public class UserDaoImpl implements UserDAO {
 
     @Override
     public List<User> findAllUsers() throws DaoException {
-        return null;
+        Map<Integer, User> users = new HashMap<>();
+        Map<Integer, Appointment> appointments = new HashMap<>();
+        final String query = "" +
+                " select * from user" +
+                " left join appointment_has_user using (user_id)" +
+                "left join appointment using (appointment_id)";
+
+        try (Statement st = connection.createStatement()) {
+            ResultSet resultSet = st.executeQuery(query);
+
+            UserMapper userMapper = new UserMapper();
+            AppointmentMapper appointmentMapper = new AppointmentMapper();
+
+            while (resultSet.next()) {
+                User user = userMapper.extractFromResultSet(resultSet);
+                Appointment appointment = appointmentMapper.extractFromResultSet(resultSet);
+
+                user = userMapper.makeUnique(users,user);
+                appointment = appointmentMapper.makeUnique(appointments,appointment);
+            }
+            return new ArrayList<>(users.values());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -61,7 +93,16 @@ public class UserDaoImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(int id, String login, String password, String fName, String lName, String phone, User.Role role, User.Rating rating, Set<String> cards, List<Appointment> appointments) throws DaoException {
+    public void updateUser(int id,
+                           String login,
+                           String password,
+                           String fName,
+                           String lName,
+                           String phone,
+                           User.Role role,
+                           User.Rating rating,
+                           Set<String> cards,
+                           List<Appointment> appointments) throws DaoException {
 
     }
 
@@ -73,6 +114,14 @@ public class UserDaoImpl implements UserDAO {
     @Override
     public void removeUser(int userId) throws DaoException {
 
+    }
+
+    public void close() throws DaoException {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 }
 
