@@ -1,0 +1,38 @@
+
+I
+java:S1068Ğ"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ8¸çå‚Î.
+O
+java:S1068Ò",Remove this unused "password" private field.(œãë­úÿÿÿÿ8¸çå‚Î.
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¥±¶Ùûÿÿÿÿ8²„”ƒÎ.
+r
+java:S1450Ñ"TRemove the "login" field and declare it as a local variable in the relevant methods.(ÒûìÌ8¸çå‚Î.
+w
+java:S1450Ø"YRemove the "cardNumber" field and declare it as a local variable in the relevant methods.(Û¾ïÇ8¸çå‚Î.
+R
+java:S1068Õ"/Remove this unused "phoneNumber" private field.(Ôá“ùÿÿÿÿ8¸çå‚Î.
+u
+java:S1450Ö"WRemove the "userRole" field and declare it as a local variable in the relevant methods.(¼äÂ¢8¸çå‚Î.
+}
+java:S1450Õ"ZRemove the "phoneNumber" field and declare it as a local variable in the relevant methods.(Ôá“ùÿÿÿÿ8¸çå‚Î.
+s
+java:S1450×"URemove the "rating" field and declare it as a local variable in the relevant methods.(™¾Ôü8¸çå‚Î.
+G
+java:S1068Ñ")Remove this unused "login" private field.(ÒûìÌ8¸çå‚Î.
+O
+java:S1068Ô",Remove this unused "lastName" private field.(ºàÑïúÿÿÿÿ8¸çå‚Î.
+z
+java:S1450Ô"WRemove the "lastName" field and declare it as a local variable in the relevant methods.(ºàÑïúÿÿÿÿ8¸çå‚Î.
+t
+java:S1450Ğ"QRemove the "id" field and declare it as a local variable in the relevant methods.(ôç¼Óşÿÿÿÿ8¸çå‚Î.
+z
+java:S1450Ò"WRemove the "password" field and declare it as a local variable in the relevant methods.(œãë­úÿÿÿÿ8¸çå‚Î.
+H
+java:S1068×"*Remove this unused "rating" private field.(™¾Ôü8¸çå‚Î.
+v
+java:S1450Ó"XRemove the "firstName" field and declare it as a local variable in the relevant methods.(š„¦¿8¸çå‚Î.
+J
+java:S1068Ö",Remove this unused "userRole" private field.(¼äÂ¢8¸çå‚Î.
+K
+java:S1068Ó"-Remove this unused "firstName" private field.(š„¦¿8¸çå‚Î.
+L
+java:S1068Ø".Remove this unused "cardNumber" private field.(Û¾ïÇ8¸çå‚Î.

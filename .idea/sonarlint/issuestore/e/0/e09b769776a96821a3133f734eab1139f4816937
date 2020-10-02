@@ -1,0 +1,28 @@
+
+x
+java:S1450£"URemove the "status" field and declare it as a local variable in the relevant methods.(¢éÛÙûÿÿÿÿ8ÈúˆƒÎ.
+G
+java:S1068¡")Remove this unused "price" private field.(ÿí8ÈúˆƒÎ.
+K
+java:S1068¢"(Remove this unused "paid" private field.(åŸÓÉùÿÿÿÿ8ÈúˆƒÎ.
+P
+java:S1068 "2Remove this unused "actionDateTime" private field.(åÿµ°8ÈúˆƒÎ.
+{
+java:S1450 "]Remove the "actionDateTime" field and declare it as a local variable in the relevant methods.(åÿµ°8ÈúˆƒÎ.
+r
+java:S1450¡"TRemove the "price" field and declare it as a local variable in the relevant methods.(ÿí8ÈúˆƒÎ.
+I
+java:S1068"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ8ÈúˆƒÎ.
+N
+java:S1172"1Remove this unused method parameter "statusName".(±Œµ¡8®àö‚Î.
+v
+java:S1450¢"SRemove the "paid" field and declare it as a local variable in the relevant methods.(åŸÓÉùÿÿÿÿ8ÈúˆƒÎ.
+M
+java:S1068Ÿ"*Remove this unused "userId" private field.(“Ğ„Äüÿÿÿÿ8ÈúˆƒÎ.
+M
+java:S1068£"*Remove this unused "status" private field.(¢éÛÙûÿÿÿÿ8ÈúˆƒÎ.
+t
+java:S1450"QRemove the "id" field and declare it as a local variable in the relevant methods.(ôç¼Óşÿÿÿÿ8ÈúˆƒÎ.
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¥±¶Ùûÿÿÿÿ8†…”ƒÎ.
+x
+java:S1450Ÿ"URemove the "userId" field and declare it as a local variable in the relevant methods.(“Ğ„Äüÿÿÿÿ8ÈúˆƒÎ.

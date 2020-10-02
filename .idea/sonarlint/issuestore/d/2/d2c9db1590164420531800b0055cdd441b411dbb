@@ -1,0 +1,22 @@
+
+|
+java:S1450r"ZRemove the "commentDate" field and declare it as a local variable in the relevant methods.(¯¦úÿÿÿÿ8­ÒÕ‚Î.
+M
+java:S1068s"+Remove this unused "comment" private field.(øÛ¼ùÿÿÿÿ8­ÒÕ‚Î.
+J
+java:S1068q"-Remove this unused "serviceId" private field.(ıÀº8­ÒÕ‚Î.
+Q
+java:S1068r"/Remove this unused "commentDate" private field.(¯¦úÿÿÿÿ8­ÒÕ‚Î.
+x
+java:S1450s"VRemove the "comment" field and declare it as a local variable in the relevant methods.(øÛ¼ùÿÿÿÿ8­ÒÕ‚Î.
+w
+java:S1450p"URemove the "userId" field and declare it as a local variable in the relevant methods.(“Ğ„Äüÿÿÿÿ8­ÒÕ‚Î.
+s
+java:S1450o"QRemove the "id" field and declare it as a local variable in the relevant methods.(ôç¼Óşÿÿÿÿ8­ÒÕ‚Î.
+u
+java:S1450q"XRemove the "serviceId" field and declare it as a local variable in the relevant methods.(ıÀº8­ÒÕ‚Î.
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¥±¶Ùûÿÿÿÿ8®„”ƒÎ.
+H
+java:S1068o"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ8­ÒÕ‚Î.
+L
+java:S1068p"*Remove this unused "userId" private field.(“Ğ„Äüÿÿÿÿ8­ÒÕ‚Î.

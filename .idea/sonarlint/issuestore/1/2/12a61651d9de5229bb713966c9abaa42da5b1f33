@@ -1,0 +1,22 @@
+
+€
+java:S1450p"^Remove the "durationMinutes" field and declare it as a local variable in the relevant methods.(´ú§ñûÿÿÿÿ8·çå‚Î.
+H
+java:S1068l"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ8·çå‚Î.
+Q
+java:S1068n"/Remove this unused "description" private field.(ÇÓæâıÿÿÿÿ8·çå‚Î.
+F
+java:S1068o")Remove this unused "price" private field.(ÿí8·çå‚Î.
+Q
+java:S1068m"/Remove this unused "serviceName" private field.(ª†ÿ¾ıÿÿÿÿ8·çå‚Î.
+|
+java:S1450n"ZRemove the "description" field and declare it as a local variable in the relevant methods.(ÇÓæâıÿÿÿÿ8·çå‚Î.
+U
+java:S1068p"3Remove this unused "durationMinutes" private field.(´ú§ñûÿÿÿÿ8·çå‚Î.
+s
+java:S1450l"QRemove the "id" field and declare it as a local variable in the relevant methods.(ôç¼Óşÿÿÿÿ8·çå‚Î.
+|
+java:S1450m"ZRemove the "serviceName" field and declare it as a local variable in the relevant methods.(ª†ÿ¾ıÿÿÿÿ8·çå‚Î.
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¥±¶Ùûÿÿÿÿ8Œ„”ƒÎ.
+q
+java:S1450o"TRemove the "price" field and declare it as a local variable in the relevant methods.(ÿí8·çå‚Î.
