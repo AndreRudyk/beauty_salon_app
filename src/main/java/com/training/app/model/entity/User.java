@@ -1,6 +1,9 @@
 package com.training.app.model.entity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The type User.
@@ -94,87 +97,47 @@ public class User {
     private String phoneNumber;
     private Role userRole;
     private Rating rating;
-    private List<Card> cards;
+    private Set<Card> cards = new HashSet<>();
+    private List<Appointment> appointmentList = new ArrayList<>();
 
-    /**
-     * Gets id.
-     *
-     * @return the id
-     */
     public int getId() {
         return id;
     }
 
-    /**
-     * Gets login.
-     *
-     * @return the login
-     */
     public String getLogin() {
         return login;
     }
 
-    /**
-     * Gets password.
-     *
-     * @return the password
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     * Gets first name.
-     *
-     * @return the first name
-     */
     public String getFirstName() {
         return firstName;
     }
 
-    /**
-     * Gets last name.
-     *
-     * @return the last name
-     */
     public String getLastName() {
         return lastName;
     }
 
-    /**
-     * Gets phone number.
-     *
-     * @return the phone number
-     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    /**
-     * Gets user role.
-     *
-     * @return the user role
-     */
     public Role getUserRole() {
         return userRole;
     }
 
-    /**
-     * Gets rating.
-     *
-     * @return the rating
-     */
     public Rating getRating() {
         return rating;
     }
 
-    /**
-     * Gets card number.
-     *
-     * @return the card number
-     */
-    public List<Card> getCards() {
+    public Set<Card> getCards() {
         return cards;
+    }
+
+    public List<Appointment> getAppointmentList() {
+        return appointmentList;
     }
 
     @Override
@@ -191,19 +154,19 @@ public class User {
         if (getId() != user.getId()) {
             return false;
         }
-        if (!getLogin().equals(user.getLogin())) {
+        if (getLogin() != null ? !getLogin().equals(user.getLogin()) : user.getLogin() != null) {
             return false;
         }
-        if (!getPassword().equals(user.getPassword())) {
+        if (getPassword() != null ? !getPassword().equals(user.getPassword()) : user.getPassword() != null) {
             return false;
         }
-        if (!getFirstName().equals(user.getFirstName())) {
+        if (getFirstName() != null ? !getFirstName().equals(user.getFirstName()) : user.getFirstName() != null) {
             return false;
         }
-        if (!getLastName().equals(user.getLastName())) {
+        if (getLastName() != null ? !getLastName().equals(user.getLastName()) : user.getLastName() != null) {
             return false;
         }
-        if (!getPhoneNumber().equals(user.getPhoneNumber())) {
+        if (getPhoneNumber() != null ? !getPhoneNumber().equals(user.getPhoneNumber()) : user.getPhoneNumber() != null) {
             return false;
         }
         if (getUserRole() != user.getUserRole()) {
@@ -212,20 +175,24 @@ public class User {
         if (getRating() != user.getRating()) {
             return false;
         }
-        return getCards() != null ? getCards().equals(user.getCards()) : user.getCards() == null;
+        if (getCards() != null ? !getCards().equals(user.getCards()) : user.getCards() != null) {
+            return false;
+        }
+        return getAppointmentList() != null ? getAppointmentList().equals(user.getAppointmentList()) : user.getAppointmentList() == null;
     }
 
     @Override
     public int hashCode() {
         int result = getId();
-        result = 31 * result + getLogin().hashCode();
-        result = 31 * result + getPassword().hashCode();
-        result = 31 * result + getFirstName().hashCode();
-        result = 31 * result + getLastName().hashCode();
-        result = 31 * result + getPhoneNumber().hashCode();
+        result = 31 * result + (getLogin() != null ? getLogin().hashCode() : 0);
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
+        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
+        result = 31 * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
         result = 31 * result + (getUserRole() != null ? getUserRole().hashCode() : 0);
         result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
         result = 31 * result + (getCards() != null ? getCards().hashCode() : 0);
+        result = 31 * result + (getAppointmentList() != null ? getAppointmentList().hashCode() : 0);
         return result;
     }
 
@@ -241,6 +208,7 @@ public class User {
                 ", userRole=" + userRole +
                 ", rating=" + rating +
                 ", cards=" + cards +
+                ", appointmentList=" + appointmentList +
                 '}';
     }
 
@@ -357,8 +325,13 @@ public class User {
          * @param cards the card number
          * @return the cards list
          */
-        public UserBuilder setCards(List<Card> cards) {
+        public UserBuilder setCards(Set<Card> cards) {
             User.this.cards = cards;
+            return this;
+        }
+
+        public UserBuilder setAppointments(List<Appointment> appointmentList) {
+            User.this.appointmentList = appointmentList;
             return this;
         }
 

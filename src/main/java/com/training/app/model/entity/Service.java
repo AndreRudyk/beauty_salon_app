@@ -1,5 +1,6 @@
 package com.training.app.model.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class Service {
     /**
      * The Appointment set.
      */
-    Set<Appointment> appointmentSet = new HashSet<>();
+    List<Appointment> appointmentSet = new ArrayList<>();
 
     /**
      * Gets id.
@@ -80,7 +81,7 @@ public class Service {
      *
      * @return the appointment set
      */
-    public Set<Appointment> getAppointmentSet() {
+    public List<Appointment> getAppointmentSet() {
         return appointmentSet;
     }
 
@@ -232,7 +233,7 @@ public class Service {
          * @param appointmentSet the appointment set
          * @return the appointments
          */
-        public ServiceBuilder setAppointments(Set<Appointment> appointmentSet) {
+        public ServiceBuilder setAppointments(List<Appointment> appointmentSet) {
             Service.this.appointmentSet = appointmentSet;
             return this;
         }
