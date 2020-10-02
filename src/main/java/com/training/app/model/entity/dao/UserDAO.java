@@ -1,7 +1,6 @@
 package com.training.app.model.entity.dao;
 
 import com.training.app.model.entity.Appointment;
-import com.training.app.model.entity.Card;
 import com.training.app.model.entity.User;
 
 import java.util.List;
@@ -16,27 +15,57 @@ import java.util.Set;
 public interface UserDAO extends GenericDAO<User> {
 
     /**
+     * Register user user.
+     *
+     * @param user the user
+     * @return the user
+     * @throws DaoException the dao exception
+     */
+    User registerUser(User user) throws DaoException;
+
+
+    /**
      * Find by id optional.
      *
      * @param id the id
      * @return the optional
+     * @throws DaoException the dao exception
      */
-    Optional<User> findById(int id);
+    Optional<User> findById(int id) throws DaoException;
 
     /**
      * Find by name optional.
      *
-     * @param name the name
+     * @param login the name
      * @return the optional
+     * @throws DaoException the dao exception
      */
-    Optional<User> findByName(String name);
+    Optional<User> findByLogin(String login) throws DaoException;
+
+    /**
+     * Find by last name optional.
+     *
+     * @param lastName the last name
+     * @return the optional
+     * @throws DaoException the dao exception
+     */
+    Optional<User> findByLastName(String lastName) throws DaoException;
+
+    /**
+     * Find all users list.
+     *
+     * @return the list
+     * @throws DaoException the dao exception
+     */
+    List<User> findAllUsers() throws DaoException;
 
     /**
      * Find all cards set.
      *
      * @return the set
+     * @throws DaoException the dao exception
      */
-    Set<Card> findAllCards();
+    Set<String> findAllCards() throws DaoException;
 
     /**
      * Find all appointments list.
@@ -44,5 +73,13 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the list
      */
     List<Appointment> findAllAppointments();
+
+    /**
+     * Change role.
+     *
+     * @param id   the id
+     * @param role the role
+     */
+    void changeRole(int id, User.Role role);
 
 }

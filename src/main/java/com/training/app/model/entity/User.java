@@ -97,7 +97,7 @@ public class User {
     private String phoneNumber;
     private Role userRole;
     private Rating rating;
-    private Set<Card> cards = new HashSet<>();
+    private Set<String> cards = new HashSet<>();
     private List<Appointment> appointmentList = new ArrayList<>();
 
     public int getId() {
@@ -132,7 +132,7 @@ public class User {
         return rating;
     }
 
-    public Set<Card> getCards() {
+    public Set<String> getCards() {
         return cards;
     }
 
@@ -325,7 +325,7 @@ public class User {
          * @param cards the card number
          * @return the cards list
          */
-        public UserBuilder setCards(Set<Card> cards) {
+        public UserBuilder setCards(Set<String> cards) {
             User.this.cards = cards;
             return this;
         }
