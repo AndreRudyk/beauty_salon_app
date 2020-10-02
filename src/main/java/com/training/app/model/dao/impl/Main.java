@@ -1,10 +1,10 @@
-package com.training.app.model.entity.dao.impl;
+package com.training.app.model.dao.impl;
 
 import com.training.app.model.entity.Appointment;
 import com.training.app.model.entity.User;
-import com.training.app.model.entity.dao.DaoException;
-import com.training.app.model.entity.service.AppointmentService;
-import com.training.app.model.entity.service.UserService;
+import com.training.app.model.dao.DaoException;
+import com.training.app.model.service.AppointmentService;
+import com.training.app.model.service.UserService;
 
 import java.sql.SQLException;
 import java.util.List;

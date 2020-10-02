@@ -1,4 +1,4 @@
-package com.training.app.model.entity.dao.mapper;
+package com.training.app.model.dao.mapper;
 
 import com.training.app.model.entity.Appointment;
 

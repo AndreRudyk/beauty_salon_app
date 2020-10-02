@@ -1,11 +1,9 @@
-package com.training.app.model.entity.dao.impl;
+package com.training.app.model.dao.impl;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
 import javax.sql.DataSource;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Properties;
 
 /**
  * @author besko

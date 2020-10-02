@@ -1,9 +1,9 @@
-package com.training.app.model.entity.service;
+package com.training.app.model.service;
 
 import com.training.app.model.entity.User;
-import com.training.app.model.entity.dao.DaoException;
-import com.training.app.model.entity.dao.DaoFctory;
-import com.training.app.model.entity.dao.UserDAO;
+import com.training.app.model.dao.DaoException;
+import com.training.app.model.dao.DaoFctory;
+import com.training.app.model.dao.UserDAO;
 
 import java.sql.SQLException;
 import java.util.List;

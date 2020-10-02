@@ -1,6 +1,6 @@
-package com.training.app.model.entity.dao;
+package com.training.app.model.dao;
 
-import com.training.app.model.entity.dao.impl.DaoFactoryImpl;
+import com.training.app.model.dao.impl.DaoFactoryImpl;
 
 import java.sql.SQLException;
 

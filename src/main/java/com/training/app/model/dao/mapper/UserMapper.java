@@ -1,10 +1,9 @@
-package com.training.app.model.entity.dao.mapper;
+package com.training.app.model.dao.mapper;
 
 import com.training.app.model.entity.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
 import java.util.Map;
 
 /**

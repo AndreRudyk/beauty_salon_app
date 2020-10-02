@@ -1,4 +1,4 @@
-package com.training.app.model.entity.dao;
+package com.training.app.model.dao;
 
 import com.training.app.model.entity.Feedback;
 import com.training.app.model.entity.Service;

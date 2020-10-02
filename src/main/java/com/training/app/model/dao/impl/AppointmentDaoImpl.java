@@ -1,13 +1,12 @@
-package com.training.app.model.entity.dao.impl;
+package com.training.app.model.dao.impl;
 
+import com.training.app.model.dao.AppointmentDAO;
+import com.training.app.model.dao.mapper.AppointmentMapper;
 import com.training.app.model.entity.Appointment;
 import com.training.app.model.entity.Service;
 import com.training.app.model.entity.User;
-import com.training.app.model.entity.dao.AppointmentDAO;
-import com.training.app.model.entity.dao.DaoException;
-import com.training.app.model.entity.dao.DaoFctory;
-import com.training.app.model.entity.dao.mapper.AppointmentMapper;
-import com.training.app.model.entity.dao.mapper.UserMapper;
+import com.training.app.model.dao.DaoException;
+import com.training.app.model.dao.mapper.UserMapper;
 
 import java.math.BigDecimal;
 import java.sql.Connection;

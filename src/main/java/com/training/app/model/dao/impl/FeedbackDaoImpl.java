@@ -1,9 +1,9 @@
-package com.training.app.model.entity.dao.impl;
+package com.training.app.model.dao.impl;
 
+import com.training.app.model.dao.FeedbackDAO;
 import com.training.app.model.entity.Feedback;
 import com.training.app.model.entity.Service;
-import com.training.app.model.entity.dao.DaoException;
-import com.training.app.model.entity.dao.FeedbackDAO;
+import com.training.app.model.dao.DaoException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
