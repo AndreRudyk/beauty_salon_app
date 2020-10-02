@@ -14,6 +14,7 @@ import java.util.Set;
  */
 public class UserDaoImpl implements UserDAO {
 
+
     @Override
     public User registerUser(User user) throws DaoException {
         return null;
@@ -30,8 +31,13 @@ public class UserDaoImpl implements UserDAO {
     }
 
     @Override
-    public Optional<User> findByLastName(String lastName) throws DaoException {
+    public Optional<User> findByName(String name) throws DaoException {
         return Optional.empty();
+    }
+
+    @Override
+    public List<User> findByRating(User.Rating rating) throws DaoException {
+        return null;
     }
 
     @Override
@@ -53,4 +59,20 @@ public class UserDaoImpl implements UserDAO {
     public void changeRole(int id, User.Role role) {
 
     }
+
+    @Override
+    public void updateUser(int id, String login, String password, String fName, String lName, String phone, User.Role role, User.Rating rating, Set<String> cards, List<Appointment> appointments) throws DaoException {
+
+    }
+
+    @Override
+    public void updateRating(User.Rating rating) throws DaoException {
+
+    }
+
+    @Override
+    public void removeUser(int userId) throws DaoException {
+
+    }
 }
+
