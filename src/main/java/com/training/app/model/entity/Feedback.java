@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
  */
 public class Feedback implements Entity {
     private int id;
-    private User user;
     private Service service;
     private LocalDateTime commentDate;
     private String comment;
@@ -22,15 +21,6 @@ public class Feedback implements Entity {
      */
     public int getId() {
         return id;
-    }
-
-    /**
-     * Gets user id.
-     *
-     * @return the user id
-     */
-    public User getUser() {
-        return user;
     }
 
     /**
@@ -74,9 +64,6 @@ public class Feedback implements Entity {
         if (getId() != feedback.getId()) {
             return false;
         }
-        if (getUser() != feedback.getUser()) {
-            return false;
-        }
         if (getService() != feedback.getService()) {
             return false;
         }
@@ -89,7 +76,6 @@ public class Feedback implements Entity {
     @Override
     public int hashCode() {
         int result = getId();
-        result = 31 * result + getUser().hashCode();
         result = 31 * result + getService().hashCode();
         result = 31 * result + getComment().hashCode();
         return result;
@@ -122,16 +108,6 @@ public class Feedback implements Entity {
             return this;
         }
 
-        /**
-         * Sets user id.
-         *
-         * @param user the user id
-         * @return the user id
-         */
-        public FeedbackBuilder setUserId(User user) {
-            Feedback.this.user = user;
-            return this;
-        }
 
         /**
          * Sets service id.
