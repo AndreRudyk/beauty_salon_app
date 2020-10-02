@@ -6,13 +6,16 @@ import com.training.app.model.entity.User;
 import com.training.app.model.entity.dao.AppointmentDAO;
 import com.training.app.model.entity.dao.DaoException;
 import com.training.app.model.entity.dao.DaoFctory;
+import com.training.app.model.entity.dao.mapper.AppointmentMapper;
+import com.training.app.model.entity.dao.mapper.UserMapper;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author besko
@@ -69,6 +72,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
         return Optional.empty();
     }
 
+
     /**
      * Find appointment by status optional.
      *
@@ -78,15 +82,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
      */
     @Override
     public Optional<Appointment> findAppointmentByStatus(Appointment.Status status) throws DaoException, SQLException {
-        DaoFctory daoFctory = DaoFctory.getInstance();
-        Optional<Appointment> result = Optional.empty();
-        try {
-            AppointmentDAO dao = daoFctory.createAppointmentDao();
-            result = dao.findAppointmentById(1);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return  result;
+        return Optional.empty();
     }
 
     /**
@@ -157,7 +153,33 @@ public class AppointmentDaoImpl implements AppointmentDAO {
      */
     @Override
     public List<Appointment> findAll() throws DaoException {
-        return null;
+        Map<Integer, User> users = new HashMap<>();
+        Map<Integer, Appointment> appointments = new HashMap<>();
+        final String query = "" +
+                " select * from appointment" +
+                " left join appointment_has_user on " +
+                " appointment.id = appointment_has_user.appointment_id "+
+                " left join user on appointment_has_user.user_id = " +
+                " user.id";
+
+        try (Statement st = connection.createStatement()) {
+            ResultSet resultSet = st.executeQuery(query);
+
+            UserMapper userMapper = new UserMapper();
+            AppointmentMapper appointmentMapper = new AppointmentMapper();
+
+            while (resultSet.next()) {
+                User user = userMapper.extractFromResultSet(resultSet);
+                Appointment appointment = appointmentMapper.extractFromResultSet(resultSet);
+
+                user = userMapper.makeUnique(users,user);
+                appointment = appointmentMapper.makeUnique(appointments,appointment);
+            }
+            return new ArrayList<>(appointments.values());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
