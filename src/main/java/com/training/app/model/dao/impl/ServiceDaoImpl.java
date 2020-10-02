@@ -15,7 +15,7 @@ import java.util.Optional;
  * @author besko
  */
 public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
-    private Connection connection;
+    private final Connection connection;
 
     public ServiceDaoImpl(Connection connection) {
         this.connection = connection;

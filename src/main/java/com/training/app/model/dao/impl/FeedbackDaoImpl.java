@@ -15,7 +15,7 @@ import java.util.Optional;
  * @author besko
  */
 public class FeedbackDaoImpl implements FeedbackDAO, AutoCloseable {
-    private Connection connection;
+    private final Connection connection;
 
     public FeedbackDaoImpl(Connection connection) {
         this.connection = connection;

@@ -14,7 +14,7 @@ import java.util.Map;
 public class UserMapper implements ObjectMapper<User> {
     @Override
     public User extractFromResultSet(ResultSet resultSet) throws SQLException {
-        User user = User.newUserBuilder().
+        return  User.newUserBuilder().
                 setId(resultSet.getInt("id")).
                 setLogin(resultSet.getString("login_email")).
                 setPassword(resultSet.getString("password_hash")).
@@ -24,7 +24,6 @@ public class UserMapper implements ObjectMapper<User> {
                 setUserRole(User.Role.ADMIN).
                 setRating(User.Rating.S3).
                 build();
-        return user;
     }
 
     @Override

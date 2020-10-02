@@ -20,7 +20,7 @@ import java.util.*;
  * @author besko
  */
 public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
-    private Connection connection;
+    private final Connection connection;
 
     public AppointmentDaoImpl(Connection connection) {
         this.connection = connection;

@@ -17,15 +17,12 @@ import java.util.Map;
 public class AppointmentMapper implements ObjectMapper<Appointment> {
     @Override
     public Appointment extractFromResultSet(ResultSet resultSet) throws SQLException {
-        Date date = resultSet.getDate("time");
-        Timestamp timestamp = new Timestamp(date.getTime());
-        Appointment appointment = Appointment.newBuilder().
+        return Appointment.newBuilder().
                 setId(resultSet.getInt("id")).
                 setPaid(BigDecimal.valueOf(3.45)).
                 setPrice(BigDecimal.valueOf(3.40)).
                 setStatus(Appointment.Status.DONE).
                 build();
-        return appointment;
     }
 
     @Override
