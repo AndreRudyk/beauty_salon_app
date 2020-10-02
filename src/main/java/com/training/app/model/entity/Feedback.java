@@ -64,21 +64,32 @@ public class Feedback {
         if (getId() != feedback.getId()) {
             return false;
         }
-        if (getService() != feedback.getService()) {
+        if (getService() != null ? !getService().equals(feedback.getService()) : feedback.getService() != null) {
             return false;
         }
-        if (!getCommentDate().equals(feedback.getCommentDate())) {
+        if (getCommentDate() != null ? !getCommentDate().equals(feedback.getCommentDate()) : feedback.getCommentDate() != null) {
             return false;
         }
-        return getComment().equals(feedback.getComment());
+        return getComment() != null ? getComment().equals(feedback.getComment()) : feedback.getComment() == null;
     }
 
     @Override
     public int hashCode() {
         int result = getId();
-        result = 31 * result + getService().hashCode();
-        result = 31 * result + getComment().hashCode();
+        result = 31 * result + (getService() != null ? getService().hashCode() : 0);
+        result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
+        result = 31 * result + (getComment() != null ? getComment().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Feedback{" +
+                "id=" + id +
+                ", service=" + service +
+                ", commentDate=" + commentDate +
+                ", comment='" + comment + '\'' +
+                '}';
     }
 
     /**

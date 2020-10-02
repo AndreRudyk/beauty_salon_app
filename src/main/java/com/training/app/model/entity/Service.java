@@ -1,9 +1,8 @@
 package com.training.app.model.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * The type Service.
@@ -14,7 +13,7 @@ public class Service {
     private int id;
     private String serviceName;
     private String description;
-    private double price;
+    private BigDecimal price;
     private int durationMinutes;
     private List<Feedback> feedbackList;
     /**
@@ -54,7 +53,7 @@ public class Service {
      *
      * @return the price
      */
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -99,9 +98,6 @@ public class Service {
         if (getId() != service.getId()) {
             return false;
         }
-        if (Double.compare(service.getPrice(), getPrice()) != 0) {
-            return false;
-        }
         if (getDurationMinutes() != service.getDurationMinutes()) {
             return false;
         }
@@ -109,6 +105,9 @@ public class Service {
             return false;
         }
         if (getDescription() != null ? !getDescription().equals(service.getDescription()) : service.getDescription() != null) {
+            return false;
+        }
+        if (getPrice() != null ? !getPrice().equals(service.getPrice()) : service.getPrice() != null) {
             return false;
         }
         if (getFeedbackList() != null ? !getFeedbackList().equals(service.getFeedbackList()) : service.getFeedbackList() != null) {
@@ -119,13 +118,10 @@ public class Service {
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = getId();
+        int result = getId();
         result = 31 * result + (getServiceName() != null ? getServiceName().hashCode() : 0);
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
-        temp = Double.doubleToLongBits(getPrice());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
         result = 31 * result + getDurationMinutes();
         result = 31 * result + (getFeedbackList() != null ? getFeedbackList().hashCode() : 0);
         result = 31 * result + (getAppointmentSet() != null ? getAppointmentSet().hashCode() : 0);
@@ -200,7 +196,7 @@ public class Service {
          * @param price the price
          * @return the price
          */
-        public ServiceBuilder setPrice(double price) {
+        public ServiceBuilder setPrice(BigDecimal price) {
             Service.this.price = price;
             return this;
         }
