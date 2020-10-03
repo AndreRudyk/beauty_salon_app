@@ -59,7 +59,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<User> findByRating(User.Rating rating) throws DaoException;
+    List<User> findByRating(int rating) throws DaoException;
 
     /**
      * Find all users list.
@@ -104,7 +104,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @param rating the rating
      * @throws DaoException the dao exception
      */
-    void updateRating(User.Rating rating) throws DaoException;
+    void updateRating(int rating) throws DaoException;
 
     /**
      * Remove user.

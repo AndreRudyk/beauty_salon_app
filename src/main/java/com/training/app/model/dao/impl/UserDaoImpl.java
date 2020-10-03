@@ -4,7 +4,6 @@ import com.training.app.model.dao.UserDAO;
 import com.training.app.model.entity.Appointment;
 import com.training.app.model.entity.User;
 import com.training.app.model.dao.DaoException;
-import com.training.app.model.dao.mapper.AppointmentMapper;
 import com.training.app.model.dao.mapper.UserMapper;
 
 import java.sql.*;
@@ -35,7 +34,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
             preparedStatement.setString(4, user.getLastName());
             preparedStatement.setString(5, user.getPhoneNumber());
             preparedStatement.setString(6, user.getUserRole().getRoleName());
-            preparedStatement.setString(7, user.getRating().getRate());
+            preparedStatement.setInt(7, user.getRating());
 
             preparedStatement.executeUpdate();
 
@@ -77,8 +76,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
         try (PreparedStatement preparedStatement = connection.
                 prepareCall("select * from user where first_name = ?")) {
             preparedStatement.setString(1, name);
-            ResultSet resultSet;
-            resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet= preparedStatement.executeQuery();
             UserMapper userMapper = new UserMapper();
             if (resultSet.next()) {
                 optionalUser = Optional.of(userMapper.extractFromResultSet(resultSet));
@@ -90,8 +88,28 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public List<User> findByRating(User.Rating rating) throws DaoException {
-        return null;
+    public List<User> findByRating(int rating) throws DaoException {
+        List<User> usersByRating = new ArrayList<>();
+
+
+        try (PreparedStatement preparedStatementId = connection.
+                prepareStatement("select * from user where rating = ?") ) {
+            preparedStatementId.setInt(1, rating);
+
+            ResultSet resultSet = preparedStatementId.executeQuery();
+
+            UserMapper userMapper = new UserMapper();
+
+            while (resultSet.next()) {
+                User user = userMapper.extractFromResultSet(resultSet);
+                usersByRating.add(user);
+            }
+            return usersByRating;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+
     }
 
     @Override
@@ -113,7 +131,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
             return users;
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -138,7 +156,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public void updateRating(User.Rating rating) throws DaoException {
+    public void updateRating(int rating) throws DaoException {
 
     }
 

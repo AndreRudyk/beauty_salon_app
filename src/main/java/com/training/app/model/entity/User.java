@@ -51,43 +51,6 @@ public class User {
     /**
      * The enum Rating.
      */
-    public enum Rating {
-        /**
-         * The  1 stars.
-         */
-        S1("1"),
-        /**
-         * The 2 stars.
-         */
-        S2("2"),
-        /**
-         * The 3 stars.
-         */
-        S3("3"),
-        /**
-         * The 4 stars.
-         */
-        S4("4"),
-        /**
-         * The 5 stars.
-         */
-        S5("5");
-
-        private final String rate;
-
-        Rating(String rate) {
-            this.rate = rate;
-        }
-
-        /**
-         * Gets rating.
-         *
-         * @return the rating
-         */
-        public String getRate() {
-            return rate;
-        }
-    }
 
     private int id;
     private String login;
@@ -96,7 +59,7 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private Role userRole;
-    private Rating rating;
+    private int rating;
     private Set<Card> cards = new HashSet<>();
     private List<Appointment> appointmentList = new ArrayList<>();
 
@@ -128,7 +91,7 @@ public class User {
         return userRole;
     }
 
-    public Rating getRating() {
+    public int getRating() {
         return rating;
     }
 
@@ -154,6 +117,9 @@ public class User {
         if (getId() != user.getId()) {
             return false;
         }
+        if (getRating() != user.getRating()) {
+            return false;
+        }
         if (getLogin() != null ? !getLogin().equals(user.getLogin()) : user.getLogin() != null) {
             return false;
         }
@@ -172,9 +138,6 @@ public class User {
         if (getUserRole() != user.getUserRole()) {
             return false;
         }
-        if (getRating() != user.getRating()) {
-            return false;
-        }
         if (getCards() != null ? !getCards().equals(user.getCards()) : user.getCards() != null) {
             return false;
         }
@@ -190,7 +153,7 @@ public class User {
         result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
         result = 31 * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
         result = 31 * result + (getUserRole() != null ? getUserRole().hashCode() : 0);
-        result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
+        result = 31 * result + getRating();
         result = 31 * result + (getCards() != null ? getCards().hashCode() : 0);
         result = 31 * result + (getAppointmentList() != null ? getAppointmentList().hashCode() : 0);
         return result;
@@ -314,7 +277,7 @@ public class User {
          * @param rating the rating
          * @return the rating
          */
-        public UserBuilder setRating(Rating rating) {
+        public UserBuilder setRating(int rating) {
             User.this.rating = rating;
             return this;
         }

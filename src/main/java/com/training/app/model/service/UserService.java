@@ -44,8 +44,14 @@ public class UserService implements UserDAO{
      * @throws DaoException the dao exception
      */
     @Override
-    public List<User> findByRating(User.Rating rating) throws DaoException {
-        return null;
+    public List<User> findByRating(int rating) throws DaoException {
+        UserDAO userDAO = null;
+        try {
+            userDAO = daoFactory.createUserDao();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userDAO.findByRating(rating);
     }
 
     /**
@@ -104,7 +110,7 @@ public class UserService implements UserDAO{
      * @throws DaoException the dao exception
      */
     @Override
-    public void updateRating(User.Rating rating) throws DaoException {
+    public void updateRating(int rating) throws DaoException {
 
     }
 

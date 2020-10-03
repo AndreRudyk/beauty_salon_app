@@ -27,19 +27,24 @@ public class Main {
         System.out.println(user);*/
 
         /*User user1 = User.newUserBuilder().
-                setLogin("user1123_logi112n").
-                setPassword("111231121").
-                setFirstName("Jo123121hn").
-                setLastName("Doe12312").
-                setPhoneNumber("331231202390129").
+                setLogin("u3221").
+                setPassword("2333").
+                setFirstName("J22324").
+                setLastName("D3").
+                setPhoneNumber("339911").
                 setUserRole(User.Role.ADMIN).
-                setRating(User.Rating.S3).
+                setRating(3).
                 build();
 
         userService.registerUser(user1);*/
+       /* Optional<User> users = userService.findByName("J22324");
+        System.out.println(users);*/
 
-        List<User> users = userService.findAllUsers();
+        List<User> users = userService.findByRating(5);
         System.out.println(users);
+
+        /*List<User> users = userService.findAllUsers();
+        System.out.println(users);*/
 
 
     }

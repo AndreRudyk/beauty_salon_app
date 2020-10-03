@@ -23,8 +23,8 @@ public class UserMapper implements ObjectMapper<User> {
                 setFirstName(resultSet.getString("first_name")).
                 setLastName(resultSet.getString("last_name")).
                 setPhoneNumber(resultSet.getString("phone_number")).
-                setUserRole(User.Role.ADMIN).
-                setRating(User.Rating.S3).
+                setUserRole(User.Role.valueOf(resultSet.getString("user_role"))).
+                setRating(resultSet.getInt("rating")).
                 build();
         user = this.makeUnique(users, user);
         return user;
