@@ -33,4 +33,14 @@ public class UserService {
         }
         return userDAO.findByName(name);
     }
+
+    public Optional<User> findById(int id) throws DaoException {
+        UserDAO userDAO = null;
+        try {
+            userDAO = daoFactory.createUserDao();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userDAO.findById(id);
+    }
 }

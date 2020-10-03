@@ -22,7 +22,7 @@ public class Main {
         List<Appointment> appointments = appointmentService.getAll();
         System.out.println(appointments);*/
 
-        Optional<User> user = userService.findByName("name");
+        Optional<User> user = userService.findById(1);
         System.out.println(user);
 
     }

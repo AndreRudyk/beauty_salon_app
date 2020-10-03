@@ -29,14 +29,21 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     public Optional<User> findById(int id) throws DaoException {
         final String query = "" +
                 " select * from user" +
-                " where user.id = ?";
-
-        try (Statement statement = connection.createStatement()) {
-
+                " where id = ?";
+        Optional<User> optionalUser = Optional.empty();
+        try (PreparedStatement preparedStatement =  connection.
+                prepareCall(query)) {
+                preparedStatement.setInt(1, id);
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+            UserMapper userMapper = new UserMapper();
+            if (resultSet.next()) {
+                optionalUser = Optional.of(userMapper.extractFromResultSet(resultSet));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Optional.ofNullable(User.newUserBuilder().build());
+        return optionalUser;
     }
 
         @Override
@@ -88,7 +95,6 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
                     User user = userMapper.extractFromResultSet(resultSet);
                     /*Appointment appointment = appointmentMapper.extractFromResultSet(resultSet);*/
 
-                    user = userMapper.makeUnique(users, user);
                     /*appointment = appointmentMapper.makeUnique(appointments, appointment);*/
                 }
                 return new ArrayList<>(users.values());
