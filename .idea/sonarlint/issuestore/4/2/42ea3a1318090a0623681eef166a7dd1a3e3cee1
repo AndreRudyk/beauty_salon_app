@@ -1,0 +1,10 @@
+
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(âçãÅ8ã®ìÔÎ.
+
+java:S11862"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‹ïÎô8ã®ìÔÎ.
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(áôà/8ã®ìÔÎ.
+g	java:S112:"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ò§¾ÕÎ.
+H
+java:S1168."+Return an empty collection instead of null.(¥¹ï8ã®ìÔÎ.

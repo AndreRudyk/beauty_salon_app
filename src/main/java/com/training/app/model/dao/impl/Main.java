@@ -8,18 +8,22 @@ import com.training.app.model.service.UserService;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 
 public class Main {
     public static void main(String[] args) throws SQLException, DaoException {
 
         UserService userService = new UserService();
-        AppointmentService appointmentService = new AppointmentService();
+        /*AppointmentService appointmentService = new AppointmentService();
         List<User> users = userService.getAll();
         System.out.println(users);
 
         List<Appointment> appointments = appointmentService.getAll();
-        System.out.println(appointments);
+        System.out.println(appointments);*/
+
+        Optional<User> user = userService.findByName("name");
+        System.out.println(user);
 
     }
 }

@@ -2,7 +2,7 @@ package com.training.app.model.dao.impl;
 
 import com.training.app.model.dao.AppointmentDAO;
 import com.training.app.model.dao.UserDAO;
-import com.training.app.model.dao.DaoFctory;
+import com.training.app.model.dao.DaoFactory;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 /**
  * @author besko
  */
-public class DaoFactoryImpl extends DaoFctory {
+public class DaoFactoryImpl extends DaoFactory {
     private DataSource dataSource;
 
     {

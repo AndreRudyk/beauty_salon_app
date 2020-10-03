@@ -3,6 +3,7 @@ package com.training.app.model.dao;
 import com.training.app.model.entity.Appointment;
 import com.training.app.model.entity.User;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -49,7 +50,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the optional
      * @throws DaoException the dao exception
      */
-    Optional<User> findByName(String name) throws DaoException;
+    Optional<User> findByName(String name) throws DaoException, SQLException;
 
     /**
      * Find all users list.
@@ -94,28 +95,8 @@ public interface UserDAO extends GenericDAO<User> {
     /**
      * Update user.
      *
-     * @param id           the id
-     * @param login        the login
-     * @param password     the password
-     * @param fName        the f name
-     * @param lName        the l name
-     * @param phone        the phone
-     * @param role         the role
-     * @param rating       the rating
-     * @param cards        the cards
-     * @param appointments the appointments
-     * @throws DaoException the dao exception
      */
-    void updateUser(int id,
-                    String login,
-                    String password,
-                    String fName,
-                    String lName,
-                    String phone,
-                    User.Role role,
-                    User.Rating rating,
-                    Set<String> cards,
-                    List<Appointment> appointments) throws DaoException;
+    void updateUser(User user) throws DaoException;
 
     /**
      * Update rating.

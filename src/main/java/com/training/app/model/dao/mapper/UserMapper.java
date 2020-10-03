@@ -4,6 +4,7 @@ import com.training.app.model.entity.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -14,7 +15,8 @@ import java.util.Map;
 public class UserMapper implements ObjectMapper<User> {
     @Override
     public User extractFromResultSet(ResultSet resultSet) throws SQLException {
-        return  User.newUserBuilder().
+        Map<Integer, User> users = new HashMap<>();
+        User user = User.newUserBuilder().
                 setId(resultSet.getInt("id")).
                 setLogin(resultSet.getString("login_email")).
                 setPassword(resultSet.getString("password_hash")).
@@ -24,6 +26,8 @@ public class UserMapper implements ObjectMapper<User> {
                 setUserRole(User.Role.ADMIN).
                 setRating(User.Rating.S3).
                 build();
+        user = this.makeUnique(users, user);
+        return user;
     }
 
     @Override

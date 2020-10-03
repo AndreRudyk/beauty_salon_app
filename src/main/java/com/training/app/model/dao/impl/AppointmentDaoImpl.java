@@ -6,7 +6,6 @@ import com.training.app.model.entity.Appointment;
 import com.training.app.model.entity.Service;
 import com.training.app.model.entity.User;
 import com.training.app.model.dao.DaoException;
-import com.training.app.model.dao.mapper.UserMapper;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -152,7 +151,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      */
     @Override
     public List<Appointment> findAll() throws DaoException {
-        Map<Integer, User> users = new HashMap<>();
+        /*Map<Integer, User> users = new HashMap<>();*/
         Map<Integer, Appointment> appointments = new HashMap<>();
         final String query = "" +
                 " select * from appointment" +
@@ -164,14 +163,14 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
         try (Statement st = connection.createStatement()) {
             ResultSet resultSet = st.executeQuery(query);
 
-            UserMapper userMapper = new UserMapper();
+            /*UserMapper userMapper = new UserMapper();*/
             AppointmentMapper appointmentMapper = new AppointmentMapper();
 
             while (resultSet.next()) {
-                User user = userMapper.extractFromResultSet(resultSet);
+                /*User user = userMapper.extractFromResultSet(resultSet);*/
                 Appointment appointment = appointmentMapper.extractFromResultSet(resultSet);
 
-                user = userMapper.makeUnique(users,user);
+               /* user = userMapper.makeUnique(users,user);*/
                 appointment = appointmentMapper.makeUnique(appointments,appointment);
             }
             return new ArrayList<>(appointments.values());
