@@ -1,5 +1,6 @@
 package com.training.app.model.dao.impl;
 
+import com.training.app.model.dao.UserDAO;
 import com.training.app.model.entity.Appointment;
 import com.training.app.model.entity.User;
 import com.training.app.model.dao.DaoException;
@@ -22,8 +23,24 @@ public class Main {
         List<Appointment> appointments = appointmentService.getAll();
         System.out.println(appointments);*/
 
-        Optional<User> user = userService.findById(1);
-        System.out.println(user);
+        /*Optional<User> user = userService.findById(1);
+        System.out.println(user);*/
+
+        /*User user1 = User.newUserBuilder().
+                setLogin("user1123_logi112n").
+                setPassword("111231121").
+                setFirstName("Jo123121hn").
+                setLastName("Doe12312").
+                setPhoneNumber("331231202390129").
+                setUserRole(User.Role.ADMIN).
+                setRating(User.Rating.S3).
+                build();
+
+        userService.registerUser(user1);*/
+
+        List<User> users = userService.findAllUsers();
+        System.out.println(users);
+
 
     }
 }
