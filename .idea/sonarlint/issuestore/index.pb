@@ -87,3 +87,5 @@ r
 Bsrc/main/java/com/training/app/model/dao/mapper/ServiceMapper.java,6\0\60a7dce7ef521d1621c722386f0fca63737a5747
 h
 8src/main/java/com/training/app/model/dao/DaoFactory.java,e\4\e4ca0481aed4e00780ed44978797c88b6d031846
+m
+=src/main/java/com/training/app/model/service/CardService.java,9\2\925017b7e44e494768ac00c9b66f2b691fe5f8b7

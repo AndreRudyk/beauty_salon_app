@@ -1,7 +1,6 @@
 package com.training.app.model.dao.mapper;
 
 import com.training.app.model.entity.Appointment;
-import com.training.app.model.entity.User;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;

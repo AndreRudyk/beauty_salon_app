@@ -42,7 +42,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the optional
      * @throws DaoException the dao exception
      */
-    Optional<User> findByLogin(String login) throws DaoException;
+    User findByLogin(String login) throws DaoException;
 
     /**
      * Find by name optional.

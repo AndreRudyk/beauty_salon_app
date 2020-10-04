@@ -173,7 +173,7 @@ public class Service {
          * @param serviceName the service name
          * @return the service
          */
-        public ServiceBuilder setService(String serviceName) {
+        public ServiceBuilder setServiceName(String serviceName) {
             Service.this.serviceName = serviceName;
             return this;
         }

@@ -1,8 +1,6 @@
 package com.training.app.model.dao.impl;
 
-import com.training.app.model.dao.AppointmentDAO;
-import com.training.app.model.dao.UserDAO;
-import com.training.app.model.dao.DaoFactory;
+import com.training.app.model.dao.*;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -30,5 +28,20 @@ public class DaoFactoryImpl extends DaoFactory {
     @Override
     public AppointmentDAO createAppointmentDao() throws SQLException {
         return new AppointmentDaoImpl(dataSource.getConnection());
+    }
+
+    @Override
+    public CardDao createCadDao() throws SQLException {
+        return new CardDaoImpl(dataSource.getConnection());
+    }
+
+    @Override
+    public FeedbackDAO createFeedbackDao() throws SQLException {
+        return new FeedbackDaoImpl(dataSource.getConnection());
+    }
+
+    @Override
+    public ServiceDAO createServiceDao() throws SQLException {
+        return new ServiceDaoImpl(dataSource.getConnection());
     }
 }

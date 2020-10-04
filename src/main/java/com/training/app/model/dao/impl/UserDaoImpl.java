@@ -67,8 +67,8 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public Optional<User> findByLogin(String login) throws DaoException {
-        return Optional.empty();
+    public User findByLogin(String login) throws DaoException {
+        return null;
     }
 
     @Override

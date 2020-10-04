@@ -9,7 +9,7 @@ import com.training.app.model.dao.UserDAO;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -28,7 +28,7 @@ public class UserService implements UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return userDAO.findAllUsers();
+        return Objects.requireNonNull(userDAO).findAllUsers();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UserService implements UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return userDAO.findByName(name);
+        return Objects.requireNonNull(userDAO).findByName(name);
     }
 
     /**
@@ -57,7 +57,7 @@ public class UserService implements UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return userDAO.findByRating(rating);
+        return Objects.requireNonNull(userDAO).findByRating(rating);
     }
 
     /**
@@ -168,7 +168,7 @@ public class UserService implements UserDAO {
      * @throws DaoException the dao exception
      */
     @Override
-    public Optional<User> findByLogin(String login) throws DaoException {
-        return Optional.empty();
+    public User findByLogin(String login) throws DaoException {
+        return null;
     }
 }

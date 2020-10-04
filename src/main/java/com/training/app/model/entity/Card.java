@@ -8,7 +8,6 @@ import java.math.BigDecimal;
  */
 public class Card {
 
-    private int id;
     private String cardNumber;
     private BigDecimal balance;
     private User user;
@@ -27,27 +26,8 @@ public class Card {
      * @param balance    the balance
      */
     public Card(int id, String cardNumber, BigDecimal balance) {
-        this.id = id;
         this.cardNumber = cardNumber;
         this.balance = balance;
-    }
-
-    /**
-     * Gets id.
-     *
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Sets id.
-     *
-     * @param id the id
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**
@@ -86,6 +66,10 @@ public class Card {
         this.balance = balance;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     /**
      * Gets user.
      *
@@ -106,9 +90,6 @@ public class Card {
 
         Card card = (Card) o;
 
-        if (getId() != card.getId()) {
-            return false;
-        }
         if (getCardNumber() != null ? !getCardNumber().equals(card.getCardNumber()) : card.getCardNumber() != null) {
             return false;
         }
@@ -120,8 +101,7 @@ public class Card {
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + (getCardNumber() != null ? getCardNumber().hashCode() : 0);
+        int result = getCardNumber() != null ? getCardNumber().hashCode() : 0;
         result = 31 * result + (getBalance() != null ? getBalance().hashCode() : 0);
         result = 31 * result + (getUser() != null ? getUser().hashCode() : 0);
         return result;
@@ -130,8 +110,7 @@ public class Card {
     @Override
     public String toString() {
         return "Card{" +
-                "id=" + id +
-                ", cardNumber='" + cardNumber + '\'' +
+                "cardNumber='" + cardNumber + '\'' +
                 ", balance=" + balance +
                 ", user=" + user +
                 '}';

@@ -2,14 +2,12 @@ package com.training.app.model.dao.impl;
 
 import com.training.app.model.dao.FeedbackDAO;
 import com.training.app.model.entity.Feedback;
-import com.training.app.model.entity.Service;
 import com.training.app.model.dao.DaoException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author besko
@@ -21,31 +19,13 @@ public class FeedbackDaoImpl implements FeedbackDAO, AutoCloseable {
         this.connection = connection;
     }
 
-    /**
-     * Add feedback.
-     *
-     * @param id       the id
-     * @param service  the service
-     * @param dateTime the date time
-     * @param comment  the comment
-     * @throws DaoException the dao exception
-     */
     @Override
-    public void addFeedback(int id, Service service, LocalDateTime dateTime, String comment) throws DaoException {
+    public void addFeedback(Feedback feedback) throws DaoException {
 
     }
 
-    /**
-     * Update feedback.
-     *
-     * @param id       the id
-     * @param service  the service
-     * @param dateTime the date time
-     * @param comment  the comment
-     * @throws DaoException the dao exception
-     */
     @Override
-    public void updateFeedback(int id, Service service, LocalDateTime dateTime, String comment) throws DaoException {
+    public void updateFeedback(Feedback feedback) throws DaoException {
 
     }
 
@@ -57,8 +37,8 @@ public class FeedbackDaoImpl implements FeedbackDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public Optional<Feedback> findById(int id) throws DaoException {
-        return Optional.empty();
+    public Feedback findById(int id) throws DaoException {
+        return null;
     }
 
     /**

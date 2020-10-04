@@ -4,6 +4,7 @@ import com.training.app.model.entity.Card;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,18 +20,29 @@ public class CardMapper implements ObjectMapper<Card> {
      */
     @Override
     public Card extractFromResultSet(ResultSet resultSet) throws SQLException {
-        return null;
+        Map<Integer, Card> cardMap = new HashMap<>();
+        Card card = new Card();
+        card.setCardNumber(resultSet.getString("number_id"));
+        card.setBalance(resultSet.getBigDecimal("balance"));
+
+        cardMap.put(Integer.parseInt(card.getCardNumber()), card);
+
+        card = this.makeUnique(cardMap, card);
+        return card;
+
     }
 
     /**
      * Make unique t.
      *
      * @param cache  the cache
-     * @param object the object
+     * @param card the object
      * @return the t
      */
     @Override
-    public Card makeUnique(Map<Integer, Card> cache, Card object) {
-        return null;
+    public Card makeUnique(Map<Integer, Card> cache, Card card) {
+        cache.putIfAbsent(Integer.parseInt(card.getCardNumber()),card);
+        return cache.get(Integer.parseInt(card.getCardNumber()));
     }
+
 }

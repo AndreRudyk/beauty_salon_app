@@ -67,8 +67,8 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public Optional<Appointment> findAppointmentById(int id) throws DaoException {
-        return Optional.empty();
+    public Appointment findAppointmentById(int id) throws DaoException {
+        return null;
     }
 
 
@@ -80,8 +80,8 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public Optional<Appointment> findAppointmentByStatus(Appointment.Status status) throws DaoException, SQLException {
-        return Optional.empty();
+    public Appointment findAppointmentByStatus(Appointment.Status status) throws DaoException, SQLException {
+        return null;
     }
 
     /**
@@ -92,7 +92,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Optional<Appointment>> findAllByStatus(Appointment.Status status) throws DaoException {
+    public List<Appointment> findAllByStatus(Appointment.Status status) throws DaoException {
         return null;
     }
 
@@ -103,7 +103,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Optional<Appointment>> findAllAvailable() throws DaoException {
+    public List<Appointment> findAllAvailable() throws DaoException {
         return null;
     }
 
@@ -116,7 +116,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Optional<Appointment>> findByUserIdAndDay(int userId, LocalDateTime dateTime) throws DaoException {
+    public List<User> findByUserIdAndDay(int userId, LocalDateTime dateTime) throws DaoException {
         return null;
     }
 
@@ -128,8 +128,8 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public Optional<Appointment> findByUserId(int userId) throws DaoException {
-        return Optional.empty();
+    public Appointment findByUserId(int userId) throws DaoException {
+        return null;
     }
 
     /**
@@ -140,7 +140,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Optional<Appointment>> findByServiceId(int orderId) throws DaoException {
+    public List<Appointment> findByServiceId(int orderId) throws DaoException {
         return null;
     }
 
@@ -151,10 +151,10 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Optional<Appointment>> findAll() throws DaoException {
+    public List<Appointment> findAll() throws DaoException {
         /*Map<Integer, User> users = new HashMap<>();*/
         /*Map<Integer, Appointment> appointments = new HashMap<>();*/
-        List<Optional<Appointment>> appointments = new ArrayList<>();
+        List<Appointment> appointments = new ArrayList<>();
         final String query = "" +
                 " select * from appointment" +
                 " left join appointment_has_user on " +
@@ -170,10 +170,11 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
 
             while (resultSet.next()) {
                 /*User user = userMapper.extractFromResultSet(resultSet);*/
-                Appointment appointment = appointmentMapper.extractFromResultSet(resultSet);
+                Optional<Appointment> appointment = Optional.
+                        ofNullable(appointmentMapper.extractFromResultSet(resultSet));
 
                 /* user = userMapper.makeUnique(users,user);*/
-                appointments.add(Optional.ofNullable(appointment));
+                appointment.ifPresent(appointments::add);
             }
             return appointments;
 

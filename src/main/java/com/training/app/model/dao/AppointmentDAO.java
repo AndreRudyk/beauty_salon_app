@@ -8,17 +8,15 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The interface Appointment dao.
- *
  * @author besko
  */
 public interface AppointmentDAO extends GenericDAO<Appointment> {
 
     /**
-     * Add appointment.
+     * Create appointment.
      *
      * @param appointment the appointment
      * @throws DaoException the dao exception
@@ -46,22 +44,23 @@ public interface AppointmentDAO extends GenericDAO<Appointment> {
                            List<Service> services) throws DaoException;
 
     /**
-     * Find appointment by id optional.
+     * Find appointment by id appointment.
      *
      * @param id the id
-     * @return the optional
+     * @return the appointment
      * @throws DaoException the dao exception
      */
-    Optional<Appointment> findAppointmentById(int id) throws DaoException;
+    Appointment findAppointmentById(int id) throws DaoException;
 
     /**
-     * Find appointment by status optional.
+     * Find appointment by status appointment.
      *
      * @param status the status
-     * @return the optional
+     * @return the appointment
      * @throws DaoException the dao exception
+     * @throws SQLException the sql exception
      */
-    Optional<Appointment> findAppointmentByStatus(Appointment.Status status) throws DaoException, SQLException;
+    Appointment findAppointmentByStatus(Appointment.Status status) throws DaoException, SQLException;
 
     /**
      * Find all by status list.
@@ -70,7 +69,7 @@ public interface AppointmentDAO extends GenericDAO<Appointment> {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<Optional<Appointment>> findAllByStatus(Appointment.Status status) throws DaoException;
+    List<Appointment> findAllByStatus(Appointment.Status status) throws DaoException;
 
     /**
      * Find all available list.
@@ -78,7 +77,7 @@ public interface AppointmentDAO extends GenericDAO<Appointment> {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<Optional<Appointment>> findAllAvailable() throws DaoException;
+    List<Appointment> findAllAvailable() throws DaoException;
 
     /**
      * Find by user id and day list.
@@ -88,16 +87,16 @@ public interface AppointmentDAO extends GenericDAO<Appointment> {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<Optional<Appointment>> findByUserIdAndDay(int userId, LocalDateTime dateTime) throws DaoException;
+    List<User> findByUserIdAndDay(int userId, LocalDateTime dateTime) throws DaoException;
 
     /**
-     * Find by user id optional.
+     * Find by user id appointment.
      *
      * @param userId the user id
-     * @return the optional
+     * @return the appointment
      * @throws DaoException the dao exception
      */
-    Optional<Appointment> findByUserId(int userId) throws DaoException;
+    Appointment findByUserId(int userId) throws DaoException;
 
     /**
      * Find by service id list.
@@ -106,7 +105,7 @@ public interface AppointmentDAO extends GenericDAO<Appointment> {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<Optional<Appointment>> findByServiceId(int orderId) throws DaoException;
+    List<Appointment> findByServiceId(int orderId) throws DaoException;
 
 
     /**
@@ -115,7 +114,7 @@ public interface AppointmentDAO extends GenericDAO<Appointment> {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<Optional<Appointment>> findAll() throws DaoException;
+    List<Appointment> findAll() throws DaoException;
 
     /**
      * Update status.

@@ -14,33 +14,9 @@ import java.util.Optional;
  */
 public interface FeedbackDAO extends GenericDAO<Feedback> {
 
-    /**
-     * Add feedback.
-     *
-     * @param id       the id
-     * @param service  the service
-     * @param dateTime the date time
-     * @param comment  the comment
-     * @throws DaoException the dao exception
-     */
-    void addFeedback(int id,
-                     Service service,
-                     LocalDateTime dateTime,
-                     String comment) throws DaoException;
+    void addFeedback(Feedback feedback) throws DaoException;
 
-    /**
-     * Update feedback.
-     *
-     * @param id       the id
-     * @param service  the service
-     * @param dateTime the date time
-     * @param comment  the comment
-     * @throws DaoException the dao exception
-     */
-    void updateFeedback(int id,
-                        Service service,
-                        LocalDateTime dateTime,
-                        String comment) throws DaoException;
+    void updateFeedback(Feedback feedback) throws DaoException;
 
     /**
      * Find by id optional.
@@ -49,7 +25,7 @@ public interface FeedbackDAO extends GenericDAO<Feedback> {
      * @return the optional
      * @throws DaoException the dao exception
      */
-    Optional<Feedback> findById(int id) throws DaoException;
+    Feedback findById(int id) throws DaoException;
 
     /**
      * Find by service id list.
