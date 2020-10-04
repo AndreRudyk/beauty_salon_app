@@ -26,6 +26,7 @@ public class UserMapper implements ObjectMapper<User> {
                 setUserRole(User.Role.valueOf(resultSet.getString("user_role"))).
                 setRating(resultSet.getInt("rating")).
                 build();
+        users.put(user.getId(), user);
         user = this.makeUnique(users, user);
         return user;
     }

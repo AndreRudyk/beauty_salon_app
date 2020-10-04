@@ -26,22 +26,22 @@ public class Main {
         /*Optional<User> user = userService.findById(1);
         System.out.println(user);*/
 
-        /*User user1 = User.newUserBuilder().
-                setLogin("u3221").
-                setPassword("2333").
+       /* User user1 = User.newUserBuilder().
+                setLogin("u3245").
+                setPassword("2332433").
                 setFirstName("J22324").
                 setLastName("D3").
-                setPhoneNumber("339911").
+                setPhoneNumber("33992211").
                 setUserRole(User.Role.ADMIN).
                 setRating(3).
                 build();
 
         userService.registerUser(user1);*/
-       /* Optional<User> users = userService.findByName("J22324");
-        System.out.println(users);*/
-
-        List<User> users = userService.findByRating(5);
+        Optional<User> users = userService.findByName("J22324");
         System.out.println(users);
+
+        /*List<User> users = userService.findByRating(5);
+        System.out.println(users);*/
 
         /*List<User> users = userService.findAllUsers();
         System.out.println(users);*/

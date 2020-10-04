@@ -1,34 +1,29 @@
 package com.training.app.model.entity;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * The type User.
- *
- * @author besko
  */
 public class User {
     /**
-     * Values for user role
+     * The enum Role.
      */
     public enum Role {
         /**
-         * for manager
+         * Admin role.
          */
         ADMIN("admin"),
         /**
-         * for salon master
+         * Employee role.
          */
         EMPLOYEE("employee"),
         /**
-         * for customer
+         * Client role.
          */
         CLIENT("client"),
         /**
-         * for unauthorized user
+         * Guest role.
          */
         GUEST("guest");
 
@@ -41,16 +36,12 @@ public class User {
         /**
          * Gets role name.
          *
-         * @return {@link User.Role} roleName field
+         * @return the role name
          */
         public String getRoleName() {
             return roleName;
         }
     }
-
-    /**
-     * The enum Rating.
-     */
 
     private int id;
     private String login;
@@ -60,46 +51,96 @@ public class User {
     private String phoneNumber;
     private Role userRole;
     private int rating;
-    private Set<Card> cards = new HashSet<>();
-    private List<Appointment> appointmentList = new ArrayList<>();
+    private Set<Optional<Card>> cards = new HashSet<>();
+    private List<Optional<Appointment>> appointmentList = new ArrayList<>();
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Gets login.
+     *
+     * @return the login
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     * Gets password.
+     *
+     * @return the password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Gets first name.
+     *
+     * @return the first name
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * Gets last name.
+     *
+     * @return the last name
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * Gets phone number.
+     *
+     * @return the phone number
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * Gets user role.
+     *
+     * @return the user role
+     */
     public Role getUserRole() {
         return userRole;
     }
 
+    /**
+     * Gets rating.
+     *
+     * @return the rating
+     */
     public int getRating() {
         return rating;
     }
 
-    public Set<Card> getCards() {
+    /**
+     * Gets cards.
+     *
+     * @return the cards
+     */
+    public Set<Optional<Card>> getCards() {
         return cards;
     }
 
-    public List<Appointment> getAppointmentList() {
+    /**
+     * Gets appointment list.
+     *
+     * @return the appointment list
+     */
+    public List<Optional<Appointment>> getAppointmentList() {
         return appointmentList;
     }
 
@@ -188,9 +229,6 @@ public class User {
      * The type User builder.
      */
     public class UserBuilder {
-        /**
-         *
-         */
         private UserBuilder() {
         }
 
@@ -283,17 +321,23 @@ public class User {
         }
 
         /**
-         * Sets card number.
+         * Sets cards.
          *
-         * @param cards the card number
-         * @return the cards list
+         * @param cards the cards
+         * @return the cards
          */
-        public UserBuilder setCards(Set<Card> cards) {
+        public UserBuilder setCards(Set<Optional<Card>> cards) {
             User.this.cards = cards;
             return this;
         }
 
-        public UserBuilder setAppointments(List<Appointment> appointmentList) {
+        /**
+         * Sets appointments.
+         *
+         * @param appointmentList the appointment list
+         * @return the appointments
+         */
+        public UserBuilder setAppointments(List<Optional<Appointment>> appointmentList) {
             User.this.appointmentList = appointmentList;
             return this;
         }

@@ -70,7 +70,6 @@ public interface ServiceDAO extends GenericDAO<Service> {
     List<Service> findAll() throws DaoException;
 
 
-
     /**
      * Remove service by id.
      *

@@ -106,7 +106,8 @@ public class Feedback {
      */
     public class FeedbackBuilder {
 
-        private FeedbackBuilder() {}
+        private FeedbackBuilder() {
+        }
 
         /**
          * Sets id.

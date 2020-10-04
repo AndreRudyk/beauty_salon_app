@@ -50,6 +50,7 @@ public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
     public void removeServiceById(int serviceId) throws DaoException {
 
     }
+
     @Override
     public void close() {
         try {

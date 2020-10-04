@@ -1,6 +1,7 @@
 package com.training.app.model.service;
 
 import com.training.app.model.entity.Appointment;
+import com.training.app.model.entity.Card;
 import com.training.app.model.entity.User;
 import com.training.app.model.dao.DaoException;
 import com.training.app.model.dao.DaoFactory;
@@ -11,20 +12,22 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public class UserService implements UserDAO{
+public class UserService implements UserDAO {
 
     DaoFactory daoFactory = DaoFactory.getInstance();
+
     @Override
-    public List<User> findAllUsers() throws DaoException {
+    public List<Optional<User>> findAllUsers() throws DaoException {
         UserDAO userDAO = null;
         try {
             userDAO = daoFactory.createUserDao();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return userDAO.findAllUsers();
     }
+
     @Override
     public Optional<User> findByName(String name) throws SQLException, DaoException {
         UserDAO userDAO = null;
@@ -44,7 +47,7 @@ public class UserService implements UserDAO{
      * @throws DaoException the dao exception
      */
     @Override
-    public List<User> findByRating(int rating) throws DaoException {
+    public List<Optional<User>> findByRating(int rating) throws DaoException {
         UserDAO userDAO = null;
         try {
             userDAO = daoFactory.createUserDao();
@@ -68,7 +71,7 @@ public class UserService implements UserDAO{
      * @throws DaoException the dao exception
      */
     @Override
-    public Set<String> findAllCards() throws DaoException {
+    public Set<Optional<Card>> findAllCards() throws DaoException {
         return null;
     }
 
@@ -78,7 +81,7 @@ public class UserService implements UserDAO{
      * @return the list
      */
     @Override
-    public List<Appointment> findAllAppointments() {
+    public List<Optional<Appointment>> findAllAppointments() {
         return null;
     }
 
@@ -142,6 +145,7 @@ public class UserService implements UserDAO{
         }
         return userDAO.registerUser(user);
     }
+
     @Override
     public Optional<User> findById(int id) throws DaoException {
         UserDAO userDAO = null;

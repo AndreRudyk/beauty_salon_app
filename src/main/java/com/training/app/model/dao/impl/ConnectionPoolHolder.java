@@ -12,7 +12,8 @@ public class ConnectionPoolHolder {
 
     private static volatile DataSource dataSource;
 
-    private ConnectionPoolHolder() {}
+    private ConnectionPoolHolder() {
+    }
 
     public static DataSource getDataSource() throws IOException {
         if (dataSource == null) {

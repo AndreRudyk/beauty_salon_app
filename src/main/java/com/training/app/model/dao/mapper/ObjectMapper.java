@@ -3,6 +3,7 @@ package com.training.app.model.dao.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * The interface Object mapper.
@@ -28,6 +29,6 @@ public interface ObjectMapper<T> {
      * @param object the object
      * @return the t
      */
-    T makeUnique(Map<Integer,T> cache, T object);
+    T makeUnique(Map<Integer, T> cache, T object);
 
 }

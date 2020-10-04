@@ -24,6 +24,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
     public AppointmentDaoImpl(Connection connection) {
         this.connection = connection;
     }
+
     /**
      * Add appointment.
      *
@@ -91,7 +92,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Appointment> findAllByStatus(Appointment.Status status) throws DaoException {
+    public List<Optional<Appointment>> findAllByStatus(Appointment.Status status) throws DaoException {
         return null;
     }
 
@@ -102,7 +103,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Appointment> findAllAvailable() throws DaoException {
+    public List<Optional<Appointment>> findAllAvailable() throws DaoException {
         return null;
     }
 
@@ -115,7 +116,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Appointment> findByUserIdAndDay(int userId, LocalDateTime dateTime) throws DaoException {
+    public List<Optional<Appointment>> findByUserIdAndDay(int userId, LocalDateTime dateTime) throws DaoException {
         return null;
     }
 
@@ -139,7 +140,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Appointment> findByServiceId(int orderId) throws DaoException {
+    public List<Optional<Appointment>> findByServiceId(int orderId) throws DaoException {
         return null;
     }
 
@@ -150,13 +151,14 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Appointment> findAll() throws DaoException {
+    public List<Optional<Appointment>> findAll() throws DaoException {
         /*Map<Integer, User> users = new HashMap<>();*/
-        Map<Integer, Appointment> appointments = new HashMap<>();
+        /*Map<Integer, Appointment> appointments = new HashMap<>();*/
+        List<Optional<Appointment>> appointments = new ArrayList<>();
         final String query = "" +
                 " select * from appointment" +
                 " left join appointment_has_user on " +
-                " appointment.id = appointment_has_user.appointment_id "+
+                " appointment.id = appointment_has_user.appointment_id " +
                 " left join user on appointment_has_user.user_id = " +
                 " user.id";
 
@@ -170,10 +172,11 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
                 /*User user = userMapper.extractFromResultSet(resultSet);*/
                 Appointment appointment = appointmentMapper.extractFromResultSet(resultSet);
 
-               /* user = userMapper.makeUnique(users,user);*/
-                appointment = appointmentMapper.makeUnique(appointments,appointment);
+                /* user = userMapper.makeUnique(users,user);*/
+                appointments.add(Optional.ofNullable(appointment));
             }
-            return new ArrayList<>(appointments.values());
+            return appointments;
+
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -244,6 +247,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
     public void removeAppointmentById(int id) throws DaoException {
 
     }
+
     @Override
     public void close() {
         try {

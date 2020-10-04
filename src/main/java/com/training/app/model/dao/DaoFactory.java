@@ -8,6 +8,7 @@ public abstract class DaoFactory {
     private static DaoFactory daoFactory;
 
     public abstract UserDAO createUserDao() throws SQLException;
+
     public abstract AppointmentDAO createAppointmentDao() throws SQLException;
 
     public static DaoFactory getInstance() {

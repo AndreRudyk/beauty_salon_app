@@ -1,3 +1,10 @@
 
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(´ûüÿÿÿÿ8Ó€îÙÎ.
-U	java:S106"9Replace this use of System.out or System.err by a logger.(ù“¨š8¿ÍÇÚÎ.
+]	java:S125."<This block of commented-out lines of code should be removed.(öòõüÿÿÿÿ8Ã‘š‚Ï.
+Z	java:S106,"9Replace this use of System.out or System.err by a logger.(´ûüÿÿÿÿ8ÏèƒÏ.
+]	java:S125"<This block of commented-out lines of code should be removed.(º¥ëÍùÿÿÿÿ8ĞĞ¦Ï.
+a
+java:S1128"?Remove this unused import 'com.training.app.model.dao.UserDAO'.(„æ® ùÿÿÿÿ8Ç’¦Ï.
+
+java:S1130"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(¾¶˜óÿÿÿÿÿ8ÏèƒÏ.
+]	java:S125"<This block of commented-out lines of code should be removed.(¹÷€Êûÿÿÿÿ8³¿˜ÿÎ.
+]	java:S125%"<This block of commented-out lines of code should be removed.(®”¼—úÿÿÿÿ8ŸÌ·ƒÏ.

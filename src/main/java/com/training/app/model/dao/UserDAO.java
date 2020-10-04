@@ -1,6 +1,7 @@
 package com.training.app.model.dao;
 
 import com.training.app.model.entity.Appointment;
+import com.training.app.model.entity.Card;
 import com.training.app.model.entity.User;
 
 import java.sql.SQLException;
@@ -44,7 +45,7 @@ public interface UserDAO extends GenericDAO<User> {
     Optional<User> findByLogin(String login) throws DaoException;
 
     /**
-     * Find by last name optional.
+     * Find by name optional.
      *
      * @param name the name
      * @return the optional
@@ -59,7 +60,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<User> findByRating(int rating) throws DaoException;
+    List<Optional<User>> findByRating(int rating) throws DaoException;
 
     /**
      * Find all users list.
@@ -67,7 +68,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<User> findAllUsers() throws DaoException;
+    List<Optional<User>> findAllUsers() throws DaoException;
 
     /**
      * Find all cards set.
@@ -75,14 +76,14 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the set
      * @throws DaoException the dao exception
      */
-    Set<String> findAllCards() throws DaoException;
+    Set<Optional<Card>> findAllCards() throws DaoException;
 
     /**
      * Find all appointments list.
      *
      * @return the list
      */
-    List<Appointment> findAllAppointments();
+    List<Optional<Appointment>> findAllAppointments() throws DaoException;
 
     /**
      * Change role.
@@ -94,7 +95,6 @@ public interface UserDAO extends GenericDAO<User> {
 
     /**
      * Update user.
-     *
      */
     void updateUser(User user) throws DaoException;
 

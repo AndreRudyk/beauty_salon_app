@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
+/**
+ * @author besko
+ */
 public class ServiceMapper implements ObjectMapper<Service> {
     /**
      * Extract from result set t.

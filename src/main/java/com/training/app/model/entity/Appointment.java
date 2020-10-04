@@ -1,13 +1,15 @@
 package com.training.app.model.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * The type Appointment.
+ *
  * @author besko
  */
 public class Appointment {
@@ -53,10 +55,9 @@ public class Appointment {
     private int id;
     private LocalDateTime actionDateTime;
     private BigDecimal price;
-    private BigDecimal paid;
     private Status status;
-    private List<User> users = new ArrayList<>();
-    private List<Service> serviceSet = new ArrayList<>();
+    private List<Optional<User>> users = new ArrayList<>();
+    private List<Optional<Service>> serviceSet = new ArrayList<>();
 
 
     public int getId() {
@@ -71,19 +72,15 @@ public class Appointment {
         return price;
     }
 
-    public BigDecimal getPaid() {
-        return paid;
-    }
-
     public Status getStatus() {
         return status;
     }
 
-    public List<User> getUsers() {
+    public List<Optional<User>> getUsers() {
         return users;
     }
 
-    public List<Service> getServices() {
+    public List<Optional<Service>> getServices() {
         return serviceSet;
     }
 
@@ -107,16 +104,13 @@ public class Appointment {
         if (getPrice() != null ? !getPrice().equals(that.getPrice()) : that.getPrice() != null) {
             return false;
         }
-        if (getPaid() != null ? !getPaid().equals(that.getPaid()) : that.getPaid() != null) {
-            return false;
-        }
         if (getStatus() != that.getStatus()) {
             return false;
         }
         if (getUsers() != null ? !getUsers().equals(that.getUsers()) : that.getUsers() != null) {
             return false;
         }
-        return getServices() != null ? getServices().equals(that.getServices()) : that.getServices() == null;
+        return Objects.equals(serviceSet, that.serviceSet);
     }
 
     @Override
@@ -124,10 +118,9 @@ public class Appointment {
         int result = getId();
         result = 31 * result + (getActionDateTime() != null ? getActionDateTime().hashCode() : 0);
         result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
-        result = 31 * result + (getPaid() != null ? getPaid().hashCode() : 0);
         result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
         result = 31 * result + (getUsers() != null ? getUsers().hashCode() : 0);
-        result = 31 * result + (getServices() != null ? getServices().hashCode() : 0);
+        result = 31 * result + (serviceSet != null ? serviceSet.hashCode() : 0);
         return result;
     }
 
@@ -137,7 +130,6 @@ public class Appointment {
                 "id=" + id +
                 ", actionDateTime=" + actionDateTime +
                 ", price=" + price +
-                ", paid=" + paid +
                 ", status=" + status +
                 ", users=" + users +
                 ", serviceSet=" + serviceSet +
@@ -178,7 +170,7 @@ public class Appointment {
          * @param users the users Set
          * @return the user id
          */
-        public AppointmentBuilder setUsers(List<User> users) {
+        public AppointmentBuilder setUsers(List<Optional<User>> users) {
             Appointment.this.users = users;
             return this;
         }
@@ -205,16 +197,6 @@ public class Appointment {
             return this;
         }
 
-        /**
-         * Sets paid.
-         *
-         * @param paid the paid
-         * @return the paid
-         */
-        public AppointmentBuilder setPaid(BigDecimal paid) {
-            Appointment.this.paid = paid;
-            return this;
-        }
 
         /**
          * Sets status.
@@ -226,13 +208,14 @@ public class Appointment {
             Appointment.this.status = status;
             return this;
         }
+
         /**
          * Sets service.
          *
          * @param serviceSet the service set
          * @return the service
          */
-        public AppointmentBuilder setServices(List<Service> serviceSet) {
+        public AppointmentBuilder setServices(List<Optional<Service>> serviceSet) {
             Appointment.this.serviceSet = serviceSet;
             return this;
         }

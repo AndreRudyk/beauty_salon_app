@@ -2,14 +2,16 @@ package com.training.app.model.dao;
 
 /**
  * The type Exception dao.
+ *
  * @author beskorovajny
  */
-public class DaoException extends Exception{
+public class DaoException extends Exception {
 
     /**
      * Instantiates a new Exception dao.
      */
-    public DaoException() {}
+    public DaoException() {
+    }
 
     /**
      * Instantiates a new Exception dao.

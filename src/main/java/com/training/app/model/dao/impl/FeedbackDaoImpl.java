@@ -83,6 +83,7 @@ public class FeedbackDaoImpl implements FeedbackDAO, AutoCloseable {
     public void removeById(int id) throws DaoException {
 
     }
+
     @Override
     public void close() {
         try {

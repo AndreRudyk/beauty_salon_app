@@ -24,12 +24,12 @@ public class AppointmentService {
         return result;
     }
 
-    public List<Appointment> getAll() throws DaoException {
+    public List<Optional<Appointment>> getAll() throws DaoException {
         AppointmentDAO appDAO = null;
         try {
             appDAO = daoFactory.createAppointmentDao();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return appDAO.findAll();
