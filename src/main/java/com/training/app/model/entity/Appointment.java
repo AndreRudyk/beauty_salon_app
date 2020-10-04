@@ -56,8 +56,8 @@ public class Appointment {
     private LocalDateTime actionDateTime;
     private BigDecimal price;
     private Status status;
-    private List<Optional<User>> users = new ArrayList<>();
-    private List<Optional<Service>> serviceSet = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
+    private List<Service> serviceList = new ArrayList<>();
 
 
     public int getId() {
@@ -76,12 +76,12 @@ public class Appointment {
         return status;
     }
 
-    public List<Optional<User>> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public List<Optional<Service>> getServices() {
-        return serviceSet;
+    public List<Service> getServices() {
+        return serviceList;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class Appointment {
         if (getUsers() != null ? !getUsers().equals(that.getUsers()) : that.getUsers() != null) {
             return false;
         }
-        return Objects.equals(serviceSet, that.serviceSet);
+        return Objects.equals(serviceList, that.serviceList);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class Appointment {
         result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
         result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
         result = 31 * result + (getUsers() != null ? getUsers().hashCode() : 0);
-        result = 31 * result + (serviceSet != null ? serviceSet.hashCode() : 0);
+        result = 31 * result + (serviceList != null ? serviceList.hashCode() : 0);
         return result;
     }
 
@@ -132,7 +132,7 @@ public class Appointment {
                 ", price=" + price +
                 ", status=" + status +
                 ", users=" + users +
-                ", serviceSet=" + serviceSet +
+                ", serviceList=" + serviceList +
                 '}';
     }
 
@@ -170,7 +170,7 @@ public class Appointment {
          * @param users the users Set
          * @return the user id
          */
-        public AppointmentBuilder setUsers(List<Optional<User>> users) {
+        public AppointmentBuilder setUsers(List<User> users) {
             Appointment.this.users = users;
             return this;
         }
@@ -212,11 +212,11 @@ public class Appointment {
         /**
          * Sets service.
          *
-         * @param serviceSet the service set
+         * @param serviceList the service set
          * @return the service
          */
-        public AppointmentBuilder setServices(List<Optional<Service>> serviceSet) {
-            Appointment.this.serviceSet = serviceSet;
+        public AppointmentBuilder setServices(List<Service> serviceList) {
+            Appointment.this.serviceList = serviceList;
             return this;
         }
 

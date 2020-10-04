@@ -51,8 +51,8 @@ public class User {
     private String phoneNumber;
     private Role userRole;
     private int rating;
-    private Set<Optional<Card>> cards = new HashSet<>();
-    private List<Optional<Appointment>> appointmentList = new ArrayList<>();
+    private Set<Card> cards = new HashSet<>();
+    private List<Appointment> appointmentList = new ArrayList<>();
 
     /**
      * Gets id.
@@ -131,7 +131,7 @@ public class User {
      *
      * @return the cards
      */
-    public Set<Optional<Card>> getCards() {
+    public Set<Card> getCards() {
         return cards;
     }
 
@@ -140,7 +140,7 @@ public class User {
      *
      * @return the appointment list
      */
-    public List<Optional<Appointment>> getAppointmentList() {
+    public List<Appointment> getAppointmentList() {
         return appointmentList;
     }
 
@@ -326,7 +326,7 @@ public class User {
          * @param cards the cards
          * @return the cards
          */
-        public UserBuilder setCards(Set<Optional<Card>> cards) {
+        public UserBuilder setCards(Set<Card> cards) {
             User.this.cards = cards;
             return this;
         }
@@ -337,7 +337,7 @@ public class User {
          * @param appointmentList the appointment list
          * @return the appointments
          */
-        public UserBuilder setAppointments(List<Optional<Appointment>> appointmentList) {
+        public UserBuilder setAppointments(List<Appointment> appointmentList) {
             User.this.appointmentList = appointmentList;
             return this;
         }

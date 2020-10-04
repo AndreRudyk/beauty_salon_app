@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * The type Card.
+ * @author besko
  */
 public class Card {
 

@@ -37,7 +37,7 @@ public class Main {
                 build();
 
         userService.registerUser(user1);*/
-        User user = userService.findByName("J22324");
+        User user = userService.findById(4);
         System.out.println(user);
 
 
