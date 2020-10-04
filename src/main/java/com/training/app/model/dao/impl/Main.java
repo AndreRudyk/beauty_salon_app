@@ -1,21 +1,14 @@
 package com.training.app.model.dao.impl;
 
-import com.training.app.model.dao.UserDAO;
-import com.training.app.model.entity.Appointment;
-import com.training.app.model.entity.Card;
-import com.training.app.model.entity.Service;
-import com.training.app.model.entity.User;
 import com.training.app.model.dao.DaoException;
+import com.training.app.model.entity.Appointment;
 import com.training.app.model.service.AppointmentService;
-import com.training.app.model.service.CardService;
-import com.training.app.model.service.SalonServiceService;
 import com.training.app.model.service.UserService;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 
 public class Main {
@@ -81,6 +74,7 @@ public class Main {
                 setActionDateTime(LocalDateTime.now()).
                 setPrice(BigDecimal.valueOf(45.50)).
                 setStatus(Appointment.Status.NEED).
+                setEstimate(9).
                 build();
 
         AppointmentService appointmentService = new AppointmentService();
@@ -90,6 +84,8 @@ public class Main {
         System.out.println("\n\n---------------appointment-----------------");
         System.out.println(appointment1);
 
+        List<Appointment> appointments = appointmentService.findAll();
+        System.out.println(appointments);
 
     }
 }

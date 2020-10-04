@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
             preparedStatement.setString(4, user.getLastName());
             preparedStatement.setString(5, user.getPhoneNumber());
             preparedStatement.setString(6, user.getUserRole().getRoleName());
-            preparedStatement.setInt(7, user.getRating());
+            preparedStatement.setBigDecimal(7, user.getRating());
 
             preparedStatement.executeUpdate();
 

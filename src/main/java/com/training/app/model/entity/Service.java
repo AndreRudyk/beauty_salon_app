@@ -3,7 +3,6 @@ package com.training.app.model.entity;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The type Service.

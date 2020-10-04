@@ -33,12 +33,13 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
     public Appointment createAppointment(Appointment appointment) throws DaoException {
         final String query = "" +
                 " insert into appointment " +
-                " (time, price, status) values " +
-                " (? ,? ,?); ";
+                " (time, price, status, estimate) values " +
+                " (? ,? ,?, ?); ";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setTimestamp(1, Timestamp.valueOf(appointment.getActionDateTime()));
             preparedStatement.setBigDecimal(2, appointment.getPrice());
             preparedStatement.setString(3, appointment.getStatus().getStatusName());
+            preparedStatement.setInt(4, appointment.getEstimate());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -95,11 +96,8 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
     public List<Appointment> findAll() throws DaoException {
         List<Appointment> appointments = new ArrayList<>();
         final String query = "" +
-                " select * from appointment" +
-                " left join appointment_has_user on " +
-                " appointment.id = appointment_has_user.appointment_id " +
-                " left join user on appointment_has_user.user_id = " +
-                " user.id";
+                " select * from appointment";
+
 
         try (Statement st = connection.createStatement()) {
             ResultSet resultSet = st.executeQuery(query);

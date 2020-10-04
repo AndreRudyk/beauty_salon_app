@@ -5,12 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * The type Appointment.
- *
- * @author besko
  */
 public class Appointment {
 
@@ -19,7 +16,7 @@ public class Appointment {
      */
     public enum Status {
         /**
-         * new or have a problem
+         * Need status.
          */
         NEED("need"),
         /**
@@ -56,32 +53,72 @@ public class Appointment {
     private LocalDateTime actionDateTime;
     private BigDecimal price;
     private Status status;
+    private int estimate;
     private List<User> users = new ArrayList<>();
     private List<Service> serviceList = new ArrayList<>();
 
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Gets action date time.
+     *
+     * @return the action date time
+     */
     public LocalDateTime getActionDateTime() {
         return actionDateTime;
     }
 
+    /**
+     * Gets price.
+     *
+     * @return the price
+     */
     public BigDecimal getPrice() {
         return price;
     }
 
+    /**
+     * Gets status.
+     *
+     * @return the status
+     */
     public Status getStatus() {
         return status;
     }
 
+    /**
+     * Gets users.
+     *
+     * @return the users
+     */
     public List<User> getUsers() {
         return users;
     }
 
+    /**
+     * Gets services.
+     *
+     * @return the services
+     */
     public List<Service> getServices() {
         return serviceList;
+    }
+
+    /**
+     * Gets estimate.
+     *
+     * @return the estimate
+     */
+    public int getEstimate() {
+        return estimate;
     }
 
     @Override
@@ -131,6 +168,7 @@ public class Appointment {
                 ", actionDateTime=" + actionDateTime +
                 ", price=" + price +
                 ", status=" + status +
+                ", estimate=" + estimate +
                 ", users=" + users +
                 ", serviceList=" + serviceList +
                 '}';
@@ -165,10 +203,10 @@ public class Appointment {
         }
 
         /**
-         * Sets user id.
+         * Sets users.
          *
-         * @param users the users Set
-         * @return the user id
+         * @param users the users
+         * @return the users
          */
         public AppointmentBuilder setUsers(List<User> users) {
             Appointment.this.users = users;
@@ -197,6 +235,19 @@ public class Appointment {
             return this;
         }
 
+        /**
+         * Sets estimate.
+         *
+         * @param estimate the estimate
+         * @return the estimate
+         */
+        public AppointmentBuilder setEstimate(int estimate) {
+            if (estimate >= 0 && estimate <= 10) {
+                Appointment.this.estimate = estimate;
+            }
+            return this;
+        }
+
 
         /**
          * Sets status.
@@ -210,10 +261,10 @@ public class Appointment {
         }
 
         /**
-         * Sets service.
+         * Sets services.
          *
-         * @param serviceList the service set
-         * @return the service
+         * @param serviceList the service list
+         * @return the services
          */
         public AppointmentBuilder setServices(List<Service> serviceList) {
             Appointment.this.serviceList = serviceList;

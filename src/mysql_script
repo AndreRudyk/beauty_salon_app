@@ -1,5 +1,5 @@
 -- MySQL Workbench Forward Engineering
-DROP DATABASE beauty_salon_db;
+drop database beauty_salon_db;
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `beauty_salon_db`.`user` (
   `last_name` VARCHAR(45) NOT NULL,
   `phone_number` VARCHAR(15) NOT NULL,
   `user_role` ENUM('ADMIN', 'EMPLOYEE', 'CLIENT', 'GUEST') NOT NULL,
-  `rating` INT NULL,
+  `rating` DECIMAL(1) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `login_UNIQUE` (`login_email` ASC) VISIBLE,
   UNIQUE INDEX `password_hash_UNIQUE` (`password_hash` ASC) VISIBLE,
@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `beauty_salon_db`.`appointment` (
   `time` TIMESTAMP(2) NULL,
   `price` DECIMAL(5,2) NOT NULL,
   `status` ENUM('NEED', 'CONFIRMED', 'CANCELLED', 'DONE') NOT NULL,
+  `estimate` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -143,4 +144,6 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-SET GLOBAL time_zone = "+03:00";
+set global time_zone = "+03:00";
+
+use beauty_salon_db;

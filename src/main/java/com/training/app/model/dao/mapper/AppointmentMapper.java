@@ -23,6 +23,7 @@ public class AppointmentMapper implements ObjectMapper<Appointment> {
                 setPrice(resultSet.getBigDecimal("price")).
                 setActionDateTime(resultSet.getTimestamp("time").toLocalDateTime()).
                 setStatus(Appointment.Status.valueOf(resultSet.getString("status"))).
+                setEstimate(resultSet.getInt("estimate")).
                 build();
         appointmentMap.put(appointment.getId(), appointment);
         appointment = this.makeUnique(appointmentMap, appointment);

@@ -1,5 +1,6 @@
 package com.training.app.model.entity;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -50,7 +51,7 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private Role userRole;
-    private int rating;
+    private BigDecimal rating;
     private Set<Card> cards = new HashSet<>();
     private List<Appointment> appointmentList = new ArrayList<>();
 
@@ -122,7 +123,7 @@ public class User {
      *
      * @return the rating
      */
-    public int getRating() {
+    public BigDecimal getRating() {
         return rating;
     }
 
@@ -158,9 +159,6 @@ public class User {
         if (getId() != user.getId()) {
             return false;
         }
-        if (getRating() != user.getRating()) {
-            return false;
-        }
         if (getLogin() != null ? !getLogin().equals(user.getLogin()) : user.getLogin() != null) {
             return false;
         }
@@ -179,6 +177,9 @@ public class User {
         if (getUserRole() != user.getUserRole()) {
             return false;
         }
+        if (getRating() != null ? !getRating().equals(user.getRating()) : user.getRating() != null) {
+            return false;
+        }
         if (getCards() != null ? !getCards().equals(user.getCards()) : user.getCards() != null) {
             return false;
         }
@@ -194,7 +195,7 @@ public class User {
         result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
         result = 31 * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
         result = 31 * result + (getUserRole() != null ? getUserRole().hashCode() : 0);
-        result = 31 * result + getRating();
+        result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
         result = 31 * result + (getCards() != null ? getCards().hashCode() : 0);
         result = 31 * result + (getAppointmentList() != null ? getAppointmentList().hashCode() : 0);
         return result;
@@ -315,7 +316,7 @@ public class User {
          * @param rating the rating
          * @return the rating
          */
-        public UserBuilder setRating(int rating) {
+        public UserBuilder setRating(BigDecimal rating) {
             User.this.rating = rating;
             return this;
         }
