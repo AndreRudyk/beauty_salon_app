@@ -17,6 +17,12 @@ import java.util.Optional;
  */
 public class CardDaoImpl implements CardDao, AutoCloseable {
 
+    private static final String ADD_CARD = " insert into card" +
+            " (number_id, balance, user_id)" +
+            " values (?, ?, ?); ";
+
+    private static final String FIND_BY_NUMBER = "select * from card where number_id = ?";
+
     public final Connection connection;
 
     public CardDaoImpl(Connection connection) {
@@ -26,12 +32,8 @@ public class CardDaoImpl implements CardDao, AutoCloseable {
 
     @Override
     public Card addCard(Card card, User user) throws DaoException {
-        final String query = "" +
-                " insert into card" +
-                " (number_id, balance, user_id)" +
-                " values (?, ?, ?); ";
         try (PreparedStatement preparedStatement = connection.
-                prepareStatement(query)) {
+                prepareStatement(ADD_CARD)) {
             preparedStatement.setString(1, card.getCardNumber());
             preparedStatement.setBigDecimal(2, card.getBalance());
             preparedStatement.setInt(3, user.getId());
@@ -47,8 +49,8 @@ public class CardDaoImpl implements CardDao, AutoCloseable {
     @Override
     public Card findByNumber(String number) throws DaoException {
         Optional<Card> optionalCard = Optional.empty();
-        try(PreparedStatement preparedStatement = connection.
-                prepareStatement("select * from card where number_id = ?")) {
+        try (PreparedStatement preparedStatement = connection.
+                prepareStatement(FIND_BY_NUMBER)) {
 
             preparedStatement.setString(1, number);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -70,7 +72,7 @@ public class CardDaoImpl implements CardDao, AutoCloseable {
     }
 
     @Override
-    public Card updateCard(Card card) throws DaoException {
+    public Card updateCard(int cardId, Card card) throws DaoException {
         return null;
     }
 

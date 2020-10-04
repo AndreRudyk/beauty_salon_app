@@ -35,14 +35,14 @@ public class SalonServiceService implements ServiceDAO {
     }
 
     @Override
-    public Service updateService(Service service) throws DaoException {
+    public Service updateService(int serviceId, Service service) throws DaoException {
         ServiceDAO serviceDAO = null;
         try {
             serviceDAO = daoFactory.createServiceDao();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Objects.requireNonNull(serviceDAO).updateService(service);
+        return Objects.requireNonNull(serviceDAO).updateService(serviceId, service);
     }
 
     /**

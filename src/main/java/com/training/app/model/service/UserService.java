@@ -14,6 +14,7 @@ import java.util.Set;
 
 /**
  * The type User service.
+ *
  * @author besko
  */
 public class UserService implements UserDAO {
@@ -22,6 +23,7 @@ public class UserService implements UserDAO {
      * The Dao factory.
      */
     DaoFactory daoFactory = DaoFactory.getInstance();
+
     /**
      * Register user user.
      *
@@ -101,17 +103,7 @@ public class UserService implements UserDAO {
     }
 
     @Override
-    public void updateRole(int id, User.Role role) {
-
-    }
-
-    @Override
-    public void updateUser(User user) throws DaoException {
-
-    }
-
-    @Override
-    public void updateRating(int rating) throws DaoException {
+    public void updateUser(int userId, User user) throws DaoException {
 
     }
 
@@ -119,7 +111,6 @@ public class UserService implements UserDAO {
     public void removeUserById(int userId) throws DaoException {
 
     }
-
 
 
 }

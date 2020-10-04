@@ -10,6 +10,7 @@ import java.util.Set;
 
 /**
  * The interface User dao.
+ *
  * @author besko
  */
 public interface UserDAO extends GenericDAO<User> {
@@ -32,6 +33,13 @@ public interface UserDAO extends GenericDAO<User> {
      */
     User findById(int id) throws DaoException;
 
+    /**
+     * Find by login user.
+     *
+     * @param login the login
+     * @return the user
+     * @throws DaoException the dao exception
+     */
     User findByLogin(String login) throws DaoException;
 
     /**
@@ -78,28 +86,13 @@ public interface UserDAO extends GenericDAO<User> {
     List<Appointment> findAllAppointments() throws DaoException;
 
     /**
-     * Update role.
-     *
-     * @param id   the id
-     * @param role the role
-     */
-    void updateRole(int id, User.Role role);
-
-    /**
      * Update user.
      *
-     * @param user the user
+     * @param userId the user id
+     * @param user    the user
      * @throws DaoException the dao exception
      */
-    void updateUser(User user) throws DaoException;
-
-    /**
-     * Update rating.
-     *
-     * @param rating the rating
-     * @throws DaoException the dao exception
-     */
-    void updateRating(int rating) throws DaoException;
+    void updateUser(int userId, User user) throws DaoException;
 
     /**
      * Remove user by id.

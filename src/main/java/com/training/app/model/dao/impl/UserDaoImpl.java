@@ -14,6 +14,24 @@ import java.util.*;
  * @author besko
  */
 public class UserDaoImpl implements UserDAO, AutoCloseable {
+
+    private static final String CREATE_USER = " insert into user" +
+            " (login_email, password_hash, first_name, last_name, " +
+            " phone_number, user_role, rating) values " +
+            " (?, ?, ?, ?, ?, ?, ?); ";
+
+    private static final String FIND_BY_ID = " select * from user" +
+            " where id = ? ";
+
+    private static final String FIND_BY_LOGIN = " select * from user" +
+            " where login_email = ? ";
+
+    private static final String FIND_BY_NAME = " select * from user where first_name = ? ";
+
+    private static final String FIND_BY_RATING = " select * from user where rating = ? ";
+
+    private static final String FIND_ALL = " select * from user ";
+
     private final Connection connection;
 
     public UserDaoImpl(Connection connection) {
@@ -22,13 +40,8 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
 
     @Override
     public User registerUser(User user) throws DaoException {
-        final String query = "" +
-                " insert into user" +
-                " (login_email, password_hash, first_name, last_name, " +
-                " phone_number, user_role, rating) values " +
-                " (?, ?, ?, ?, ?, ?, ?); ";
         try (PreparedStatement preparedStatement = connection.
-                prepareStatement(query)) {
+                prepareStatement(CREATE_USER)) {
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getFirstName());
@@ -47,12 +60,9 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
 
     @Override
     public User findById(int id) throws DaoException {
-        final String query = "" +
-                " select * from user" +
-                " where id = ?";
         Optional<User> optionalUser = Optional.empty();
         try (PreparedStatement preparedStatement = connection.
-                prepareCall(query)) {
+                prepareCall(FIND_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             UserMapper userMapper = new UserMapper();
@@ -67,12 +77,9 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
 
     @Override
     public User findByLogin(String login) throws DaoException {
-        final String query = "" +
-                " select * from user" +
-                " where login_email = ?";
         Optional<User> optionalUser1 = Optional.empty();
         try (PreparedStatement preparedStatement = connection.
-                prepareCall(query)) {
+                prepareCall(FIND_BY_LOGIN)) {
             preparedStatement.setString(1, login);
             ResultSet resultSet;
             resultSet = preparedStatement.executeQuery();
@@ -90,7 +97,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     public User findByName(String name) throws DaoException, SQLException {
         Optional<User> optionalUser = Optional.empty();
         try (PreparedStatement preparedStatement = connection.
-                prepareCall("select * from user where first_name = ?")) {
+                prepareCall(FIND_BY_NAME)) {
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             UserMapper userMapper = new UserMapper();
@@ -100,7 +107,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-            return optionalUser.orElse(User.newUserBuilder().build());
+        return optionalUser.orElse(User.newUserBuilder().build());
     }
 
     @Override
@@ -108,7 +115,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
         List<User> usersByRating = new ArrayList<>();
 
         try (PreparedStatement preparedStatementId = connection.
-                prepareStatement("select * from user where rating = ?")) {
+                prepareStatement(FIND_BY_RATING)) {
             preparedStatementId.setInt(1, rating);
 
             ResultSet resultSet = preparedStatementId.executeQuery();
@@ -131,11 +138,9 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     @Override
     public List<User> findAllUsers() throws DaoException {
         List<User> users = new ArrayList<>();
-        final String query = "" +
-                " select * from user";
 
         try (PreparedStatement preparedStatement = connection.
-                prepareStatement(query)) {
+                prepareStatement(FIND_ALL)) {
             ResultSet resultSet1 = preparedStatement.executeQuery();
 
             UserMapper userMapper = new UserMapper();
@@ -163,17 +168,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public void updateRole(int id, User.Role role) {
-
-    }
-
-    @Override
-    public void updateUser(User user) throws DaoException {
-
-    }
-
-    @Override
-    public void updateRating(int rating) throws DaoException {
+    public void updateUser(int userId, User user) throws DaoException {
 
     }
 

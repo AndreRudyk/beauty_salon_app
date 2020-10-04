@@ -77,6 +77,7 @@ public class Main {
                 setEstimate(9).
                 build();
 
+
         AppointmentService appointmentService = new AppointmentService();
         appointmentService.createAppointment(appointment);
 

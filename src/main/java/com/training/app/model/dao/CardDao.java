@@ -41,15 +41,18 @@ public interface CardDao extends GenericDAO<Card> {
     /**
      * Update card.
      *
-     * @param card the card
+     * @param cardId the card id
+     * @param card   the card
+     * @return the card
      * @throws DaoException the dao exception
      */
-    Card updateCard(Card card) throws DaoException;
+    Card updateCard(int cardId, Card card) throws DaoException;
 
     /**
      * Remove card.
      *
      * @param id the id
+     * @return the card
      * @throws DaoException the dao exception
      */
     Card removeCardById(int id) throws DaoException;

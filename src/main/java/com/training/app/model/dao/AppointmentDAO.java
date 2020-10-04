@@ -88,42 +88,11 @@ public interface AppointmentDAO extends GenericDAO<Appointment> {
     /**
      * Update appointment.
      *
-     * @param appointment the appointment
+     * @param appointmentId the appointment id
+     * @param appointment   the appointment
      * @throws DaoException the dao exception
      */
-    void updateAppointment(Appointment appointment) throws DaoException;
-
-    /**
-     * Update status.
-     *
-     * @param status the status
-     * @throws DaoException the dao exception
-     */
-    void updateStatus(Appointment.Status status) throws DaoException;
-
-    /**
-     * Update time slot.
-     *
-     * @param localDateTime the local date time
-     * @throws DaoException the dao exception
-     */
-    void updateTimeSlot(LocalDateTime localDateTime) throws DaoException;
-
-    /**
-     * Update user.
-     *
-     * @param user the user
-     * @throws DaoException the dao exception
-     */
-    void updateUser(User user) throws DaoException;
-
-    /**
-     * Update service.
-     *
-     * @param service the service
-     * @throws DaoException the dao exception
-     */
-    void updateService(Service service) throws DaoException;
+    void updateAppointment(int appointmentId, Appointment appointment) throws DaoException;
 
     /**
      * Cancel appointment.

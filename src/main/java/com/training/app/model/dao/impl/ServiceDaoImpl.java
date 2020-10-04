@@ -15,9 +15,17 @@ import java.util.Optional;
 
 /**
  * The type Service dao.
+ *
  * @author besko
  */
 public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
+
+    private static final String CREATE_SERVICE = " insert into service " +
+            " (name, description, price, duration_minutes) " +
+            " values (?, ?, ?, ?); ";
+
+    private static final String FIND_ALL = " select * from service ";
+
     private final Connection connection;
 
     /**
@@ -31,12 +39,8 @@ public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
 
     @Override
     public Service createService(Service service) throws DaoException {
-        final String query = "" +
-                " insert into service " +
-                " (name, description, price, duration_minutes) " +
-                " values (?, ?, ?, ?); ";
         try (PreparedStatement preparedStatement = connection.
-                prepareStatement(query)) {
+                prepareStatement(CREATE_SERVICE)) {
 
             preparedStatement.setString(1, service.getServiceName());
             preparedStatement.setString(2, service.getDescription());
@@ -64,11 +68,9 @@ public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
     @Override
     public List<Service> findAll() throws DaoException {
         List<Service> serviceList = new ArrayList<>();
-        final String query = "" +
-                " select * from service";
 
         try (PreparedStatement preparedStatement = connection.
-                prepareStatement(query)) {
+                prepareStatement(FIND_ALL)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -87,7 +89,7 @@ public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
     }
 
     @Override
-    public Service updateService(Service service) throws DaoException {
+    public Service updateService(int serviceId, Service service) throws DaoException {
         return service;
     }
 

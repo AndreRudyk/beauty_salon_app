@@ -29,7 +29,6 @@ public class CardMapper implements ObjectMapper<Card> {
 
         card = this.makeUnique(cardMap, card);
         return card;
-
     }
 
     /**

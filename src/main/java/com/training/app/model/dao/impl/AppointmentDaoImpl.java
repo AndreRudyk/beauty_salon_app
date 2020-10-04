@@ -1,16 +1,16 @@
 package com.training.app.model.dao.impl;
 
 import com.training.app.model.dao.AppointmentDAO;
+import com.training.app.model.dao.DaoException;
 import com.training.app.model.dao.mapper.AppointmentMapper;
 import com.training.app.model.entity.Appointment;
-import com.training.app.model.entity.Service;
 import com.training.app.model.entity.User;
-import com.training.app.model.dao.DaoException;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * The type Appointment dao.
@@ -18,6 +18,16 @@ import java.util.*;
  * @author besko
  */
 public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
+
+    private static final String CREATE_APPOINTMENT = " insert into appointment " +
+            " (time, price, status, estimate) values " +
+            " (? ,? ,?, ?); ";
+
+    private static final String FIND_BY_ID = " select * from appointment where id = ? ";
+
+    private static final String FIND_ALL = " select * from appointment ";
+
+
     private final Connection connection;
 
     /**
@@ -31,11 +41,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
 
     @Override
     public Appointment createAppointment(Appointment appointment) throws DaoException {
-        final String query = "" +
-                " insert into appointment " +
-                " (time, price, status, estimate) values " +
-                " (? ,? ,?, ?); ";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_APPOINTMENT)) {
             preparedStatement.setTimestamp(1, Timestamp.valueOf(appointment.getActionDateTime()));
             preparedStatement.setBigDecimal(2, appointment.getPrice());
             preparedStatement.setString(3, appointment.getStatus().getStatusName());
@@ -50,11 +56,8 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
 
     @Override
     public Appointment findAppointmentById(int id) throws DaoException {
-        final String query = "" +
-                " select * from appointment " +
-                " where id = ?";
         Optional<Appointment> optionalAppointment = Optional.empty();
-        try (PreparedStatement preparedStatement = connection.prepareCall(query)) {
+        try (PreparedStatement preparedStatement = connection.prepareCall(FIND_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             AppointmentMapper appointmentMapper = new AppointmentMapper();
@@ -95,12 +98,8 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
     @Override
     public List<Appointment> findAll() throws DaoException {
         List<Appointment> appointments = new ArrayList<>();
-        final String query = "" +
-                " select * from appointment";
-
-
         try (Statement st = connection.createStatement()) {
-            ResultSet resultSet = st.executeQuery(query);
+            ResultSet resultSet = st.executeQuery(FIND_ALL);
 
             AppointmentMapper appointmentMapper = new AppointmentMapper();
 
@@ -118,27 +117,7 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
     }
 
     @Override
-    public void updateAppointment(Appointment appointment) throws DaoException {
-
-    }
-
-    @Override
-    public void updateStatus(Appointment.Status status) throws DaoException {
-
-    }
-
-    @Override
-    public void updateTimeSlot(LocalDateTime localDateTime) throws DaoException {
-
-    }
-
-    @Override
-    public void updateUser(User user) throws DaoException {
-
-    }
-
-    @Override
-    public void updateService(Service service) throws DaoException {
+    public void updateAppointment(int appointmentId, Appointment appointment) throws DaoException {
 
     }
 

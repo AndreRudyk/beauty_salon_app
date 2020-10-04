@@ -49,14 +49,14 @@ public class CardService implements CardDao {
     }
 
     @Override
-    public Card updateCard(Card card) throws DaoException {
+    public Card updateCard(int cardId, Card card) throws DaoException {
         CardDao cardDao = null;
         try {
             cardDao = daoFactory.createCadDao();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Objects.requireNonNull(cardDao).updateCard(card);
+        return Objects.requireNonNull(cardDao).updateCard(cardId, card);
     }
 
     @Override

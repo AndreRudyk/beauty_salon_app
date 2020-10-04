@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * The interface Service dao.
+ *
  * @author besko
  */
 public interface ServiceDAO extends GenericDAO<Service> {
@@ -49,11 +50,12 @@ public interface ServiceDAO extends GenericDAO<Service> {
     /**
      * Update service service.
      *
-     * @param service the service
+     * @param serviceId the service id
+     * @param service   the service
      * @return the service
      * @throws DaoException the dao exception
      */
-    Service updateService(Service service) throws DaoException;
+    Service updateService(int serviceId, Service service) throws DaoException;
 
     /**
      * Remove service service.

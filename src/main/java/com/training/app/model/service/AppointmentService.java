@@ -54,7 +54,7 @@ public class AppointmentService implements AppointmentDAO {
     }
 
     @Override
-    public void updateAppointment(Appointment appointment) throws DaoException {
+    public void updateAppointment(int appointmentId, Appointment appointment) throws DaoException {
 
     }
 
@@ -113,26 +113,6 @@ public class AppointmentService implements AppointmentDAO {
         return appointmentDAO.findAll();
     }
 
-
-    @Override
-    public void updateStatus(Appointment.Status status) throws DaoException {
-
-    }
-
-    @Override
-    public void updateTimeSlot(LocalDateTime localDateTime) throws DaoException {
-
-    }
-
-    @Override
-    public void updateUser(User user) throws DaoException {
-
-    }
-
-    @Override
-    public void updateService(Service service) throws DaoException {
-
-    }
 
     @Override
     public void cancelAppointment(int id) throws DaoException {

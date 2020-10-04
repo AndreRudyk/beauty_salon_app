@@ -39,7 +39,7 @@ public class FeedbackDaoImpl implements FeedbackDAO, AutoCloseable {
     }
 
     @Override
-    public void updateFeedback(Feedback feedback) throws DaoException {
+    public void updateFeedback(int feedbackId, Feedback feedback) throws DaoException {
 
     }
 

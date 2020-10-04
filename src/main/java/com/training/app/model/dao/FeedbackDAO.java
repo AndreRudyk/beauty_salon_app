@@ -38,10 +38,11 @@ public interface FeedbackDAO extends GenericDAO<Feedback> {
     /**
      * Update feedback.
      *
-     * @param feedback the feedback
+     * @param feedbackId the feedback id
+     * @param feedback   the feedback
      * @throws DaoException the dao exception
      */
-    void updateFeedback(Feedback feedback) throws DaoException;
+    void updateFeedback(int feedbackId, Feedback feedback) throws DaoException;
 
     /**
      * Remove feedback by id feedback.
