@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public Optional<User> findById(int id) throws DaoException {
+    public User findById(int id) throws DaoException {
         final String query = "" +
                 " select * from user" +
                 " where id = ?";
@@ -63,7 +63,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return optionalUser;
+        return optionalUser.orElse(User.newUserBuilder().build());
     }
 
     @Override
@@ -72,7 +72,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public Optional<User> findByName(String name) throws DaoException, SQLException {
+    public User findByName(String name) throws DaoException, SQLException {
         Optional<User> optionalUser = Optional.empty();
         try (PreparedStatement preparedStatement = connection.
                 prepareCall("select * from user where first_name = ?")) {
@@ -85,12 +85,12 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return optionalUser;
+        return optionalUser.get();
     }
 
     @Override
-    public List<Optional<User>> findByRating(int rating) throws DaoException {
-        List<Optional<User>> usersByRating = new ArrayList<>();
+    public List<User> findByRating(int rating) throws DaoException {
+        List<User> usersByRating = new ArrayList<>();
 
 
         try (PreparedStatement preparedStatementId = connection.
@@ -104,7 +104,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
             while (resultSet.next()) {
                 Optional<User> user = Optional.
                         ofNullable(userMapper.extractFromResultSet(resultSet));
-                usersByRating.add(user);
+                user.ifPresent(usersByRating::add);
             }
             return usersByRating;
         } catch (SQLException e) {
@@ -115,8 +115,8 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public List<Optional<User>> findAllUsers() throws DaoException {
-        List<Optional<User>> users = new ArrayList<>();
+    public List<User> findAllUsers() throws DaoException {
+        List<User> users = new ArrayList<>();
         final String query = "" +
                 " select * from user";
 
@@ -127,8 +127,9 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
             UserMapper userMapper = new UserMapper();
 
             while (resultSet.next()) {
-                User user = userMapper.extractFromResultSet(resultSet);
-                users.add(Optional.ofNullable(user));
+                Optional<User> user = Optional.
+                        ofNullable(userMapper.extractFromResultSet(resultSet));
+                user.ifPresent(users::add);
             }
             return users;
         } catch (SQLException e) {
@@ -138,12 +139,12 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public Set<Optional<Card>> findAllCards() throws DaoException {
+    public Set<Card> findAllCards() throws DaoException {
         return null;
     }
 
     @Override
-    public List<Optional<Appointment>> findAllAppointments() throws DaoException {
+    public List<Appointment> findAllAppointments() throws DaoException {
         return null;
     }
 

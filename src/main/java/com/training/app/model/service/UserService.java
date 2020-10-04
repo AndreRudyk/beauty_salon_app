@@ -12,12 +12,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * @author besko
+ */
 public class UserService implements UserDAO {
 
     DaoFactory daoFactory = DaoFactory.getInstance();
 
     @Override
-    public List<Optional<User>> findAllUsers() throws DaoException {
+    public List<User> findAllUsers() throws DaoException {
         UserDAO userDAO = null;
         try {
             userDAO = daoFactory.createUserDao();
@@ -29,7 +32,7 @@ public class UserService implements UserDAO {
     }
 
     @Override
-    public Optional<User> findByName(String name) throws SQLException, DaoException {
+    public User findByName(String name) throws SQLException, DaoException {
         UserDAO userDAO = null;
         try {
             userDAO = daoFactory.createUserDao();
@@ -47,7 +50,7 @@ public class UserService implements UserDAO {
      * @throws DaoException the dao exception
      */
     @Override
-    public List<Optional<User>> findByRating(int rating) throws DaoException {
+    public List<User> findByRating(int rating) throws DaoException {
         UserDAO userDAO = null;
         try {
             userDAO = daoFactory.createUserDao();
@@ -71,7 +74,7 @@ public class UserService implements UserDAO {
      * @throws DaoException the dao exception
      */
     @Override
-    public Set<Optional<Card>> findAllCards() throws DaoException {
+    public Set<Card> findAllCards() throws DaoException {
         return null;
     }
 
@@ -81,7 +84,7 @@ public class UserService implements UserDAO {
      * @return the list
      */
     @Override
-    public List<Optional<Appointment>> findAllAppointments() {
+    public List<Appointment> findAllAppointments() {
         return null;
     }
 
@@ -147,7 +150,7 @@ public class UserService implements UserDAO {
     }
 
     @Override
-    public Optional<User> findById(int id) throws DaoException {
+    public User findById(int id) throws DaoException {
         UserDAO userDAO = null;
         try {
             userDAO = daoFactory.createUserDao();

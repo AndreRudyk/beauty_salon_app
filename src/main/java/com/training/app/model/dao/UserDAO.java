@@ -33,7 +33,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the optional
      * @throws DaoException the dao exception
      */
-    Optional<User> findById(int id) throws DaoException;
+    User findById(int id) throws DaoException;
 
     /**
      * Find by name optional.
@@ -51,7 +51,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the optional
      * @throws DaoException the dao exception
      */
-    Optional<User> findByName(String name) throws DaoException, SQLException;
+    User findByName(String name) throws DaoException, SQLException;
 
     /**
      * Find all users list.
@@ -60,7 +60,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<Optional<User>> findByRating(int rating) throws DaoException;
+    List<User> findByRating(int rating) throws DaoException;
 
     /**
      * Find all users list.
@@ -68,7 +68,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<Optional<User>> findAllUsers() throws DaoException;
+    List<User> findAllUsers() throws DaoException;
 
     /**
      * Find all cards set.
@@ -76,14 +76,14 @@ public interface UserDAO extends GenericDAO<User> {
      * @return the set
      * @throws DaoException the dao exception
      */
-    Set<Optional<Card>> findAllCards() throws DaoException;
+    Set<Card> findAllCards() throws DaoException;
 
     /**
      * Find all appointments list.
      *
      * @return the list
      */
-    List<Optional<Appointment>> findAllAppointments() throws DaoException;
+    List<Appointment> findAllAppointments() throws DaoException;
 
     /**
      * Change role.

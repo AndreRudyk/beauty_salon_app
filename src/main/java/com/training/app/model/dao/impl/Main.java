@@ -37,8 +37,14 @@ public class Main {
                 build();
 
         userService.registerUser(user1);*/
-        Optional<User> users = userService.findByName("J22324");
-        System.out.println(users);
+        User user = userService.findByName("J22324");
+        System.out.println(user);
+
+
+        System.out.println("\n\n-------------------------------------------------------------\n\n");
+        List<User> users1 = userService.findAllUsers();
+        System.out.println(users1);
+
 
         /*List<User> users = userService.findByRating(5);
         System.out.println(users);*/
