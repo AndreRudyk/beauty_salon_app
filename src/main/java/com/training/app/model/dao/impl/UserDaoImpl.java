@@ -100,7 +100,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return optionalUser.get();
+            return optionalUser.orElse(User.newUserBuilder().build());
     }
 
     @Override

@@ -10,7 +10,6 @@ import java.util.Set;
 
 /**
  * The interface User dao.
- *
  * @author besko
  */
 public interface UserDAO extends GenericDAO<User> {
@@ -24,36 +23,29 @@ public interface UserDAO extends GenericDAO<User> {
      */
     User registerUser(User user) throws DaoException;
 
-
     /**
-     * Find by id optional.
+     * Find by id user.
      *
      * @param id the id
-     * @return the optional
+     * @return the user
      * @throws DaoException the dao exception
      */
     User findById(int id) throws DaoException;
 
-    /**
-     * Find by name optional.
-     *
-     * @param login the name
-     * @return the optional
-     * @throws DaoException the dao exception
-     */
     User findByLogin(String login) throws DaoException;
 
     /**
-     * Find by name optional.
+     * Find by name user.
      *
      * @param name the name
-     * @return the optional
+     * @return the user
      * @throws DaoException the dao exception
+     * @throws SQLException the sql exception
      */
     User findByName(String name) throws DaoException, SQLException;
 
     /**
-     * Find all users list.
+     * Find by rating list.
      *
      * @param rating the rating
      * @return the list
@@ -81,11 +73,12 @@ public interface UserDAO extends GenericDAO<User> {
      * Find all appointments list.
      *
      * @return the list
+     * @throws DaoException the dao exception
      */
     List<Appointment> findAllAppointments() throws DaoException;
 
     /**
-     * Change role.
+     * Update role.
      *
      * @param id   the id
      * @param role the role
@@ -94,6 +87,9 @@ public interface UserDAO extends GenericDAO<User> {
 
     /**
      * Update user.
+     *
+     * @param user the user
+     * @throws DaoException the dao exception
      */
     void updateUser(User user) throws DaoException;
 
@@ -106,7 +102,7 @@ public interface UserDAO extends GenericDAO<User> {
     void updateRating(int rating) throws DaoException;
 
     /**
-     * Remove user.
+     * Remove user by id.
      *
      * @param userId the user id
      * @throws DaoException the dao exception

@@ -18,17 +18,6 @@ public interface ServiceDAO extends GenericDAO<Service> {
      */
     Service createService(Service service) throws DaoException;
 
-
-    /**
-     * Update service service.
-     *
-     * @param service the service
-     * @return the service
-     * @throws DaoException the dao exception
-     */
-    Service updateService(Service service) throws DaoException;
-
-
     /**
      * Find service by id service.
      *
@@ -57,6 +46,14 @@ public interface ServiceDAO extends GenericDAO<Service> {
      */
     List<Service> findAll() throws DaoException;
 
+    /**
+     * Update service service.
+     *
+     * @param service the service
+     * @return the service
+     * @throws DaoException the dao exception
+     */
+    Service updateService(Service service) throws DaoException;
 
     /**
      * Remove service service.

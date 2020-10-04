@@ -9,18 +9,33 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
+ * The type Feedback dao.
  * @author besko
  */
 public class FeedbackDaoImpl implements FeedbackDAO, AutoCloseable {
     private final Connection connection;
 
+    /**
+     * Instantiates a new Feedback dao.
+     *
+     * @param connection the connection
+     */
     public FeedbackDaoImpl(Connection connection) {
         this.connection = connection;
     }
 
     @Override
     public void addFeedback(Feedback feedback) throws DaoException {
+    }
 
+    @Override
+    public Feedback findById(int id) throws DaoException {
+        return null;
+    }
+
+    @Override
+    public List<Feedback> findByServiceId(int serviceId) throws DaoException {
+        return null;
     }
 
     @Override
@@ -28,47 +43,17 @@ public class FeedbackDaoImpl implements FeedbackDAO, AutoCloseable {
 
     }
 
-    /**
-     * Find by id optional.
-     *
-     * @param id the id
-     * @return the optional
-     * @throws DaoException the dao exception
-     */
-    @Override
-    public Feedback findById(int id) throws DaoException {
-        return null;
-    }
-
-    /**
-     * Find by service id list.
-     *
-     * @param serviceId the service id
-     * @return the list
-     * @throws DaoException the dao exception
-     */
-    @Override
-    public List<Feedback> findByServiceId(int serviceId) throws DaoException {
-        return null;
-    }
-
-    /**
-     * Remove by id.
-     *
-     * @param id the id
-     * @throws DaoException the dao exception
-     */
     @Override
     public Feedback removeFeedbackById(int id) throws DaoException {
         return null;
     }
 
     @Override
-    public void close() {
+    public void close() throws DaoException {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new DaoException(e);
         }
     }
 }

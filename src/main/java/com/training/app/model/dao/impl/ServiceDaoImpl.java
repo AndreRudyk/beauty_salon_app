@@ -14,39 +14,40 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * The type Service dao.
  * @author besko
  */
 public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
     private final Connection connection;
 
+    /**
+     * Instantiates a new Service dao.
+     *
+     * @param connection the connection
+     */
     public ServiceDaoImpl(Connection connection) {
         this.connection = connection;
     }
 
     @Override
     public Service createService(Service service) throws DaoException {
-       final String query = "" +
-               " insert into service " +
-               " (name, description, price, duration_minutes) " +
-               " values (?, ?, ?, ?); ";
-       try(PreparedStatement preparedStatement = connection.
-               prepareStatement(query)) {
+        final String query = "" +
+                " insert into service " +
+                " (name, description, price, duration_minutes) " +
+                " values (?, ?, ?, ?); ";
+        try (PreparedStatement preparedStatement = connection.
+                prepareStatement(query)) {
 
-           preparedStatement.setString(1, service.getServiceName());
-           preparedStatement.setString(2, service.getDescription());
-           preparedStatement.setBigDecimal(3, service.getPrice());
-           preparedStatement.setInt(4, service.getDurationMinutes());
+            preparedStatement.setString(1, service.getServiceName());
+            preparedStatement.setString(2, service.getDescription());
+            preparedStatement.setBigDecimal(3, service.getPrice());
+            preparedStatement.setInt(4, service.getDurationMinutes());
 
-           preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
-       } catch (SQLException e) {
-           e.printStackTrace();
-       }
-       return service;
-    }
-
-    @Override
-    public Service updateService(Service service) throws DaoException {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return service;
     }
 
@@ -67,7 +68,7 @@ public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
                 " select * from service";
 
         try (PreparedStatement preparedStatement = connection.
-                prepareStatement(query)){
+                prepareStatement(query)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -86,16 +87,21 @@ public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
     }
 
     @Override
+    public Service updateService(Service service) throws DaoException {
+        return service;
+    }
+
+    @Override
     public Service removeServiceById(int serviceId) throws DaoException {
         return null;
     }
 
     @Override
-    public void close() {
+    public void close() throws DaoException {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new DaoException(e);
         }
     }
 }

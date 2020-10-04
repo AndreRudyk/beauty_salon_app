@@ -6,20 +6,22 @@ import java.util.List;
 
 /**
  * The interface Feedback dao.
- *
- * @author besko
  */
 public interface FeedbackDAO extends GenericDAO<Feedback> {
 
+    /**
+     * Add feedback.
+     *
+     * @param feedback the feedback
+     * @throws DaoException the dao exception
+     */
     void addFeedback(Feedback feedback) throws DaoException;
 
-    void updateFeedback(Feedback feedback) throws DaoException;
-
     /**
-     * Find by id optional.
+     * Find by id feedback.
      *
      * @param id the id
-     * @return the optional
+     * @return the feedback
      * @throws DaoException the dao exception
      */
     Feedback findById(int id) throws DaoException;
@@ -34,9 +36,18 @@ public interface FeedbackDAO extends GenericDAO<Feedback> {
     List<Feedback> findByServiceId(int serviceId) throws DaoException;
 
     /**
-     * Remove by id.
+     * Update feedback.
+     *
+     * @param feedback the feedback
+     * @throws DaoException the dao exception
+     */
+    void updateFeedback(Feedback feedback) throws DaoException;
+
+    /**
+     * Remove feedback by id feedback.
      *
      * @param id the id
+     * @return the feedback
      * @throws DaoException the dao exception
      */
     Feedback removeFeedbackById(int id) throws DaoException;
