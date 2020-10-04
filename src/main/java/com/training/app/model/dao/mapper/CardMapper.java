@@ -35,13 +35,13 @@ public class CardMapper implements ObjectMapper<Card> {
     /**
      * Make unique t.
      *
-     * @param cache  the cache
-     * @param card the object
+     * @param cache the cache
+     * @param card  the object
      * @return the t
      */
     @Override
     public Card makeUnique(Map<Integer, Card> cache, Card card) {
-        cache.putIfAbsent(Integer.parseInt(card.getCardNumber()),card);
+        cache.putIfAbsent(Integer.parseInt(card.getCardNumber()), card);
         return cache.get(Integer.parseInt(card.getCardNumber()));
     }
 

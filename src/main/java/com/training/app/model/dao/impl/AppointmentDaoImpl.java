@@ -8,10 +8,7 @@ import com.training.app.model.entity.User;
 import com.training.app.model.dao.DaoException;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -32,8 +29,21 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public void createAppointment(Appointment appointment) throws DaoException {
+    public Appointment createAppointment(Appointment appointment) throws DaoException {
+        final String query = "" +
+                " insert into appointment " +
+                " (time, price, status) values " +
+                " (? ,? ,?); ";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setTimestamp(1, Timestamp.valueOf(appointment.getActionDateTime()));
+            preparedStatement.setBigDecimal(2, appointment.getPrice());
+            preparedStatement.setString(3, appointment.getStatus().getStatusName());
 
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointment;
     }
 
     /**
@@ -68,7 +78,21 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      */
     @Override
     public Appointment findAppointmentById(int id) throws DaoException {
-        return null;
+        final String query = "" +
+                " select * from appointment " +
+                " where id = ?";
+        Optional<Appointment> optionalAppointment = Optional.empty();
+        try (PreparedStatement preparedStatement = connection.prepareCall(query)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            AppointmentMapper appointmentMapper = new AppointmentMapper();
+            if (resultSet.next()) {
+                optionalAppointment = Optional.ofNullable(appointmentMapper.extractFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return optionalAppointment.orElse(Appointment.newBuilder().build());
     }
 
 
@@ -214,6 +238,11 @@ public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
      */
     @Override
     public void updateUser(User user) throws DaoException {
+
+    }
+
+    @Override
+    public void updateService(Service service) throws DaoException {
 
     }
 

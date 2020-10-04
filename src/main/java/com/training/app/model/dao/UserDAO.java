@@ -6,7 +6,6 @@ import com.training.app.model.entity.User;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -91,7 +90,7 @@ public interface UserDAO extends GenericDAO<User> {
      * @param id   the id
      * @param role the role
      */
-    void changeRole(int id, User.Role role);
+    void updateRole(int id, User.Role role);
 
     /**
      * Update user.
@@ -112,6 +111,6 @@ public interface UserDAO extends GenericDAO<User> {
      * @param userId the user id
      * @throws DaoException the dao exception
      */
-    void removeUser(int userId) throws DaoException;
+    void removeUserById(int userId) throws DaoException;
 
 }

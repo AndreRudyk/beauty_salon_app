@@ -1,11 +1,8 @@
 package com.training.app.model.dao;
 
 import com.training.app.model.entity.Feedback;
-import com.training.app.model.entity.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The interface Feedback dao.
@@ -42,7 +39,7 @@ public interface FeedbackDAO extends GenericDAO<Feedback> {
      * @param id the id
      * @throws DaoException the dao exception
      */
-    void removeById(int id) throws DaoException;
+    Feedback removeFeedbackById(int id) throws DaoException;
 
 
 }

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -28,7 +29,7 @@ public class AppointmentService implements AppointmentDAO {
                 Exception e) {
             e.printStackTrace();
         }
-        return appointmentDAO.findAppointmentById(id);
+        return Objects.requireNonNull(appointmentDAO).findAppointmentById(id);
     }
 
     /**
@@ -38,8 +39,14 @@ public class AppointmentService implements AppointmentDAO {
      * @throws DaoException the dao exception
      */
     @Override
-    public void createAppointment(Appointment appointment) throws DaoException {
-
+    public Appointment createAppointment(Appointment appointment) throws DaoException {
+            AppointmentDAO appointmentDAO = null;
+            try {
+                appointmentDAO = daoFactory.createAppointmentDao();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return Objects.requireNonNull(appointmentDAO).createAppointment(appointment);
     }
 
     /**
@@ -68,7 +75,14 @@ public class AppointmentService implements AppointmentDAO {
      */
     @Override
     public Appointment findAppointmentById(int id) throws DaoException {
-        return null;
+        AppointmentDAO appointmentDAO = null;
+        try {
+            appointmentDAO = daoFactory.createAppointmentDao();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Objects.requireNonNull(appointmentDAO).findAppointmentById(id);
     }
 
     /**
@@ -191,6 +205,11 @@ public class AppointmentService implements AppointmentDAO {
      */
     @Override
     public void updateUser(User user) throws DaoException {
+
+    }
+
+    @Override
+    public void updateService(Service service) throws DaoException {
 
     }
 

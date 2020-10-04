@@ -60,13 +60,13 @@ public class CardService implements CardDao {
     }
 
     @Override
-    public Card removeCard(int id) throws DaoException {
+    public Card removeCardById(int id) throws DaoException {
         CardDao cardDao = null;
         try {
             cardDao = daoFactory.createCadDao();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Objects.requireNonNull(cardDao).removeCard(id);
+        return Objects.requireNonNull(cardDao).removeCardById(id);
     }
 }

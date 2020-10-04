@@ -1,0 +1,146 @@
+-- MySQL Workbench Forward Engineering
+DROP DATABASE beauty_salon_db;
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema beauty_salon_db
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema beauty_salon_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `beauty_salon_db` DEFAULT CHARACTER SET utf8 ;
+USE `beauty_salon_db` ;
+
+-- -----------------------------------------------------
+-- Table `beauty_salon_db`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `beauty_salon_db`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `login_email` VARCHAR(35) NOT NULL,
+  `password_hash` VARCHAR(45) NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `phone_number` VARCHAR(15) NOT NULL,
+  `user_role` ENUM('ADMIN', 'EMPLOYEE', 'CLIENT', 'GUEST') NOT NULL,
+  `rating` INT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `login_UNIQUE` (`login_email` ASC) VISIBLE,
+  UNIQUE INDEX `password_hash_UNIQUE` (`password_hash` ASC) VISIBLE,
+  UNIQUE INDEX `phone_number_UNIQUE` (`phone_number` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `beauty_salon_db`.`service`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `beauty_salon_db`.`service` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` LONGTEXT NOT NULL,
+  `price` DECIMAL(5,2) NOT NULL,
+  `duration_minutes` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `beauty_salon_db`.`appointment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `beauty_salon_db`.`appointment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `time` TIMESTAMP(2) NULL,
+  `price` DECIMAL(5,2) NOT NULL,
+  `status` ENUM('NEED', 'CONFIRMED', 'CANCELLED', 'DONE') NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `beauty_salon_db`.`feedback`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `beauty_salon_db`.`feedback` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `date` TIMESTAMP(2) NOT NULL,
+  `comment` LONGTEXT NOT NULL,
+  `service_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `date`),
+  INDEX `fk_feedback_service1_idx` (`service_id` ASC) VISIBLE,
+  CONSTRAINT `fk_feedback_service1`
+    FOREIGN KEY (`service_id`)
+    REFERENCES `beauty_salon_db`.`service` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `beauty_salon_db`.`appointment_has_service`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `beauty_salon_db`.`appointment_has_service` (
+  `appointment_id` INT NOT NULL,
+  `service_id` INT NOT NULL,
+  PRIMARY KEY (`appointment_id`, `service_id`),
+  INDEX `fk_appointment_has_service_service1_idx` (`service_id` ASC) VISIBLE,
+  INDEX `fk_appointment_has_service_appointment1_idx` (`appointment_id` ASC) VISIBLE,
+  CONSTRAINT `fk_appointment_has_service_appointment1`
+    FOREIGN KEY (`appointment_id`)
+    REFERENCES `beauty_salon_db`.`appointment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_appointment_has_service_service1`
+    FOREIGN KEY (`service_id`)
+    REFERENCES `beauty_salon_db`.`service` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `beauty_salon_db`.`appointment_has_user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `beauty_salon_db`.`appointment_has_user` (
+  `appointment_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`appointment_id`, `user_id`),
+  INDEX `fk_appointment_has_user_user1_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_appointment_has_user_appointment1_idx` (`appointment_id` ASC) VISIBLE,
+  CONSTRAINT `fk_appointment_has_user_appointment1`
+    FOREIGN KEY (`appointment_id`)
+    REFERENCES `beauty_salon_db`.`appointment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_appointment_has_user_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `beauty_salon_db`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `beauty_salon_db`.`card`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `beauty_salon_db`.`card` (
+  `number_id` VARCHAR(16) NOT NULL DEFAULT '0000000000000000',
+  `balance` DECIMAL(10,2) NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`number_id`),
+  INDEX `fk_card_user1_idx` (`user_id` ASC) VISIBLE,
+  UNIQUE INDEX `number_id_UNIQUE` (`number_id` ASC) VISIBLE,
+  CONSTRAINT `fk_card_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `beauty_salon_db`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+SET GLOBAL time_zone = "+03:00";

@@ -13,11 +13,48 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
+ * The type User service.
  * @author besko
  */
 public class UserService implements UserDAO {
 
+    /**
+     * The Dao factory.
+     */
     DaoFactory daoFactory = DaoFactory.getInstance();
+    /**
+     * Register user user.
+     *
+     * @param user the user
+     * @return the user
+     * @throws DaoException the dao exception
+     */
+    @Override
+    public User registerUser(User user) throws DaoException {
+        UserDAO userDAO = null;
+        try {
+            userDAO = daoFactory.createUserDao();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Objects.requireNonNull(userDAO).registerUser(user);
+    }
+
+    @Override
+    public User findById(int id) throws DaoException {
+        UserDAO userDAO = null;
+        try {
+            userDAO = daoFactory.createUserDao();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Objects.requireNonNull(userDAO).findById(id);
+    }
+
+    @Override
+    public User findByLogin(String login) throws DaoException {
+        return null;
+    }
 
     @Override
     public List<User> findAllUsers() throws DaoException {
@@ -42,13 +79,6 @@ public class UserService implements UserDAO {
         return Objects.requireNonNull(userDAO).findByName(name);
     }
 
-    /**
-     * Find all users list.
-     *
-     * @param rating the rating
-     * @return the list
-     * @throws DaoException the dao exception
-     */
     @Override
     public List<User> findByRating(int rating) throws DaoException {
         UserDAO userDAO = null;
@@ -60,115 +90,36 @@ public class UserService implements UserDAO {
         return Objects.requireNonNull(userDAO).findByRating(rating);
     }
 
-    /**
-     * Find all users list.
-     *
-     * @return the list
-     * @throws DaoException the dao exception
-     */
-
-    /**
-     * Find all cards set.
-     *
-     * @return the set
-     * @throws DaoException the dao exception
-     */
     @Override
     public Set<Card> findAllCards() throws DaoException {
         return null;
     }
 
-    /**
-     * Find all appointments list.
-     *
-     * @return the list
-     */
     @Override
     public List<Appointment> findAllAppointments() {
         return null;
     }
 
-    /**
-     * Change role.
-     *
-     * @param id   the id
-     * @param role the role
-     */
     @Override
-    public void changeRole(int id, User.Role role) {
+    public void updateRole(int id, User.Role role) {
 
     }
 
-    /**
-     * Update user.
-     *
-     * @param user
-     */
     @Override
     public void updateUser(User user) throws DaoException {
 
     }
 
-    /**
-     * Update rating.
-     *
-     * @param rating the rating
-     * @throws DaoException the dao exception
-     */
     @Override
     public void updateRating(int rating) throws DaoException {
 
     }
 
-    /**
-     * Remove user.
-     *
-     * @param userId the user id
-     * @throws DaoException the dao exception
-     */
     @Override
-    public void removeUser(int userId) throws DaoException {
+    public void removeUserById(int userId) throws DaoException {
 
     }
 
-    /**
-     * Register user user.
-     *
-     * @param user the user
-     * @return the user
-     * @throws DaoException the dao exception
-     */
-    @Override
-    public User registerUser(User user) throws DaoException {
-        UserDAO userDAO = null;
-        try {
-            userDAO = daoFactory.createUserDao();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return userDAO.registerUser(user);
-    }
 
-    @Override
-    public User findById(int id) throws DaoException {
-        UserDAO userDAO = null;
-        try {
-            userDAO = daoFactory.createUserDao();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return userDAO.findById(id);
-    }
 
-    /**
-     * Find by name optional.
-     *
-     * @param login the name
-     * @return the optional
-     * @throws DaoException the dao exception
-     */
-    @Override
-    public User findByLogin(String login) throws DaoException {
-        return null;
-    }
 }

@@ -54,11 +54,10 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
         try (PreparedStatement preparedStatement = connection.
                 prepareCall(query)) {
             preparedStatement.setInt(1, id);
-            ResultSet resultSet;
-            resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
             UserMapper userMapper = new UserMapper();
             if (resultSet.next()) {
-                optionalUser = Optional.of(userMapper.extractFromResultSet(resultSet));
+                optionalUser = Optional.ofNullable(userMapper.extractFromResultSet(resultSet));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,7 +67,23 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
 
     @Override
     public User findByLogin(String login) throws DaoException {
-        return null;
+        final String query = "" +
+                " select * from user" +
+                " where login_email = ?";
+        Optional<User> optionalUser1 = Optional.empty();
+        try (PreparedStatement preparedStatement = connection.
+                prepareCall(query)) {
+            preparedStatement.setString(1, login);
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+            UserMapper userMapper = new UserMapper();
+            if (resultSet.next()) {
+                optionalUser1 = Optional.of(userMapper.extractFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return optionalUser1.orElse(User.newUserBuilder().build());
     }
 
     @Override
@@ -80,7 +95,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
             ResultSet resultSet = preparedStatement.executeQuery();
             UserMapper userMapper = new UserMapper();
             if (resultSet.next()) {
-                optionalUser = Optional.of(userMapper.extractFromResultSet(resultSet));
+                optionalUser = Optional.ofNullable(userMapper.extractFromResultSet(resultSet));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,7 +106,6 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     @Override
     public List<User> findByRating(int rating) throws DaoException {
         List<User> usersByRating = new ArrayList<>();
-
 
         try (PreparedStatement preparedStatementId = connection.
                 prepareStatement("select * from user where rating = ?")) {
@@ -122,20 +136,20 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
 
         try (PreparedStatement preparedStatement = connection.
                 prepareStatement(query)) {
-            ResultSet resultSet = preparedStatement.executeQuery(query);
+            ResultSet resultSet1 = preparedStatement.executeQuery();
 
             UserMapper userMapper = new UserMapper();
 
-            while (resultSet.next()) {
+            while (resultSet1.next()) {
                 Optional<User> user = Optional.
-                        ofNullable(userMapper.extractFromResultSet(resultSet));
+                        ofNullable(userMapper.extractFromResultSet(resultSet1));
                 user.ifPresent(users::add);
             }
-            return users;
         } catch (SQLException e) {
             e.printStackTrace();
             return new ArrayList<>();
         }
+        return users;
     }
 
     @Override
@@ -149,7 +163,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public void changeRole(int id, User.Role role) {
+    public void updateRole(int id, User.Role role) {
 
     }
 
@@ -164,7 +178,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public void removeUser(int userId) throws DaoException {
+    public void removeUserById(int userId) throws DaoException {
 
     }
 

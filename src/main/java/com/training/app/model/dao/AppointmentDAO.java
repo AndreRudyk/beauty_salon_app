@@ -21,7 +21,7 @@ public interface AppointmentDAO extends GenericDAO<Appointment> {
      * @param appointment the appointment
      * @throws DaoException the dao exception
      */
-    void createAppointment(Appointment appointment) throws DaoException;
+    Appointment createAppointment(Appointment appointment) throws DaoException;
 
     /**
      * Update appointment.
@@ -139,6 +139,7 @@ public interface AppointmentDAO extends GenericDAO<Appointment> {
      * @throws DaoException the dao exception
      */
     void updateUser(User user) throws DaoException;
+    void updateService(Service service) throws DaoException;
 
     /**
      * Cancel appointment.

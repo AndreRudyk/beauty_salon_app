@@ -52,6 +52,6 @@ public interface CardDao extends GenericDAO<Card> {
      * @param id the id
      * @throws DaoException the dao exception
      */
-    Card removeCard(int id) throws DaoException;
+    Card removeCardById(int id) throws DaoException;
 
 }

@@ -106,13 +106,13 @@ public class SalonServiceService implements ServiceDAO {
      * @return s
      */
     @Override
-    public Service removeService(int serviceId) throws DaoException {
+    public Service removeServiceById(int serviceId) throws DaoException {
         ServiceDAO serviceDAO = null;
         try {
             serviceDAO = daoFactory.createServiceDao();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Objects.requireNonNull(serviceDAO).removeService(serviceId);
+        return Objects.requireNonNull(serviceDAO).removeServiceById(serviceId);
     }
 }

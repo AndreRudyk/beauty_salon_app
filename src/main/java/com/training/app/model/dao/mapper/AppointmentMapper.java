@@ -1,6 +1,7 @@
 package com.training.app.model.dao.mapper;
 
 import com.training.app.model.entity.Appointment;
+import com.training.app.model.entity.User;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -19,8 +20,9 @@ public class AppointmentMapper implements ObjectMapper<Appointment> {
         Map<Integer, Appointment> appointmentMap = new HashMap<>();
         Appointment appointment = Appointment.newBuilder().
                 setId(resultSet.getInt("id")).
-                setPrice(BigDecimal.valueOf(3.40)).
-                setStatus(Appointment.Status.DONE).
+                setPrice(resultSet.getBigDecimal("price")).
+                setActionDateTime(resultSet.getTimestamp("time").toLocalDateTime()).
+                setStatus(Appointment.Status.valueOf(resultSet.getString("status"))).
                 build();
         appointmentMap.put(appointment.getId(), appointment);
         appointment = this.makeUnique(appointmentMap, appointment);

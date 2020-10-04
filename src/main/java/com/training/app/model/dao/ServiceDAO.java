@@ -6,37 +6,44 @@ import java.util.List;
 
 /**
  * The interface Service dao.
- *
  * @author besko
  */
 public interface ServiceDAO extends GenericDAO<Service> {
     /**
-     * Create appointment.
+     * Create service service.
      *
      * @param service the service
+     * @return the service
      * @throws DaoException the dao exception
      */
     Service createService(Service service) throws DaoException;
 
 
+    /**
+     * Update service service.
+     *
+     * @param service the service
+     * @return the service
+     * @throws DaoException the dao exception
+     */
     Service updateService(Service service) throws DaoException;
 
 
     /**
-     * Find service by id optional.
+     * Find service by id service.
      *
      * @param id the id
-     * @return the optional
+     * @return the service
      * @throws DaoException the dao exception
      */
     Service findServiceById(int id) throws DaoException;
 
 
     /**
-     * Find service by name optional.
+     * Find service by name service.
      *
      * @param serviceName the service name
-     * @return the optional
+     * @return the service
      * @throws DaoException the dao exception
      */
     Service findServiceByName(String serviceName) throws DaoException;
@@ -52,11 +59,11 @@ public interface ServiceDAO extends GenericDAO<Service> {
 
 
     /**
-     * Remove service by id.
+     * Remove service service.
      *
      * @param serviceId the service id
+     * @return the service
      * @throws DaoException the dao exception
-     * @return
      */
-    Service removeService(int serviceId) throws DaoException;
+    Service removeServiceById(int serviceId) throws DaoException;
 }

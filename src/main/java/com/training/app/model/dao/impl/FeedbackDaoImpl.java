@@ -6,7 +6,6 @@ import com.training.app.model.dao.DaoException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -60,8 +59,8 @@ public class FeedbackDaoImpl implements FeedbackDAO, AutoCloseable {
      * @throws DaoException the dao exception
      */
     @Override
-    public void removeById(int id) throws DaoException {
-
+    public Feedback removeFeedbackById(int id) throws DaoException {
+        return null;
     }
 
     @Override
