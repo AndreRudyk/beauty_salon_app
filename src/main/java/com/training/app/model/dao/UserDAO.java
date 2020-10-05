@@ -89,17 +89,19 @@ public interface UserDAO extends GenericDAO<User> {
      * Update user.
      *
      * @param userId the user id
-     * @param user    the user
+     * @param user   the user
+     * @return the boolean
      * @throws DaoException the dao exception
      */
-    void updateUser(int userId, User user) throws DaoException;
+    boolean updateUser(int userId, User user) throws DaoException;
 
     /**
      * Remove user by id.
      *
      * @param userId the user id
+     * @return the boolean
      * @throws DaoException the dao exception
      */
-    void removeUserById(int userId) throws DaoException;
+    boolean removeUserById(int userId) throws DaoException;
 
 }

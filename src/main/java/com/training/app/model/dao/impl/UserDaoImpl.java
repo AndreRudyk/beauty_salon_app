@@ -15,22 +15,28 @@ import java.util.*;
  */
 public class UserDaoImpl implements UserDAO, AutoCloseable {
 
-    private static final String CREATE_USER = " insert into user" +
+    private static final String CREATE_USER = " INSERT INTO user" +
             " (login_email, password_hash, first_name, last_name, " +
-            " phone_number, user_role, rating) values " +
+            " phone_number, user_role, rating) VALUES " +
             " (?, ?, ?, ?, ?, ?, ?); ";
 
-    private static final String FIND_BY_ID = " select * from user" +
+    private static final String FIND_BY_ID = " SELECT * FROM user" +
             " where id = ? ";
 
-    private static final String FIND_BY_LOGIN = " select * from user" +
+    private static final String FIND_BY_LOGIN = " SELECT * FROM user" +
             " where login_email = ? ";
 
-    private static final String FIND_BY_NAME = " select * from user where first_name = ? ";
+    private static final String FIND_BY_NAME = " SELECT * FROM user WHERE first_name = ? ";
 
-    private static final String FIND_BY_RATING = " select * from user where rating = ? ";
+    private static final String FIND_BY_RATING = " SELECT * FROM user WHERE rating = ? ";
 
-    private static final String FIND_ALL = " select * from user ";
+    private static final String FIND_ALL = " SELECT * FROM user ";
+
+    private static final String UPDATE_USER = "UPDATE user SET login_email = ?, " +
+            " password_hash = ?, first_name = ?, last_name = ?, phone_number = ?, " +
+            " user_role = ?, rating = ? WHERE id = ? ";
+
+    private static final String REMOVE = "DELETE FROM user WHERE id = ?" ;
 
     private final Connection connection;
 
@@ -42,13 +48,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     public User registerUser(User user) throws DaoException {
         try (PreparedStatement preparedStatement = connection.
                 prepareStatement(CREATE_USER)) {
-            preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getFirstName());
-            preparedStatement.setString(4, user.getLastName());
-            preparedStatement.setString(5, user.getPhoneNumber());
-            preparedStatement.setString(6, user.getUserRole().getRoleName());
-            preparedStatement.setBigDecimal(7, user.getRating());
+            setUserParameters(user, preparedStatement);
 
             preparedStatement.executeUpdate();
 
@@ -118,16 +118,7 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
                 prepareStatement(FIND_BY_RATING)) {
             preparedStatementId.setInt(1, rating);
 
-            ResultSet resultSet = preparedStatementId.executeQuery();
-
-            UserMapper userMapper = new UserMapper();
-
-            while (resultSet.next()) {
-                Optional<User> user = Optional.
-                        ofNullable(userMapper.extractFromResultSet(resultSet));
-                user.ifPresent(usersByRating::add);
-            }
-            return usersByRating;
+            return getUserListExecute(usersByRating, preparedStatementId);
         } catch (SQLException e) {
             e.printStackTrace();
             return new ArrayList<>();
@@ -141,21 +132,13 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
 
         try (PreparedStatement preparedStatement = connection.
                 prepareStatement(FIND_ALL)) {
-            ResultSet resultSet1 = preparedStatement.executeQuery();
-
-            UserMapper userMapper = new UserMapper();
-
-            while (resultSet1.next()) {
-                Optional<User> user = Optional.
-                        ofNullable(userMapper.extractFromResultSet(resultSet1));
-                user.ifPresent(users::add);
-            }
+            return getUserListExecute(users, preparedStatement);
         } catch (SQLException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+            throw new DaoException(e);
         }
-        return users;
     }
+
+
 
     @Override
     public Set<Card> findAllCards() throws DaoException {
@@ -168,13 +151,43 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
     }
 
     @Override
-    public void updateUser(int userId, User user) throws DaoException {
+    public boolean updateUser(int userId, User user) throws DaoException {
+        try (PreparedStatement preparedStatement = connection.
+                prepareStatement(UPDATE_USER)){
+            setUserParameters(user, preparedStatement);
 
+            preparedStatement.setInt(8, userId);
+
+            int rowUpdated = preparedStatement.executeUpdate();
+
+            if (rowUpdated == 7) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return false;
     }
 
-    @Override
-    public void removeUserById(int userId) throws DaoException {
 
+
+    @Override
+    public boolean removeUserById(int userId) throws DaoException {
+        try (PreparedStatement preparedStatement = connection.
+                prepareStatement(REMOVE)){
+
+            preparedStatement.setInt(1, userId);
+            int rowDeleted = preparedStatement.executeUpdate();
+
+            if (rowDeleted > 0) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return false;
     }
 
     @Override
@@ -184,6 +197,30 @@ public class UserDaoImpl implements UserDAO, AutoCloseable {
         } catch (SQLException e) {
             throw new DaoException(e);
         }
+    }
+
+
+    private void setUserParameters(User user, PreparedStatement preparedStatement) throws SQLException {
+        preparedStatement.setString(1, user.getLogin());
+        preparedStatement.setString(2, user.getPassword());
+        preparedStatement.setString(3, user.getFirstName());
+        preparedStatement.setString(4, user.getLastName());
+        preparedStatement.setString(5, user.getPhoneNumber());
+        preparedStatement.setString(6, user.getUserRole().getRoleName());
+        preparedStatement.setBigDecimal(7, user.getRating());
+    }
+
+    private List<User> getUserListExecute(List<User> users, PreparedStatement preparedStatement) throws SQLException {
+        ResultSet resultSet1 = preparedStatement.executeQuery();
+
+        UserMapper userMapper = new UserMapper();
+
+        while (resultSet1.next()) {
+            Optional<User> user = Optional.
+                    ofNullable(userMapper.extractFromResultSet(resultSet1));
+            user.ifPresent(users::add);
+        }
+        return users;
     }
 }
 

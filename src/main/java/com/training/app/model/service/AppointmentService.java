@@ -1,15 +1,13 @@
 package com.training.app.model.service;
 
-import com.training.app.model.entity.Appointment;
 import com.training.app.model.dao.AppointmentDAO;
 import com.training.app.model.dao.DaoException;
 import com.training.app.model.dao.DaoFactory;
-import com.training.app.model.entity.Service;
+import com.training.app.model.entity.Appointment;
 import com.training.app.model.entity.User;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

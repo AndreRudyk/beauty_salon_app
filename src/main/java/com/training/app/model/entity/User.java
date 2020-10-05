@@ -211,7 +211,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", userRole=" + userRole +
-                ", rating=" + rating +
+                ", rating=" + rating.doubleValue() +
                 ", cards=" + cards +
                 ", appointmentList=" + appointmentList +
                 '}';

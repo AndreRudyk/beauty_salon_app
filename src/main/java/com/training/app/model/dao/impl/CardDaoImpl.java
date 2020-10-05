@@ -17,11 +17,11 @@ import java.util.Optional;
  */
 public class CardDaoImpl implements CardDao, AutoCloseable {
 
-    private static final String ADD_CARD = " insert into card" +
+    private static final String ADD_CARD = " INSERT INTO card" +
             " (number_id, balance, user_id)" +
-            " values (?, ?, ?); ";
+            " VALUES (?, ?, ?); ";
 
-    private static final String FIND_BY_NUMBER = "select * from card where number_id = ?";
+    private static final String FIND_BY_NUMBER = " SELECT * FROM card WHERE number_id = ?";
 
     public final Connection connection;
 

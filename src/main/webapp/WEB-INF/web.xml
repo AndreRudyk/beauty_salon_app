@@ -7,7 +7,16 @@
 
 
   <welcome-file-list>
-    <welcome-file>Calendar.jsp</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>register.jsp</welcome-file>
   </welcome-file-list>
+
+
+  <servlet>
+    <servlet-name>Hello</servlet-name>
+    <servlet-class>com.training.app.controller.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hello</servlet-name>
+    <url-pattern>/HelloServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

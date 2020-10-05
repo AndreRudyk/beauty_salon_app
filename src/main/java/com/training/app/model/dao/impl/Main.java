@@ -2,12 +2,14 @@ package com.training.app.model.dao.impl;
 
 import com.training.app.model.dao.DaoException;
 import com.training.app.model.entity.Appointment;
+import com.training.app.model.entity.User;
 import com.training.app.model.service.AppointmentService;
 import com.training.app.model.service.UserService;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,19 +19,20 @@ public class Main {
         UserService userService = new UserService();
 
 
-        /*User user1 = User.newUserBuilder().
-                setLogin("u3245").
-                setPassword("2332433").
-                setFirstName("J22324").
-                setLastName("D3").
-                setPhoneNumber("33992211").
-                setUserRole(User.Role.ADMIN).
-                setRating(3).
+        User user1 = User.newUserBuilder().
+                setLogin("JamesF").
+                setPassword("passwordSecretF").
+                setFirstName("James").
+                setLastName("Franco").
+                setPhoneNumber("380631988002").
+                setUserRole(User.Role.GUEST).
+                setRating(BigDecimal.valueOf(2)).
                 build();
 
-        userService.registerUser(user1);
-        User user = userService.findById(2);
-        System.out.println(user);
+        /*userService.registerUser(user1);*/
+        /*User user = userService.findById(2);*/
+        /*System.out.println(user);*/
+        /*
 
 
 
@@ -70,7 +73,7 @@ public class Main {
         Card card = cardService.findByNumber("1231023");
         System.out.println(card);*/
 
-        Appointment appointment = Appointment.newBuilder().
+        /*Appointment appointment = Appointment.newBuilder().
                 setActionDateTime(LocalDateTime.now()).
                 setPrice(BigDecimal.valueOf(45.50)).
                 setStatus(Appointment.Status.NEED).
@@ -86,7 +89,14 @@ public class Main {
         System.out.println(appointment1);
 
         List<Appointment> appointments = appointmentService.findAll();
-        System.out.println(appointments);
+        System.out.println(appointments);*/
+
+        /*System.out.println(userService.removeUserById(5));*/
+
+        System.out.println(userService.updateUser(6, user1));
+
+        List<User> registered = userService.findAllUsers();
+        System.out.println(registered);
 
     }
 }

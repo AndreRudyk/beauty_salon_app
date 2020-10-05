@@ -103,13 +103,25 @@ public class UserService implements UserDAO {
     }
 
     @Override
-    public void updateUser(int userId, User user) throws DaoException {
-
+    public boolean updateUser(int userId, User user) throws DaoException {
+        UserDAO userDAO = null;
+        try {
+            userDAO = daoFactory.createUserDao();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return userDAO.updateUser(userId, user);
     }
 
     @Override
-    public void removeUserById(int userId) throws DaoException {
-
+    public boolean removeUserById(int userId) throws DaoException {
+        UserDAO userDAO = null;
+        try {
+            userDAO = daoFactory.createUserDao();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return userDAO.removeUserById(userId);
     }
 
 

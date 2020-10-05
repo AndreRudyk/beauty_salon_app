@@ -1,13 +1,13 @@
 
-]	java:S125"<This block of commented-out lines of code should be removed.(¹÷€Êûÿÿÿÿ8³¿˜ÿÎ.
-]	java:S125%"<This block of commented-out lines of code should be removed.(®”¼—úÿÿÿÿ8¦¥«›Ï.
-]	java:S1251"<This block of commented-out lines of code should be removed.(ßôôşÿÿÿÿ8›®é™Ï.
-]	java:S125"<This block of commented-out lines of code should be removed.(º¥ëÍùÿÿÿÿ8ĞĞ¦Ï.
+U	java:S106V"9Replace this use of System.out or System.err by a logger.(¶ãõ8Ø»Ó¬Ï.
+Z	java:S106U"9Replace this use of System.out or System.err by a logger.(€°‹úÿÿÿÿ8Ø»Ó¬Ï.
+]	java:S125"<This block of commented-out lines of code should be removed.(®”¼—úÿÿÿÿ8öŠ´¤Ï.
 
-java:S1130"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(¾¶˜óÿÿÿÿÿ8†İÛœÏ.
-]	java:S1254"<This block of commented-out lines of code should be removed.(öòõüÿÿÿÿ8Ã‘š‚Ï.
-U	java:S106)"9Replace this use of System.out or System.err by a logger.(Ø¼¢ƒ8ıÆ«›Ï.
-Z	java:S106."9Replace this use of System.out or System.err by a logger.(óÈ£¾úÿÿÿÿ8‹›ÀœÏ.
+java:S1130"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(¾¶˜óÿÿÿÿÿ8ƒ¡‡¬Ï.
+U	java:S106Y"9Replace this use of System.out or System.err by a logger.(ù“¨š8Ø»Ó¬Ï.
+R
+java:S1481"0Remove this unused "userService" local variable.( óŒİÿÿÿÿÿ8öŠ´¤Ï.
+]	java:S125-"<This block of commented-out lines of code should be removed.(½´äÿÿÿÿÿ8öŠ´¤Ï.
 a
-java:S1128"?Remove this unused import 'com.training.app.model.dao.UserDAO'.(„æ® ùÿÿÿÿ8Ç’¦Ï.
-Z	java:S106,"9Replace this use of System.out or System.err by a logger.(®ß®ºşÿÿÿÿ8‹›ÀœÏ.
+java:S1854"?Remove this useless assignment to local variable "userService".( óŒİÿÿÿÿÿ8öŠ´¤Ï.
+]	java:S1256"<This block of commented-out lines of code should be removed.(®”¼—úÿÿÿÿ8öŠ´¤Ï.

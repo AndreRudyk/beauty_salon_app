@@ -20,11 +20,11 @@ import java.util.Optional;
  */
 public class ServiceDaoImpl implements ServiceDAO, AutoCloseable {
 
-    private static final String CREATE_SERVICE = " insert into service " +
+    private static final String CREATE_SERVICE = " INSERT INTO service " +
             " (name, description, price, duration_minutes) " +
-            " values (?, ?, ?, ?); ";
+            " VALUES(?, ?, ?, ?); ";
 
-    private static final String FIND_ALL = " select * from service ";
+    private static final String FIND_ALL = " SELECT * FROM service ";
 
     private final Connection connection;
 

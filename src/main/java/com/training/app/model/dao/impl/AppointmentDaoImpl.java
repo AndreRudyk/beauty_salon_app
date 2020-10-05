@@ -19,13 +19,13 @@ import java.util.Optional;
  */
 public class AppointmentDaoImpl implements AppointmentDAO, AutoCloseable {
 
-    private static final String CREATE_APPOINTMENT = " insert into appointment " +
-            " (time, price, status, estimate) values " +
+    private static final String CREATE_APPOINTMENT = " INSERT INTO appointment " +
+            " (time, price, status, estimate) VALUES " +
             " (? ,? ,?, ?); ";
 
-    private static final String FIND_BY_ID = " select * from appointment where id = ? ";
+    private static final String FIND_BY_ID = " SELECT * FROM appointment WHERE id = ? ";
 
-    private static final String FIND_ALL = " select * from appointment ";
+    private static final String FIND_ALL = " SELECT * FROM appointment ";
 
 
     private final Connection connection;
