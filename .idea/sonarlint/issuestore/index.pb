@@ -1,6 +1,4 @@
 
-K
-.idea/libraries/jsp_api.xml,8\7\87fd47b50770b2ef8adfd288dc0e0a36b2db4788
 O
 .idea/libraries/servlet_api.xml,2\f\2f7cbc1851df7142dea397b7d64eea05733d168e
 e
@@ -35,8 +33,6 @@ h
 8src/main/java/com/training/app/model/entity/Service.java,6\1\61275673f47505f19bdabc535d68073dfcc00baa
 a
 1.idea/libraries/commons_dbcp_commons_dbcp_1_4.xml,9\1\9165df65a204f712565ed83aff39c6b5d9e8710d
-A
-src/db.properties,b\2\b2bb421eba595f925073d3db78bb38a8ce94b3a8
 l
 <src/main/java/com/training/app/model/dao/AppointmentDAO.java,1\2\12d6a95bca9b8dcfdb140f63118f3493cd679aa6
 t
@@ -89,9 +85,37 @@ h
 8src/main/java/com/training/app/model/dao/DaoFactory.java,e\4\e4ca0481aed4e00780ed44978797c88b6d031846
 m
 =src/main/java/com/training/app/model/service/CardService.java,9\2\925017b7e44e494768ac00c9b66f2b691fe5f8b7
-L
-src/main/webapp/Calendar.jsp,7\9\798d85bfce23f836f9d05e511ee5a55b6513f1bd
 @
 src/mysql_script,4\f\4fde1bca4895e9f2f42695e10b0b755262d246a4
 u
 Esrc/main/java/com/training/app/model/service/SalonServiceService.java,c\3\c31df45af2195e94e48ad54cfcd0a8f1ef602ca9
+U
+%src/main/webapp/css/bootstrap.min.css,3\d\3db7f34d7f1aa0ac58709ee4bb48745c5eeaad41
+S
+#src/main/webapp/js/bootstrap.min.js,1\8\1889f9b14c3ebc945fcc5e57e57acfd4fba5aea9
+k
+;src/main/java/com/training/app/controller/HelloServlet.java,5\2\52ab61cee4fd9ab33453932e7ee539f34a0265be
+J
+src/main/webapp/index.html,1\3\1337d72a3b1928dba82aa5210f5cdc0e88ce895b
+q
+A.idea/libraries/javax_servlet_jsp_javax_servlet_jsp_api_2_3_3.xml,f\4\f4d1c61ad9429cc6ec2c86e0e6675fe233709925
+P
+ src/main/webapp/js/jquery.min.js,2\f\2f4437478e92f78f1def351d547a7df4ad70c955
+J
+src/main/webapp/login.html,0\b\0b2312482180eaf8cdf639b64798129ced9aa403
+I
+src/main/webapp/login.jsp,8\5\85ee523d01e5e19376db640e846c91bbcb0a1c22
+L
+src/main/webapp/register.jsp,b\d\bde35d3876092f82f8efadc1a6675aaf6bd96946
+U
+%src/main/webapp/assets/css/styles.css,3\a\3a97f7dbd258d12e556b45e5a86350cf614117b1
+M
+src/main/webapp/css/style.css,2\c\2c1f525046eaa5ad3e39cc3d3b2f4c4fab4ff318
+O
+src/main/webapp/admin/admin.jsp,0\6\0649a0416ea8c90b5acb8e4b83db81bb02b92b20
+M
+src/main/webapp/register.html,9\4\940f7dd52a25b6865fee37b1080b6b288bad68a4
+M
+src/main/webapp/user/user.jsp,8\7\8756fe4f148cd8b951571402aa46ad8f39e01d01
+I
+src/main/webapp/error.jsp,c\b\cba3df22242d379bdb72d00919d2e8d49101d1bf

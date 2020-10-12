@@ -18,5 +18,6 @@
   <servlet-mapping>
     <servlet-name>Hello</servlet-name>
     <url-pattern>/HelloServlet</url-pattern>
+
   </servlet-mapping>
 </web-app>

@@ -1,13 +1,13 @@
 
-U	java:S106V"9Replace this use of System.out or System.err by a logger.(¶ãõ8Ø»Ó¬Ï.
-Z	java:S106U"9Replace this use of System.out or System.err by a logger.(€°‹úÿÿÿÿ8Ø»Ó¬Ï.
-]	java:S125"<This block of commented-out lines of code should be removed.(®”¼—úÿÿÿÿ8öŠ´¤Ï.
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8¡İûÂÏ.
+Z	java:S106c"9Replace this use of System.out or System.err by a logger.(Óâƒ¹ûÿÿÿÿ8¡İûÂÏ.
+]	java:S1250"<This block of commented-out lines of code should be removed.(½´äÿÿÿÿÿ8öŠ´¤Ï.
+W	java:S125 "<This block of commented-out lines of code should be removed.(ã q8èÜÜÃÏ.
+U	java:S106`"9Replace this use of System.out or System.err by a logger.(Ñè³«8¨·‹øÏ.
 
-java:S1130"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(¾¶˜óÿÿÿÿÿ8ƒ¡‡¬Ï.
-U	java:S106Y"9Replace this use of System.out or System.err by a logger.(ù“¨š8Ø»Ó¬Ï.
-R
-java:S1481"0Remove this unused "userService" local variable.( óŒİÿÿÿÿÿ8öŠ´¤Ï.
-]	java:S125-"<This block of commented-out lines of code should be removed.(½´äÿÿÿÿÿ8öŠ´¤Ï.
-a
-java:S1854"?Remove this useless assignment to local variable "userService".( óŒİÿÿÿÿÿ8öŠ´¤Ï.
-]	java:S1256"<This block of commented-out lines of code should be removed.(®”¼—úÿÿÿÿ8öŠ´¤Ï.
+java:S1130"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(¾¶˜óÿÿÿÿÿ8…øÏ.
+]	java:S1259"<This block of commented-out lines of code should be removed.(®”¼—úÿÿÿÿ8öŠ´¤Ï.
+]	java:S125Q"<This block of commented-out lines of code should be removed.(®”¼—úÿÿÿÿ8†«ùÂÏ.
+]	java:S125^"<This block of commented-out lines of code should be removed.(•¥Ê®øÿÿÿÿ8¤ª‚ÄÏ.
+]	java:S125'"<This block of commented-out lines of code should be removed.(®ß®ºşÿÿÿÿ8›™„ÃÏ.

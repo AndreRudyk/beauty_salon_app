@@ -6,6 +6,7 @@ import com.training.app.model.entity.Card;
 import com.training.app.model.entity.User;
 import com.training.app.model.dao.DaoException;
 import com.training.app.model.dao.mapper.UserMapper;
+import org.apache.tomcat.jdbc.pool.ProxyConnection;
 
 import java.sql.*;
 import java.util.*;

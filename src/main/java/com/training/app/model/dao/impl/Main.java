@@ -20,10 +20,10 @@ public class Main {
 
 
         User user1 = User.newUserBuilder().
-                setLogin("JamesF").
+                setLogin("example@gmail.com").
                 setPassword("passwordSecretF").
-                setFirstName("James").
-                setLastName("Franco").
+                setFirstName("Василь").
+                setLastName("Бабин").
                 setPhoneNumber("380631988002").
                 setUserRole(User.Role.GUEST).
                 setRating(BigDecimal.valueOf(2)).

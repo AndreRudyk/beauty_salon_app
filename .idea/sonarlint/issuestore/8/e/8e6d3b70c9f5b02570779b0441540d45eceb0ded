@@ -1,4 +1,20 @@
 
-Z	Web:S5254"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(χΓϋÿÿÿÿ
-IWeb:PageWithoutTitleCheck"Add a <title> tag to this page.(χΓϋÿÿÿÿ
-cWeb:DoctypePresenceCheck":Insert a <!DOCTYPE> declaration to before this <html> tag.(χΓϋÿÿÿÿ
+^Web:LinkToImageCheck"1Change this link to not directly target an image.(Ν€»Ψώÿÿÿÿ8αθ®ΠΟ.
+NWeb:ImgWithoutAltCheck`"%Add an "alt" attribute to this image.(ίδ¥›8αθ®ΠΟ.
+TWeb:ImgWithoutAltCheck†"%Add an "alt" attribute to this image.(Λ™«νϋÿÿÿÿ8αθ®ΠΟ.
+OWeb:ImgWithoutAltCheck"%Add an "alt" attribute to this image.(Ρ°κΥ8αθ®ΠΟ.
+JWeb:BoldAndItalicTagsCheck¬"Replace this <i> tag by <em>.(«Ι8αθ®ΠΟ.
+^Web:LinkToImageCheck"1Change this link to not directly target an image.(Ν€»Ψώÿÿÿÿ8αθ®ΠΟ.
+YWeb:LinkToImageCheck"1Change this link to not directly target an image.(Ρ°κΥ8αθ®ΠΟ.
+OWeb:ImgWithoutAltCheck"%Add an "alt" attribute to this image.(Ρ°κΥ8αθ®ΠΟ.
+TWeb:ImgWithoutAltCheck"%Add an "alt" attribute to this image.(Λ™«νϋÿÿÿÿ8αθ®ΠΟ.
+YWeb:LinkToImageCheck"1Change this link to not directly target an image.(Ρ°κΥ8αθ®ΠΟ.
+KWeb:BoldAndItalicTagsCheck«"Replace this <i> tag by <em>.(Μ‚Ò8αθ®ΠΟ.
+NWeb:ImgWithoutAltCheckt"%Add an "alt" attribute to this image.(µΘΎµ8αθ®ΠΟ.
+TWeb:ImgWithoutAltCheck"%Add an "alt" attribute to this image.(Ν€»Ψώÿÿÿÿ8αθ®ΠΟ.
+^Web:LinkToImageCheck†"1Change this link to not directly target an image.(Λ™«νϋÿÿÿÿ8αθ®ΠΟ.
+NWeb:ImgWithoutAltCheckj"%Add an "alt" attribute to this image.(φ8αθ®ΠΟ.
+KWeb:BoldAndItalicTagsCheck«"Replace this <i> tag by <em>.(Μ‚Ò8αθ®ΠΟ.
+TWeb:ImgWithoutAltCheck"%Add an "alt" attribute to this image.(Ν€»Ψώÿÿÿÿ8αθ®ΠΟ.
+^Web:LinkToImageCheck"1Change this link to not directly target an image.(Λ™«νϋÿÿÿÿ8αθ®ΠΟ.
+JWeb:BoldAndItalicTagsCheck­"Replace this <i> tag by <em>.(ΚΎκ8αθ®ΠΟ.
